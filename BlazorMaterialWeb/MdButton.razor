@@ -1,6 +1,6 @@
 @inherits DefaultMdComponent
 
 <DynamicTag Tag="@(ButtonTagName)"
-            AdditionalAttributes="AdditionalAttributes">
+            @attributes="AdditionalAttributes">
     @(ChildContent)
 </DynamicTag>

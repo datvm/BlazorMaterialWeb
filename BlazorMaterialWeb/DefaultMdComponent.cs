@@ -2,7 +2,7 @@
 public class DefaultMdComponent : ComponentBase
 {
 
-    [Parameter]
+    [Parameter(CaptureUnmatchedValues = true)]
     public Dictionary<string, object>? AdditionalAttributes { get; set; }
 
     [Parameter]
