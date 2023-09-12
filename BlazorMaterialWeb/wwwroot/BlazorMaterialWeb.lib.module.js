@@ -11,4 +11,16 @@ export function afterStarted(blazor) {
             };
         }
     });
+
+    blazor.registerCustomEventType("selected", {
+        browserEventName: "selected",
+        createEventArgs: e => ({
+            checked: e.target.selected
+        }),
+    });
+
+    blazor.registerCustomEventType("remove", {
+        browserEventName: "remove",
+        createEventArgs: () => undefined,
+    });
 }

@@ -1,0 +1,12 @@
+@namespace BlazorMaterialWeb
+
+@inherits BaseMdChip
+
+<BaseMdChipRenderer Type="ChipType.Assist" @attributes="AdditionalAttributes"
+                    href="@(Href)"
+                    target="@(Target)"
+                    Label="@(Label)"
+                    Elevated="@(Elevated)"
+                    Disabled="Disabled">
+    @(ChildContent)
+</BaseMdChipRenderer>

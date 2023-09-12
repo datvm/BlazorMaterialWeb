@@ -5,6 +5,18 @@
 <h1>Hello, world!</h1>
 
 <p>
+    <MdChipset Type="ChipType.Input">
+        <MdFilterChip Label="Filter Chip" @bind-Selected="chipSelected" />
+        <MdInputChip Label="Input Chip"
+                     OnRemove="@(() => Console.WriteLine("Remove"))" />
+    </MdChipset>
+</p>
+
+<p>
+    First chip selected: @(chipSelected)
+</p>
+
+<p>
     <MdButton ButtonType="MdButtonType.Outlined">
         Back
     </MdButton>
@@ -38,4 +50,4 @@
 
  <p>
      Checkbox checked: @(checkboxChecked)
- </p>
+</p>

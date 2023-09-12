@@ -1,0 +1,18 @@
+@namespace BlazorMaterialWeb
+
+@inherits BaseMdChip
+
+<BaseMdChipRenderer Type="ChipType.Input"
+                    remove-only="@(RemoveOnly)"
+                    selected="@(Selected)"
+                    avatar="@(Avatar)"
+                    href="@(Href)"
+                    target="@(Target)"
+                    @onselected="OnSelectedChanged"
+                    @onremove="OnRemove"
+                    @attributes="AdditionalAttributes"
+                    Label="@(Label)"
+                    Elevated="@(Elevated)"
+                    Disabled="Disabled">
+    @(ChildContent)
+</BaseMdChipRenderer>

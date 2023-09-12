@@ -1,0 +1,9 @@
+@namespace BlazorMaterialWeb
+
+@inherits DefaultMdComponent
+
+<md-chip-set type="@(Type.ToString().ToLower())" single-select="@(SingleSelect)">
+    <CascadingValue Value="@(Type)">
+        @(ChildContent)
+    </CascadingValue>
+</md-chip-set>
