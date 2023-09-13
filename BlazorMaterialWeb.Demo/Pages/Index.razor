@@ -4,6 +4,38 @@
 
 <h1>Hello, world!</h1>
 
+<div>
+    <p>
+        <MdButton @onclick="ShowDialogAsync">
+            Show Dialog
+        </MdButton>
+
+
+    </p>
+
+    <p>
+        Dialog is showing: @(showDialog).
+        Return value: @(dialogReturnValue).
+        Entered Name: @(diagName).
+    </p>
+
+    <MdDialog @bind-Open="showDialog" @ref="diag" Type="MdDialogType.Alert">
+        <Actions>
+            <MdButton value="Cancel" form="frm-diag" ButtonType="MdButtonType.Text">Cancel</MdButton>
+            <MdButton value="Ok" form="frm-diag" ButtonType="MdButtonType.Tonal">Ok</MdButton>
+        </Actions>
+
+        <ChildContent>
+            <form id="frm-diag" method="dialog">
+                Enter your name:
+                <input @bind="diagName" type="text" name="name" />
+            </form>
+        </ChildContent>
+    </MdDialog>
+</div>
+
+<hr />
+
 <p>
     <MdChipset Type="ChipType.Input">
         <MdFilterChip Label="Filter Chip" @bind-Selected="chipSelected" />

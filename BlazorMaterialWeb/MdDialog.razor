@@ -1,0 +1,30 @@
+@inherits DefaultMdComponent
+
+@inject IJSRuntime Js;
+
+<md-dialog @attributes="AdditionalAttributes" @ref="el"
+           open="@(Open)"
+           type="@(Type?.ToString().ToLower())"
+           @onopen="OnOpen"
+           @onopened="OnDomOpened"
+           @onclose="OnClose"
+           @onclosed="OnDomClosed"
+           @oncancel="OnCancel">
+    @if (Headline is not null)
+    {
+        <div slot="headline">
+            @(Headline)
+        </div>
+    }
+
+    <div slot="content">
+        @(ChildContent)
+    </div>
+
+    @if (Actions is not null)
+    {
+        <div slot="actions">
+            @(Actions)
+        </div>
+    }
+</md-dialog>
