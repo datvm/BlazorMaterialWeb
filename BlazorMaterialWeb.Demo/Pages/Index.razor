@@ -4,7 +4,16 @@
 
 <h1>Hello, world!</h1>
 
-<div class="mb-3">
+<div>
+    <MdButton id="btn-focus-ring">
+        <MdFocusRing Inward for="btn-focus-ring" />
+        Ring button
+    </MdButton>
+</div>
+
+<MdDivider class="my-3" />
+
+<div>
     @foreach (var variant in Enum.GetValues<MdFabVariant>())
     {
         @foreach (var size in Enum.GetValues<MdFabSize>())
@@ -28,9 +37,9 @@
     }
 </div>
 
-<MdDivider />
+<MdDivider class="my-3" />
 
-<div class="mb-3">
+<div>
     <p>
         <MdButton @onclick="ShowDialogAsync">
             Show Dialog
