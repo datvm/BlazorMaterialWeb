@@ -14,8 +14,11 @@
     {
         <div class="col">
             <MdButton @onclick="@(() => clickedType = type.ToString())"
+                      Disabled="@(disabled)"
                       ButtonType="@(type)"
-                      TrailingIcon="@(trailingIcon)">
+                      TrailingIcon="@(trailingIcon)"
+                      Href="@(hasHref ? "https://example.com" : null)"
+                      Target="@(hasHref && targetBlank ? "_blank" : "")">
                 @(type.ToString())
 
                 @if (!string.IsNullOrEmpty(icon))
@@ -36,6 +39,23 @@ else
     <p>You clicked: @(clickedType)</p>
 }
 
+<p>
+    <label class="me-3">
+        <MdCheckbox @bind-Checked="disabled" />
+        Disabled
+    </label>
+
+    <label class="me-3">
+        <MdCheckbox @bind-Checked="hasHref" />
+        Has Href
+    </label>
+
+    <label class="me-3">
+        <MdCheckbox @bind-Checked="targetBlank" Disabled="@(!hasHref)" />
+        Set Target to <code>_blank</code>
+    </label>
+</p>
+
 <div class="row align-items-center">
     <div class="col-auto">
         <label>
@@ -55,8 +75,12 @@ else
 
 @code {
 
+    bool disabled;
     string? clickedType;
     string icon = "send";
     bool trailingIcon;
+
+    bool hasHref;
+    bool targetBlank;
 
 }
