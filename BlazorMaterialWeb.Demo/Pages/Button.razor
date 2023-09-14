@@ -7,8 +7,6 @@
 <p><a href="https://m3.material.io/components/buttons">Buttons</a> help people initiate actions, from sending an email, to sharing a document, to liking a post.</p>
 <p>There are five types of common buttons: elevated, filled, filled tonal, outlined, and text.</p>
 
-<h2>Types</h2>
-
 <div class="row text-center my-3">
     @foreach (var type in Enum.GetValues<MdButtonType>())
     {
@@ -72,6 +70,30 @@ else
         </MdTextField>
     </div>
 </div>
+
+<MdDivider class="my-5" />
+
+<pre><code>
+@@foreach (var type in Enum.GetValues&lt;MdButtonType&gt;())
+{
+    &lt;div class=&quot;col&quot;&gt;
+        &lt;MdButton @@onclick=&quot;@@(() =&gt; clickedType = type.ToString())&quot;
+                    Disabled=&quot;@@(disabled)&quot;
+                    ButtonType=&quot;@@(type)&quot;
+                    TrailingIcon=&quot;@@(trailingIcon)&quot;
+                    Href=&quot;@@(hasHref ? &quot;https://example.com&quot; : null)&quot;
+                    Target=&quot;@@(hasHref &amp;&amp; targetBlank ? &quot;_blank&quot; : &quot;&quot;)&quot;&gt;
+            @@(type.ToString())
+
+            @@if (!string.IsNullOrEmpty(icon))
+            {
+                &lt;MdIcon slot=&quot;icon&quot;&gt;@@(icon)&lt;/MdIcon&gt;
+            }
+        &lt;/MdButton&gt;
+    &lt;/div&gt;
+}
+</code></pre>
+
 
 @code {
 

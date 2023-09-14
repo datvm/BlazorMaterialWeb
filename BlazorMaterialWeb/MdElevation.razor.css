@@ -1,0 +1,8 @@
+.md-elevation-container {
+    position: relative;
+    border-radius: var(--md-elevation-border-radius, 0);
+}
+
+    .md-elevation-container ::deep > *:not(md-elevation) {
+        border-radius: var(--md-elevation-border-radius, 0);
+    }
