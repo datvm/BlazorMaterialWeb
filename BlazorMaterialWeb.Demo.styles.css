@@ -1,0 +1,62 @@
+@import '_content/BlazorMaterialWeb/BlazorMaterialWeb.bundle.scp.css';
+
+/* /Shared/MainLayout.razor.rz.scp.css */
+.page-header[b-k68xj1x1tp] {
+    display: flex;
+    flex-direction: row;
+    column-gap: var(--catalog-spacing-m);
+    padding: var(--catalog-spacing-m) var(--catalog-spacing-s);
+    background-color: var(--md-sys-color-surface-container);
+    color: var(--md-sys-color-on-surface);
+}
+
+.home-link[b-k68xj1x1tp] {
+    color: var(--md-sys-color-primary);
+    font-size: max(var(--catalog-title-l-font-size), 22px);
+    text-decoration: none;
+    padding-inline: 12px;
+    position: relative;
+    outline: none;
+    vertical-align: middle;
+}
+
+.content[b-k68xj1x1tp] {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    min-height: 0;
+}
+
+.page-nav[b-k68xj1x1tp] {
+    width: 100%;
+    max-width: 300px;
+}
+
+    .page-nav.collapsed[b-k68xj1x1tp] {
+        max-width: 0;
+    }
+
+.page-content-container[b-k68xj1x1tp] {
+    min-width: 0;
+    min-height: 0;
+    flex-grow: 1;    
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+    .page-content-container[b-k68xj1x1tp]  .md-elevation-container {
+        min-height: 0;
+        flex-grow: 1;
+    }
+
+.page-content[b-k68xj1x1tp] {
+    background-color: var(--md-sys-color-surface);
+    overflow: auto;
+    min-height: 0;
+    height: 100%;
+}
+
+[b-k68xj1x1tp] md-list {
+    --md-list-item-container-shape: 48px;
+}

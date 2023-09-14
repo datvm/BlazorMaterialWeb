@@ -1,0 +1,9 @@
+/* _content/BlazorMaterialWeb/MdElevation.razor.rz.scp.css */
+.md-elevation-container[b-zaro2lkxot] {
+    position: relative;
+    border-radius: var(--md-elevation-border-radius, 0);
+}
+
+    .md-elevation-container[b-zaro2lkxot]  > *:not(md-elevation) {
+        border-radius: var(--md-elevation-border-radius, 0);
+    }
