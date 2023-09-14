@@ -10,6 +10,7 @@ sealed partial class MainLayout : IDisposable
     {
         ("Buttons", "/button"),
         ("Checkbox", "/checkbox"),
+        ("Icon Buttons", "/icon-buttons"),
     };
 
     protected override void OnInitialized() => 

@@ -1,0 +1,24 @@
+﻿@page "/icon-buttons"
+
+<PageTitle>Icon buttons</PageTitle>
+
+<h1>Icon buttons</h1>
+
+<p>Icon buttons help people take minor actions with one tap</p>
+
+<div class="row text-center">
+    @foreach (var style in Enum.GetValues<MdIconButtonStyle>())
+    {
+        <div class="col">
+            <MdIconButton Style="@(style)">
+                <MdIcon>@(icon)</MdIcon>
+            </MdIconButton>
+        </div>
+    }
+</div>
+
+@code {
+
+    string icon = "check";
+
+}

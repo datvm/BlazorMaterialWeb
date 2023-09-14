@@ -1,0 +1,14 @@
+@inherits DefaultMdComponent
+
+<DynamicTag Tag="@(TagName)" @attributes="AdditionalAttributes"
+            disabled="@(Disabled)"
+            aria-label-selected="@(AriaLabelSelected)"
+            flip-icon-in-rtl="@(FlipIconInRtl)"
+            href="@(Href)"
+            selected="@(Selected)"
+            target="@(Target)"
+            toggle="@(Toggle)"
+            type="@(Type)"
+            value="@(Value)">
+    @(ChildContent)
+</DynamicTag>

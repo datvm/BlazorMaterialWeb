@@ -24,7 +24,7 @@ A Nuget package should be available once the basic components are ready.
 This project depends on Google's [Material Web Component](https://github.com/material-components/material-web/). This is the progress of this project:
 
 | Component | Blazored | Material Web | Demo Page |
-| - |
+| --- | --- | --- | --- |
 | Button | ✅ | ✅ | [Button](https://blazorwebmaterial.lukevo.com/button) |
 | FAB | ✅ | ✅ | 🟡 |
 | Icon button | ✅ | ✅ | 🟡 |
@@ -41,7 +41,7 @@ This project depends on Google's [Material Web Component](https://github.com/mat
 | Ripple | 🟡 | ✅ | 🟡 |
 | Select | 🟡 | 🟡 | 🟡 |
 | Slider | 🟡 | ✅ | 🟡 |
-| Switch | 🟡 | ✅ | 🟡 |
+| Switch | ✅ | ✅ | 🟡 |
 | Tabs | 🟡 | ✅ | 🟡 |
 | Text field | ✅ | ✅ | 🟡 |
 | Catalog | 💤 | 💤 | 💤 |
