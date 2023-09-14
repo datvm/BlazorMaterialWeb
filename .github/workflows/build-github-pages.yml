@@ -20,6 +20,8 @@ jobs:
       run: dotnet workload install wasm-tools
     - name: Publish .NET project
       run: dotnet publish BlazorMaterialWeb.Demo/BlazorMaterialWeb.Demo.csproj -c:Release -p:GHPages=true -o dist/Web --nologo
+    - name: Make 404 page for SPA
+      run: cp dist/Web/wwwroot/index.html dist/Web/wwwroot/404.html
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4.4.3
       with:

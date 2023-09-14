@@ -7,6 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorMaterialWeb", "Blazor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorMaterialWeb.Demo", "BlazorMaterialWeb.Demo\BlazorMaterialWeb.Demo.csproj", "{A7E06DAF-3487-47B3-9D19-F341B9B8082C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FDADCE8A-DECA-462E-81CB-E9F778D74DCC}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build-github-pages.yml = .github\workflows\build-github-pages.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
