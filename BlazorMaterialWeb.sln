@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorMaterialWeb", "BlazorMaterialWeb\BlazorMaterialWeb.csproj", "{A237FF36-AD62-4D52-A17F-5D37EB873DB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorMaterialWeb", "BlazorMaterialWeb\BlazorMaterialWeb.csproj", "{A237FF36-AD62-4D52-A17F-5D37EB873DB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorMaterialWeb.Demo", "BlazorMaterialWeb.Demo\BlazorMaterialWeb.Demo.csproj", "{A7E06DAF-3487-47B3-9D19-F341B9B8082C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorMaterialWeb.Demo", "BlazorMaterialWeb.Demo\BlazorMaterialWeb.Demo.csproj", "{A7E06DAF-3487-47B3-9D19-F341B9B8082C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

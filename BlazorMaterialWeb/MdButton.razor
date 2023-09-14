@@ -1,6 +1,12 @@
 @inherits DefaultMdComponent
 
-<DynamicTag Tag="@(ButtonTagName)"
-            @attributes="AdditionalAttributes">
+<DynamicTag Tag="@(ButtonTagName)" @attributes="AdditionalAttributes"
+            disabled="@(Disabled)"
+            href="@(Href)"
+            target="@(Target)"
+            trailing-icon="@(TrailingIcon)"
+            has-icon="@(HasIcon)"
+            type="@(Type.ToString().ToLower())"
+            value="@(Value)">
     @(ChildContent)
 </DynamicTag>

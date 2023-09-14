@@ -1,17 +1,29 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
+@inject NavigationManager Nav;
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
+<header class="page-header align-items-center">
+    <MdFab @onclick="@(() => menuCollapsed = !menuCollapsed)"
+           Size="MdFabSize.Small">
+        <MdIcon slot="icon">menu</MdIcon>
+    </MdFab>
 
-        <article class="content px-4">
+    <a href="/" class="home-link my-0">Blazor Material Web</a>
+</header>
+
+<div class="content">
+    <nav class="page-nav @(menuCollapsed ? "collapsed" : "")">
+        <MdList>
+            @foreach (var url in NavUrls)
+            {
+                <MdListItem Href="@(url.Url)" Headline="@(url.Text)"
+                            Active="@(url == activeUrl)" />
+            }
+        </MdList>
+    </nav>
+    <main class="page-content">
+        <div class="container-fluid py-3">
             @Body
-        </article>
+        </div>
     </main>
 </div>

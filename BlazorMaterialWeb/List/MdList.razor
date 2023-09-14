@@ -1,0 +1,8 @@
+@namespace BlazorMaterialWeb
+@inherits DefaultMdComponent
+
+<md-list @attributes="AdditionalAttributes"
+         type="@(Type.ToString().ToLower())"
+         list-tabindex="@(ListTabIndex)">
+    @(ChildContent)
+</md-list>

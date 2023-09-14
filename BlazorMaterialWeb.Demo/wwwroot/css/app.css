@@ -1,41 +1,64 @@
-@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
-
 html, body {
-    font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
-h1:focus {
-    outline: none;
+body {
+    font-family: var(--md-ref-typeface-plain);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--md-sys-color-surface-container);
 }
 
-a, .btn-link {
-    color: #0071c1;
+#app {
+    min-height: 0;
+    min-width: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-.btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-.content {
-    padding-top: 1.1rem;
-}
-
-.valid.modified:not([type=checkbox]) {
-    outline: 1px solid #26b050;
-}
-
-.invalid {
-    outline: 1px solid red;
-}
-
-.validation-message {
-    color: red;
+:root, :host {
+    --md-ref-typeface-plain: Roboto,system-ui;
+    --md-sys-color-background: #fcf8ff;
+    --md-sys-color-on-background: #1b1b25;
+    --md-sys-color-surface: #fcf8ff;
+    --md-sys-color-surface-dim: #dbd8e6;
+    --md-sys-color-surface-bright: #fcf8ff;
+    --md-sys-color-surface-container-lowest: #ffffff;
+    --md-sys-color-surface-container-low: #f5f2ff;
+    --md-sys-color-surface-container: #efecfa;
+    --md-sys-color-surface-container-high: #e9e6f5;
+    --md-sys-color-surface-container-highest: #e3e1ef;
+    --md-sys-color-on-surface: #1b1b25;
+    --md-sys-color-surface-variant: #e2e0f6;
+    --md-sys-color-on-surface-variant: #454556;
+    --md-sys-color-inverse-surface: #302f3a;
+    --md-sys-color-inverse-on-surface: #f2effd;
+    --md-sys-color-outline: #767588;
+    --md-sys-color-outline-variant: #c6c4d9;
+    --md-sys-color-shadow: #000000;
+    --md-sys-color-scrim: #000000;
+    --md-sys-color-surface-tint: #3e41f3;
+    --md-sys-color-primary: #1f1add;
+    --md-sys-color-on-primary: #ffffff;
+    --md-sys-color-primary-container: #4c50ff;
+    --md-sys-color-on-primary-container: #ffffff;
+    --md-sys-color-inverse-primary: #c0c1ff;
+    --md-sys-color-secondary: #5356a6;
+    --md-sys-color-on-secondary: #ffffff;
+    --md-sys-color-secondary-container: #b1b4ff;
+    --md-sys-color-on-secondary-container: #202271;
+    --md-sys-color-tertiary: #7d008b;
+    --md-sys-color-on-tertiary: #ffffff;
+    --md-sys-color-tertiary-container: #ae2dbc;
+    --md-sys-color-on-tertiary-container: #ffffff;
+    --md-sys-color-error: #ba1a1a;
+    --md-sys-color-on-error: #ffffff;
+    --md-sys-color-error-container: #ffdad6;
+    --md-sys-color-on-error-container: #410002;
 }
 
 #blazor-error-ui {

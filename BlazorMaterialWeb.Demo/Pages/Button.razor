@@ -1,0 +1,53 @@
+﻿@page "/button"
+
+<PageTitle>Buttons</PageTitle>
+
+<h1>Buttons</h1>
+
+<p><a href="https://m3.material.io/components/buttons">Buttons</a> help people initiate actions, from sending an email, to sharing a document, to liking a post.</p>
+<p>There are five types of common buttons: elevated, filled, filled tonal, outlined, and text.</p>
+
+<h2>Types</h2>
+
+<div class="row text-center my-3">
+    @foreach (var type in Enum.GetValues<MdButtonType>())
+    {
+        <div class="col">
+            <MdButton @onclick="@(() => clickedType = type.ToString())"
+                      ButtonType="@(type)"
+                      TrailingIcon="@(trailingIcon)">
+                @(type.ToString())
+
+                @if (!string.IsNullOrEmpty(icon))
+                {
+                    <MdIcon slot="icon">@(icon)</MdIcon>
+                }
+            </MdButton>
+        </div>
+    }
+</div>
+
+@if (clickedType is null)
+{
+    <p>You haven't clicked any button</p>
+}
+else
+{
+    <p>You clicked: @(clickedType)</p>
+}
+
+<p>
+    <label>
+        <MdCheckbox @bind-Checked="trailingIcon" />
+        Trailing Icon
+    </label>
+    
+</p>
+
+@code {
+
+    string? clickedType;
+    string icon = "send";
+    bool trailingIcon;
+
+}
