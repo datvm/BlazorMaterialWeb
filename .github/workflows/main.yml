@@ -8,7 +8,7 @@ on:
       - main
 jobs:
   deploy-to-github-pages:
-    runs-on: ubuntu-latest;
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4.0.0
     - name: Setup .NET SDK
