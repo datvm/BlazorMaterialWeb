@@ -1,0 +1,28 @@
+name: Build WASM Page
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  deploy-to-github-pages:
+    runs-on: ubuntu-latest;
+    steps:
+    - uses: actions/checkout@v4.0.0
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v3.2.0
+      with:
+        dotnet-version: 7.x
+        cache: true
+    - name: Install .NET WASM Build Tools
+      run: dotnet workload install wasm-tools
+    - name: Publish .NET project
+      run: dotnet publish BlazorMaterialWeb.Demo/BlazorMaterialWeb.Demo.csproj -c:Release -p:GHPages=true -o dist/Web --nologo
+    - name: Commit wwwroot to Github Pages
+      uses: actions/deploy-pages@v1.2.9
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4.4.3
+      with:
+        folder: dist/Web/wwwroot
