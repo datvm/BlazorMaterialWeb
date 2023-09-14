@@ -42,7 +42,7 @@ export function afterStarted(blazor) {
                 return null;
             }
             return {
-                checked: target.checked,
+                checked: target.checked || target.selected, // For both switch and checkboxes
                 indeterminate: target.indeterminate,
             };
         }

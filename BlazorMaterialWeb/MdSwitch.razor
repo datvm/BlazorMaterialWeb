@@ -1,0 +1,12 @@
+@inherits DefaultMdComponent
+
+<md-switch @attributes="AdditionalAttributes"
+           disabled="@(Disabled)"
+           selected="@(Selected)"
+           value="@(Value)"
+           required="@(Required)"
+           icons="@(Icons)"
+           show-only-selected-icon="@(ShowOnlySelectedIcon)"
+           @oncheckedchange="OnSelectedChanged">
+    @(ChildContent)
+</md-switch>

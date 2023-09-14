@@ -8,6 +8,8 @@
 partial class MdButton
 {
 
+    public const string IconSlot = "icon";
+
     [Parameter]
     public MdButtonType ButtonType { get; set; } = MdButtonType.Elevated;
 

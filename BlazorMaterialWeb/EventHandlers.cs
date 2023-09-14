@@ -4,7 +4,7 @@
 [EventHandler("oncheckedchange", typeof(CheckboxChangeEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 
 // Chip
-// TODO: onworking is not working: https://github.com/material-components/material-web/issues/4905
+// TODO: onremove is not working: https://github.com/material-components/material-web/issues/4905
 [EventHandler("onselected", typeof(CheckedEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 [EventHandler("onremove", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 

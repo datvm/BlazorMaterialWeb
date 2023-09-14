@@ -1,0 +1,49 @@
+﻿@page "/checkbox"
+
+<PageTitle>Checkbox</PageTitle>
+
+<h1>Checkbox</h1>
+
+<p>
+    <a target="_blank" href="https://m3.material.io/components/checkbox/overview">Checkboxes</a>
+    let users select one or more items from a list, or turn an item on or off
+</p>
+
+<div class="my-5 row text-center">
+    <div class="col">
+        <MdCheckbox @bind-Checked="isChecked" @bind-Indeterminate="@(isIndeterminate)"
+                    Disabled="disabled" />
+    </div>
+    <div class="col">
+        <label>
+            <MdCheckbox @bind-Checked="isChecked" @bind-Indeterminate="@(isIndeterminate)"
+                        Disabled="disabled" />
+            This one is wrapped inside a label
+        </label>
+    </div>
+
+</div>
+
+<p>Checked: @(isChecked)</p>
+<p>Indeterminate: @(isIndeterminate)</p>
+
+<label class="mb-3 hstack gap-3">
+    <MdSwitch @bind-Selected="disabled" Icons />
+    <span>Disabled</span>    
+</label>
+
+<div>
+    <MdButton @onclick="@(() => isIndeterminate = true)">
+        <MdIcon slot="@(MdButton.IconSlot)">indeterminate_check_box</MdIcon>
+        Set to Indeterminate
+    </MdButton>
+</div>
+
+@code {
+
+    bool useLabel = true;
+    bool isChecked;
+    bool isIndeterminate;
+    bool disabled;
+
+}

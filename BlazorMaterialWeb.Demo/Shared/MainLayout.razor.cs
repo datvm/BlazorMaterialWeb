@@ -9,7 +9,7 @@ sealed partial class MainLayout : IDisposable
     static readonly (string Text, string Url)[] NavUrls =
     {
         ("Buttons", "/button"),
-        ("Checkboxes", "/checkbox"),
+        ("Checkbox", "/checkbox"),
     };
 
     protected override void OnInitialized() => 
