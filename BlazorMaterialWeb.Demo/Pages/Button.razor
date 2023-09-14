@@ -36,13 +36,22 @@ else
     <p>You clicked: @(clickedType)</p>
 }
 
-<p>
-    <label>
-        <MdCheckbox @bind-Checked="trailingIcon" />
-        Trailing Icon
-    </label>
-    
-</p>
+<div class="row align-items-center">
+    <div class="col-auto">
+        <label>
+            <MdCheckbox @bind-Checked="trailingIcon" />
+            Trailing Icon
+        </label>
+    </div>
+    <div class="col">
+        <MdTextField @bind-Value="icon"
+                     Label="Icon"
+                     class="w-100"
+                     HasLeadingIcon="false">
+            <MdIcon slot="leading-icon">Emoticon</MdIcon>
+        </MdTextField>
+    </div>
+</div>
 
 @code {
 

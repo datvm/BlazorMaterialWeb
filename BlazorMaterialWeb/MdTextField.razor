@@ -1,0 +1,29 @@
+@inherits DefaultMdComponent
+
+<DynamicTag Tag="@(TagName)" @attributes="AdditionalAttributes"
+            disabled="@(Disabled)"
+            error="@(Error)"
+            errorText="@(ErrorText)"
+            label="@(Label)"
+            required="@(Required)"
+            prefix-text="@(PrefixText)"
+            suffix-text="@(SuffixText)"
+            has-leading-icon="@(HasLeadingIcon)"
+            has-trailing-icon="@(HasTrailingIcon)"
+            supporting-text="@(SupportingText)"
+            text-direction="@(TextDirection)"
+            rows="@(Rows)"
+            input-mode="@(InputMode)"
+            max="@(Max)"
+            max-length="@(MaxLength)"
+            min="@(Min)"
+            min-length="@(MinLength)"
+            pattern="@(Pattern)"
+            placeholder="@(Placeholder)"
+            read-only="@(ReadOnly)"
+            step="@(Step)"
+            value="@(Value)"
+            @onchange="OnValueChanged">
+    @(ChildContent)
+</DynamicTag>
+
