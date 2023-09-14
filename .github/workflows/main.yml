@@ -20,8 +20,6 @@ jobs:
       run: dotnet workload install wasm-tools
     - name: Publish .NET project
       run: dotnet publish BlazorMaterialWeb.Demo/BlazorMaterialWeb.Demo.csproj -c:Release -p:GHPages=true -o dist/Web --nologo
-    - name: Commit wwwroot to Github Pages
-      uses: actions/deploy-pages@v1.2.9
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4.4.3
       with:
