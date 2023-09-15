@@ -1,0 +1,9 @@
+@inherits DefaultMdComponent
+
+<md-radio @attributes="AdditionalAttributes"
+          @oncheckedchange="OnCheckedChanged"
+          checked="@(Checked)"
+          disabled="@(Disabled)"
+          value="@(Value)">
+    @(ChildContent)
+</md-radio>

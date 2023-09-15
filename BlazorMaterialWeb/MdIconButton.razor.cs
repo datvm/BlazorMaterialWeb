@@ -28,6 +28,9 @@ partial class MdIconButton
     public bool Selected { get; set; }
 
     [Parameter]
+    public EventCallback<bool> SelectedChanged { get; set; }
+
+    [Parameter]
     public string? Type { get; set; }
 
     [Parameter]
@@ -41,6 +44,12 @@ partial class MdIconButton
         MdIconButtonStyle.Outlined => "md-outlined-icon-button",
         _ => throw new NotImplementedException("Unknown style: " + Style.ToString()),
     };
+
+    async Task OnSelectedChanged(CheckedEventArgs e)
+    {
+        Selected = e.Checked;
+        await SelectedChanged.InvokeAsync(Selected);
+    }
 
 }
 

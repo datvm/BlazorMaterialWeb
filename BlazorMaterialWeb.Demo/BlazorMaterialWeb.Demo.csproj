@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BlazorMaterialWeb\BlazorMaterialWeb.csproj" />
+    <ProjectReference Include="..\BlazorMaterialWeb.Bundled\BlazorMaterialWeb.Bundled.csproj" />
   </ItemGroup>
 
 </Project>

@@ -2,9 +2,122 @@
 
 <PageTitle>Blazor Material Web</PageTitle>
 
-<h1>Blazor Material Web</h1>
+<article>
+    <h1>Blazor Material Web</h1>
 
-<p>
-    Blazor Material Web is a Blazor wrapper for
-    <a href="https://github.com/material-components/material-web/">Material Web Component</a>.
-</p>
+    <p>
+        Blazor Material Web is a Blazor wrapper for
+        <a href="https://github.com/material-components/material-web/">Material Web Component</a>.
+    </p>
+
+    <h2>Setup</h2>
+
+    <ol>
+        <li>
+            You need <code>BlazorMaterialWeb</code> Nuget package:
+
+            <div class="my-3">
+                <pre><code>dotnet add package BlazorMaterialWeb</code></pre>
+            </div>
+        </li>
+        <li>
+            You can also optionally add <code>BlazorMaterialWeb.Bundled</code>:
+
+            <div class="my-3">
+                <pre><code>dotnet add package BlazorMaterialWeb.Bundled</code></pre>
+            </div>
+
+            <p class="mb-0">
+                The <code>BlazorMaterialWeb.Bundled</code> includes:
+            </p>
+
+            <ul class="mb-3">
+                <li>The ESM bundle of Material Web Component. It's built by <a href="https://github.com/datvm/material-web/actions/workflows/build-es-bundle.yml">this GitHub Action</a>.</li>
+                <li>Roboto Font provided by <a href="https://fonts.google.com/specimen/Roboto">Google Fonts</a></li>
+            </ul>
+
+            <p>The bundle is about 1MB. Material Symbols is not included because of the size.</p>
+        </li>
+        <li>
+            <p class="mb-0">
+                If you do not use the Bundle, you need to add Material Web Component to your HTML page (<code>index.html</code>):
+            </p>
+
+            <pre class="my-3"><code>&lt;script type=&quot;module&quot; src=&quot;https://unpkg.com/@@material/web/all.js?module&quot;&gt;&lt;/script&gt;</code></pre>
+
+            <div class="alert alert-warning">
+                <p>
+                    <MdIcon>warning</MdIcon>
+                    Currently MAUI Blazor Hybrid (MAUI/WinForms/WPF) is not loading library scripts (see
+                    <a href="https://github.com/microsoft/fluentui-blazor#tempory-workaround-for-mauiwpfwindows-forms-issues">this issue</a> and
+                    <a href="https://github.com/dotnet/maui/issues/15234">this issue</a> for more details).
+                    You need to add the following script tags manually:
+                </p>
+                <pre><code>&lt;script src=&quot;./_content/BlazorMaterialWeb.Bundled/BlazorMaterialWeb.Bundled.lib.module.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;./_content/BlazorMaterialWeb/BlazorMaterialWeb.lib.module.js&quot;&gt;&lt;/script&gt;</code></pre>
+            </div>
+        </li>
+        <li>
+            <p>
+                <em>Optional:</em> Add Roboto to your stylesheet, for example in your <code>app.css</code>:
+            </p>
+
+            <ul>
+                <li>
+                    <p class="mb-0">If you use the Bundle:</p>
+
+                    <div class="my-3">
+                        <pre><code>@@import "/_content/BlazorMaterialWeb.Bundled/roboto/css/roboto.css";
+
+body {
+    font-family: var(--md-ref-typeface-plain);
+    /* ... */
+}
+
+:root, :host {
+    --md-ref-typeface-plain: Roboto,system-ui;
+    /* ... */
+}
+
+/* ... /*
+</code></pre>
+                    </div>
+                </li>
+
+                <li>
+                    <p class="mb-0">
+                        If you don't use the Bundle, replace the above URL with the online one provided by Google, something like:
+                    </p>
+
+                    <pre class="my-3"><code>&lt;link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"&gt;</code></pre>
+                </li>
+
+            </ul>
+
+
+        </li>
+    </ol>
+
+    <h2>Use Material Symbols</h2>
+
+    <p>
+        To use Material Symbols (<code>&lt;md-icon&gt;&lt;/md-icon&gt;</code> or <code>&lt;MdIcon&gt;&lt;/MdIcon&gt;</code>),
+        you need to add Material Symbols font. The bundle project does not include it due to the size.
+    </p>
+
+    <h3>Online usage</h3>
+
+    <p>
+        You can follow the instruction at
+        <a href="https://fonts.google.com/icons">Google Fonts</a>
+        to insert it.
+    </p>
+
+    <h3>Offline usage</h3>
+
+    <p>
+        Follow the instruction above and manually download the CSS and font file, or see
+        <a href="https://developers.google.com/fonts/docs/material_symbols#self-hosting_the_font">Self-hosting the font</a> instruction.
+    </p>
+
+</article>

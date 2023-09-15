@@ -9,6 +9,7 @@
             target="@(Target)"
             toggle="@(Toggle)"
             type="@(Type)"
-            value="@(Value)">
+            value="@(Value)"
+            @oncheckedchange="OnSelectedChanged">
     @(ChildContent)
 </DynamicTag>
