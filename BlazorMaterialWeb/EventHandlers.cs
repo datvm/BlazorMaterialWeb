@@ -18,6 +18,7 @@ public static class EventHandlers { }
 
 public class CheckedEventArgs : EventArgs
 {
+    public string? Value { get; set; }
     public bool Checked { get; set; }
 }
 

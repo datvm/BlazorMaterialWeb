@@ -6,19 +6,76 @@
 
 <p>Icon buttons help people take minor actions with one tap</p>
 
-<div class="row text-center">
-    @foreach (var style in Enum.GetValues<MdIconButtonStyle>())
-    {
-        <div class="col">
-            <MdIconButton Style="@(style)">
-                <MdIcon>@(icon)</MdIcon>
-            </MdIconButton>
-        </div>
-    }
+<div class="my-5">
+    <div class="row text-center">
+        @foreach (var style in Enum.GetValues<MdIconButtonStyle>())
+        {
+            <div class="col">
+                <p>
+                    <MdIconButton Style="@(style)"
+                                  Href="@(hasHref ? "https://www.example.com" : null)"
+                                  Target="@(hasHref && targetBlank ? "_blank" : null)"
+                                  Toggle="@(toggle)"
+                    @bind-Selected="@(selected)"
+                    @onclick="@(() => clicked = style.ToString())">
+                        <MdIcon>@(icon)</MdIcon>
+                        </MdIconButton>
+                    </p>
+                    <p>@(style)</p>
+            </div>
+        }
+    </div>
+
+    <p class="mt-1">
+        You have clicked: @(clicked ?? "Not yet")<br />
+        Selected (Toggle button): @selected.ToString()
+    </p>
 </div>
 
-@code {
 
+<p>
+    Function:
+
+    <MdRadioGroup Name="opt-function" ValueChanged="SetTo">
+        <label class="me-3">
+            <MdRadio name="opt-function" Checked="button" Value="@(nameof(button))" />
+            Button
+        </label>
+
+        <label class="me-3">
+            <MdRadio name="opt-function" Checked="toggle" Value="@(nameof(toggle))" />
+            Toggle Button
+        </label>
+
+        <label class="me-3">
+            <MdRadio name="opt-function" Checked="hasHref" Value="@(nameof(hasHref))" />
+            Link
+        </label>
+
+        <label>
+            <MdCheckbox @bind-Checked="targetBlank" Disabled="@(!hasHref)" />
+            Set target <code>_blank</code>
+        </label>
+    </MdRadioGroup>
+</p>
+
+@code {
+    bool selected;
+
+    string? clicked;
     string icon = "check";
+
+    bool button = true;
+    bool toggle;
+    bool hasHref;
+
+    bool targetBlank;
+
+    void SetTo(string value)
+    {
+        button = value == nameof(button);
+        toggle = value == nameof(toggle);
+        hasHref = value == nameof(hasHref);
+    }
 
 }

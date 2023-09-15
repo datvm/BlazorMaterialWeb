@@ -42,6 +42,7 @@ export function afterStarted(blazor) {
                 return null;
             }
             return {
+                value: target.value,
                 checked: target.checked || target.selected, // For both switch and checkboxes
                 indeterminate: target.indeterminate,
             };
@@ -51,6 +52,7 @@ export function afterStarted(blazor) {
     blazor.registerCustomEventType("selected", {
         browserEventName: "selected",
         createEventArgs: e => ({
+            value: target.value,
             checked: e.target.selected
         }),
     });
