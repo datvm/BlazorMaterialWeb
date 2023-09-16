@@ -1,0 +1,10 @@
+@inherits DefaultMdComponent
+
+<DynamicTag Tag="@(TagName)" @attributes="AdditionalAttributes"
+            buffer="@(Buffer)"
+            value="@(Value)"
+            max="@(Max)"
+            indeterminate="@(Indeterminate)"
+            four-color="@(FourColor)">
+    @(ChildContent)
+</DynamicTag>

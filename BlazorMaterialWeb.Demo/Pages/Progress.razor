@@ -1,0 +1,84 @@
+﻿@page "/progress"
+
+<PageTitle>Progress indicators</PageTitle>
+
+<h1>Progress indicators</h1>
+
+<p>
+    <a href="https://m3.material.io/components/progress-indicators">
+        Progress indicators
+    </a>
+    show the status of a process in real time.
+</p>
+
+<div class="my-5 text-center">
+    <div class="row align-items-center">
+        @foreach (var style in Enum.GetValues<MdProgressStyle>())
+        {
+            <div class="col">
+                <MdProgress Style="@(style)"
+                            Indeterminate="indeterminate"
+                            FourColor="fourColor"
+                            Value="value" Max="max"
+                            Buffer="buffer" />
+            </div>
+        }
+    </div>
+
+    <p>
+        Value = @(value), Max = @(max), Buffer = @(buffer) (Linear only)
+    </p>
+</div>
+
+<div class="mb-3">
+    <label class="me-3">
+        <MdCheckbox @bind-Checked="indeterminate" />
+        Indeterminate
+    </label>
+
+    <label>
+        <MdCheckbox @bind-Checked="fourColor" Disabled="@(!indeterminate)" />
+        Four Color
+    </label>
+</div>
+
+<div class="mb-3">
+    <MdButton Style="MdButtonStype.Filled" @onclick="SimulateProgress">
+        Simulate Progress
+    </MdButton>
+</div>
+
+@code {
+
+    double value = 25;
+    double max = 100;
+    double buffer = 90;
+
+    bool indeterminate;
+    bool fourColor;
+
+    async Task SimulateProgress()
+    {
+        indeterminate = false;
+
+        var rnd = Random.Shared;
+        max = rnd.Next(75, 300);
+        value = 0;
+        buffer = Math.Floor(max / 4);
+        StateHasChanged();
+
+        while (value < max)
+        {
+            await Task.Delay(200);
+
+            var increase = rnd.Next(1, 10);
+            buffer = Math.Min(max, buffer + increase);
+
+            increase = rnd.Next(1, 10);
+            value = Math.Min(buffer, value + increase);
+
+            StateHasChanged();
+        }
+    }
+
+}

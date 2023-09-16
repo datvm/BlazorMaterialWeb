@@ -12,6 +12,7 @@ sealed partial class MainLayout : IDisposable
         ("Checkbox", "/checkbox"),
         ("Icon Buttons", "/icon-buttons"),
         ("Menus", "/menu"),
+        ("Progress", "/progress"),
     };
 
     protected override void OnInitialized() => 
