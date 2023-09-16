@@ -9,6 +9,10 @@ export function beforeStart() {
             return element[propertyName];
         }
 
+        setElementProperty(element, propertyName, value) {
+            element[propertyName] = value;
+        }
+
         async invokeElementMethodAsync(element, methodName, ...args) {
             return await element[methodName](...args);
         }
@@ -42,6 +46,7 @@ export function afterStarted(blazor) {
                 return null;
             }
             return {
+                value: target.value,
                 checked: target.checked || target.selected, // For both switch and checkboxes
                 indeterminate: target.indeterminate,
             };
@@ -51,6 +56,7 @@ export function afterStarted(blazor) {
     blazor.registerCustomEventType("selected", {
         browserEventName: "selected",
         createEventArgs: e => ({
+            value: target.value,
             checked: e.target.selected
         }),
     });
@@ -86,6 +92,21 @@ export function afterStarted(blazor) {
 
     blazor.registerCustomEventType("cancel", {
         browserEventName: "cancel",
+        createEventArgs: () => undefined,
+    });
+
+    blazor.registerCustomEventType("opening", {
+        browserEventName: "opening",
+        createEventArgs: () => undefined,
+    });
+
+    blazor.registerCustomEventType("closing", {
+        browserEventName: "closing",
+        createEventArgs: () => undefined,
+    });
+
+    blazor.registerCustomEventType("menuclosed", {
+        browserEventName: "closed",
         createEventArgs: () => undefined,
     });
 }
