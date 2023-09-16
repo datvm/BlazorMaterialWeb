@@ -3,6 +3,17 @@
 partial class MdListItem
 {
 
+    public const string StartSlot = "start";
+    public const string StartIconSlot = "start-icon";
+    public const string StartImageSlot = "start-image";
+    public const string StartAvatarSlot = "start-avatar";
+    public const string StartVideoSlot = "start-video";
+    public const string StartVideoLargeSlot = "start-video-large";
+
+    public const string EndSlot = "end";
+    public const string EndIconSlot = "end-icon";
+
+
     [Parameter]
     public bool NonInteractive { get; set; }
 
@@ -28,13 +39,15 @@ partial class MdListItem
     public bool Active { get; set; }
 
     [Parameter]
-    public MdListItemRole Type { get; set; } = MdListItemRole.ListItem;
+    public virtual MdListItemRole Type { get; set; } = MdListItemRole.ListItem;
 
     [Parameter]
     public string? Href { get; set; }
 
     [Parameter]
     public string? Target { get; set; }
+
+    protected virtual string TagName => "md-list-item";
 
 }
 

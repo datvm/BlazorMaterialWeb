@@ -1,0 +1,135 @@
+﻿@page "/menu"
+
+<PageTitle>Menus</PageTitle>
+
+<h1>Menus</h1>
+
+<p>
+    <a href="https://m3.material.io/components/menus/overview">Menus</a>
+    display a list of choices on a temporary surface.
+</p>
+
+<div class="alert alert-warning">
+    This component is still under development by Web Component.
+</div>
+
+<div class="my-5  text-center">
+    <div class="row mb-3">
+        <div class="col">
+            <span class="position-relative">
+                <MdButton id="btn-menu-id-ref" @onclick="@(() => mnuIdref.ShowAsync())"
+                          Style="MdButtonStype.Tonal">
+                    Show with ID ref
+                </MdButton>
+
+                <MdMenu @bind-Open="openMenuIdRef" @ref="mnuIdref"
+                        Anchor="btn-menu-id-ref">
+                    <MdMenuItem Headline="Apple" KeepOpen="false" />
+                    <MdMenuItem Headline="Banana" />
+                    <MdMenuItem Headline="Cucumber" />
+                </MdMenu>
+            </span>
+
+            <p>Is menu opened: @(openMenuIdRef)</p>
+        </div>
+        <div class="col">
+            <span @ref="anchorEl" class="position-relative">
+                <MdButton @onclick="OpenAnchorMenuAsync"
+                          Style="MdButtonStype.Tonal">
+                    Show with Element ref
+                </MdButton>
+
+                <MdMenu @bind-Open="openMenuElRef" @ref="mnuElRef"
+                        Anchor="btn-menu-id-ref">
+                    <MdMenuItem Headline="Apple" />
+                    <MdMenuItem Headline="Banana" />
+                    <MdMenuItem Headline="Cucumber" />
+                </MdMenu>
+            </span>
+
+            <p>Is menu opened: @(openMenuElRef)</p>
+
+
+        </div>
+        <div class="col">
+            <MdButton @onclick="@(() => mnuFixed.ShowAsync())"
+                      Style="MdButtonStype.Tonal" id="btn-menu-fixed">
+                Menu with fixed position
+            </MdButton>
+
+            <p>Is menu opened: @(openMenuFixed)</p>
+
+            <MdMenu @bind-Open="openMenuFixed" @ref="mnuFixed"
+                    Anchor="btn-menu-fixed" Fixed="true">
+                <MdMenuItem Headline="Apple" />
+                <MdMenuItem Headline="Banana" />
+                <MdMenuItem Headline="Cucumber" />
+            </MdMenu>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <span class="position-relative">
+                <MdButton @onclick="@(() => mnuWithSub.ShowAsync())"
+                          Style="MdButtonStype.Tonal" id="btn-menu-submenus">
+                    Menu with submenus
+                </MdButton>
+
+                <MdMenu @bind-Open="openMenuWithSub" @ref="mnuWithSub"
+                        Anchor="btn-menu-submenus" HasOverflow="true">
+                    <MdSubMenuItem Headline="Fruits with A">
+                        <MdMenu slot="@(MdSubMenuItem.SubmenuSlot)">
+                            <MdMenuItem Headline="Apricot" />
+                            <MdMenuItem Headline="Avocado" />
+
+                            <MdSubMenuItem Headline="Apples"
+                                           MenuCorner="MdMenuCorner.StartEnd"
+                                           AnchorCorner="MdMenuCorner.StartStart">
+                                <MdMenu slot="@(MdSubMenuItem.SubmenuSlot)">
+                                    <MdMenuItem Headline="Fuji" />
+                                    <MdMenuItem Headline="Granny Smith" />
+                                    <MdMenuItem Headline="Red Delicious" />
+                                </MdMenu>
+
+                                <MdIcon slot="@(MdSubMenuItem.StartIconSlot)">arrow_left</MdIcon>
+                            </MdSubMenuItem>
+                        </MdMenu>
+
+                        <MdIcon slot="@(MdSubMenuItem.EndIconSlot)">arrow_right</MdIcon>
+                    </MdSubMenuItem>
+
+                    <MdMenuItem Headline="Banana" />
+                    <MdMenuItem Headline="Cucumber" />
+                </MdMenu>
+            </span>
+
+            <p>Is menu opened: @(openMenuWithSub)</p>
+        </div>
+        <div class="col"></div>
+        <div class="col"></div>
+    </div>
+</div>
+
+@code {
+
+    bool openMenuIdRef;
+    MdMenu mnuIdref = null!;
+
+    bool openMenuElRef;
+    MdMenu mnuElRef = null!;
+    ElementReference anchorEl;
+
+    bool openMenuFixed;
+    MdMenu mnuFixed = null!;
+
+    bool openMenuWithSub;
+    MdMenu mnuWithSub = null!;
+
+    async Task OpenAnchorMenuAsync()
+    {
+        await mnuElRef.SetAnchorElementAsync(anchorEl);
+        await mnuElRef.ShowAsync();
+    }
+
+}

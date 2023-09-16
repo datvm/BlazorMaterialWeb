@@ -1,17 +1,17 @@
 @namespace BlazorMaterialWeb
-@inherits DefaultMdComponent
+@inherits DefaultInheritableComponent
 
-<md-list-item @attributes="AdditionalAttributes"
-              noninteractive="@(NonInteractive)"
-              headline="@(Headline)"
-              supporting-text="@(SupportingText)"
-              multi-line-supporting-text="@(MultilineSupportingText)"
-              trailing-supporting-text="@(TrailingSupportingText)"
-              disabled="@(Disabled)"
-              item-tabindex="@(ItemTabIndex)"
-              active="@(Active)"
-              type="@(Type)"
-              href="@(Href)"
-              target="@(Target)">
+<DynamicTag Tag="@(TagName)" @attributes="FinalAdditionalAttributes"
+            noninteractive="@(NonInteractive)"
+            headline="@(Headline)"
+            supporting-text="@(SupportingText)"
+            multi-line-supporting-text="@(MultilineSupportingText)"
+            trailing-supporting-text="@(TrailingSupportingText)"
+            disabled="@(Disabled)"
+            item-tabindex="@(ItemTabIndex)"
+            active="@(Active)"
+            type="@(Type)"
+            href="@(Href)"
+            target="@(Target)">
     @(ChildContent)
-</md-list-item>
+</DynamicTag>

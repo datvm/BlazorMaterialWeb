@@ -11,7 +11,7 @@ partial class MdButton
     public const string IconSlot = "icon";
 
     [Parameter]
-    public MdButtonType ButtonType { get; set; } = MdButtonType.Elevated;
+    public MdButtonStype Style { get; set; } = MdButtonStype.Elevated;
 
     [Parameter]
     public bool Disabled { get; set; }
@@ -34,14 +34,14 @@ partial class MdButton
     [Parameter]
     public string? Value { get; set; }
 
-    string ButtonTagName => ButtonType switch
+    string ButtonTagName => Style switch
     {
-        MdButtonType.Elevated => "md-elevated-button",
-        MdButtonType.Filled => "md-filled-button",
-        MdButtonType.Tonal => "md-filled-tonal-button",
-        MdButtonType.Outlined => "md-outlined-button",
-        MdButtonType.Text => "md-text-button",
-        _ => throw new NotImplementedException(ButtonType.ToString()),
+        MdButtonStype.Elevated => "md-elevated-button",
+        MdButtonStype.Filled => "md-filled-button",
+        MdButtonStype.Tonal => "md-filled-tonal-button",
+        MdButtonStype.Outlined => "md-outlined-button",
+        MdButtonStype.Text => "md-text-button",
+        _ => throw new NotImplementedException(Style.ToString()),
     };
 
 }
@@ -49,7 +49,7 @@ partial class MdButton
 /// <summary>
 /// From button folder. This is Blazor Material Web merging the components.
 /// </summary>
-public enum MdButtonType
+public enum MdButtonStype
 {
     Elevated,
     Filled,

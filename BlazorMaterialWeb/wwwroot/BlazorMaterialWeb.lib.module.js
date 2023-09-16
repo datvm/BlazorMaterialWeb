@@ -9,6 +9,10 @@ export function beforeStart() {
             return element[propertyName];
         }
 
+        setElementProperty(element, propertyName, value) {
+            element[propertyName] = value;
+        }
+
         async invokeElementMethodAsync(element, methodName, ...args) {
             return await element[methodName](...args);
         }
@@ -88,6 +92,21 @@ export function afterStarted(blazor) {
 
     blazor.registerCustomEventType("cancel", {
         browserEventName: "cancel",
+        createEventArgs: () => undefined,
+    });
+
+    blazor.registerCustomEventType("opening", {
+        browserEventName: "opening",
+        createEventArgs: () => undefined,
+    });
+
+    blazor.registerCustomEventType("closing", {
+        browserEventName: "closing",
+        createEventArgs: () => undefined,
+    });
+
+    blazor.registerCustomEventType("menuclosed", {
+        browserEventName: "closed",
         createEventArgs: () => undefined,
     });
 }

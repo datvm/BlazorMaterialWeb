@@ -1,0 +1,28 @@
+@namespace BlazorMaterialWeb
+@inherits DefaultMdComponent
+
+@inject IJSRuntime Js;
+
+<md-menu @attributes="AdditionalAttributes" @ref="el"
+         anchor="@(Anchor)"
+         fixed="@(Fixed)"
+         quick="@(Quick)"
+         has-overflow="@(HasOverflow)"
+         open="@(Open)"
+         -x-offset="@(XOffset)"
+         -y-offset="@(YOffset)"
+         list-tab-index="@(ListTabIndex)"
+         type="@(Type)"
+         typeahead-delay="@(TypeaheadDelay)"
+         anchor-corner="@(AnchorCorner)"
+         menu-corner="@(MenuCorner)"
+         stay-open-on-outside-click="@(StayOpenOnOutsideClick)"
+         stay-open-on-focusout="@(StayOpenOnFocusout)"
+         skip-restore-focus="@(SkipRestoreFocus)"
+         default-focus="@(DefaultFocus)"
+         @onopening="OnOpening"
+         @onopened="OnMenuOpened"
+         @onclosing="OnClosing"
+         @onmenuclosed="OnMenuClosed">
+    @(ChildContent)
+</md-menu>

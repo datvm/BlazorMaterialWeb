@@ -4,7 +4,7 @@
 [EventHandler("oncheckedchange", typeof(CheckboxChangeEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 
 // Chip
-// TODO: onremove is not working: https://github.com/material-components/material-web/issues/4905
+// TODO: onremove is working now with temporary workaround: https://github.com/material-components/material-web/issues/4905
 [EventHandler("onselected", typeof(CheckedEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 [EventHandler("onremove", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 
@@ -14,6 +14,12 @@
 [EventHandler("onclose", typeof(DialogReturnEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 [EventHandler("onclosed", typeof(DialogReturnEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 [EventHandler("oncancel", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+
+// Menu
+[EventHandler("onopening", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+// onopened is already registered by dialog
+[EventHandler("onclosing", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+[EventHandler("onmenuclosed", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 public static class EventHandlers { }
 
 public class CheckedEventArgs : EventArgs

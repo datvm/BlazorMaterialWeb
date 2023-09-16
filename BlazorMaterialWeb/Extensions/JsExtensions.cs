@@ -6,6 +6,9 @@ internal static class JsExtensions
 
     public static async Task<T> GetElementPropertyAsync<T>(this IJSRuntime js, ElementReference el, string propertyName) =>
         await js.InvokeAsync<T>(Prefix("getElementProperty"), el, propertyName);
+    
+    public static async Task SetElementPropertyAsync(this IJSRuntime js, ElementReference el, string propertyName, object value) =>
+        await js.InvokeVoidAsync(Prefix("setElementProperty"), el, propertyName, value);
 
     public static async Task InvokeElementMethodAsync(this IJSRuntime js, ElementReference el, string methodName, params object[] parameters) =>
         await js.InvokeVoidAsync(

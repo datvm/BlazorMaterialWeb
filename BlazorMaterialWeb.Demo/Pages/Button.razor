@@ -8,12 +8,12 @@
 <p>There are five types of common buttons: elevated, filled, filled tonal, outlined, and text.</p>
 
 <div class="row text-center my-3">
-    @foreach (var type in Enum.GetValues<MdButtonType>())
+    @foreach (var type in Enum.GetValues<MdButtonStype>())
     {
         <div class="col">
             <MdButton @onclick="@(() => clickedType = type.ToString())"
                       Disabled="@(disabled)"
-                      ButtonType="@(type)"
+                      Style="@(type)"
                       TrailingIcon="@(trailingIcon)"
                       Href="@(hasHref ? "https://example.com" : null)"
                       Target="@(hasHref && targetBlank ? "_blank" : "")">
