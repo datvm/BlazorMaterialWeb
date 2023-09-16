@@ -13,6 +13,7 @@ sealed partial class MainLayout : IDisposable
         ("Icon Buttons", "/icon-buttons"),
         ("Menus", "/menu"),
         ("Progress", "/progress"),
+        ("Ripple", "/ripple"),
     };
 
     protected override void OnInitialized() => 

@@ -1,0 +1,44 @@
+﻿@page "/ripple"
+
+<PageTitle>Ripple</PageTitle>
+
+<h1>Ripple</h1>
+
+<p>
+    <a href="https://material-web.dev/components/ripple/">
+        Ripple
+    </a>
+    are state layers used to communicate the status of a component or interactive element.
+    <br />
+    A state layer is a semi-transparent covering on an element that indicates its state. A layer can be applied to an entire element or in a circular shape.
+</p>
+
+<div class="my-5 text-center">
+    <div class="row">
+        <div class="col">
+            <button style="width: 200px; height: 100px;" class="position-relative">
+                <MdRipple Disabled="disabled" />
+                <code>MdRipple</code> Attached to parent
+            </button>
+        </div>
+        <div class="col">
+            <div class="position-relative">
+                <MdRipple Disabled="disabled" for="btn-id" />
+                <button id="btn-id" style="width: 200px; height: 100px;" class="position-relative">
+                    <code>MdRipple</code> Attached to a referenced element
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <label class="hstack gap-3">
+        <MdSwitch @bind-Selected="disabled" />
+        Disabled
+    </label>
+</div>
+
+@code {
+    bool disabled;
+}
