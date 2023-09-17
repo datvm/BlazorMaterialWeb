@@ -109,4 +109,42 @@ export function afterStarted(blazor) {
         browserEventName: "closed",
         createEventArgs: () => undefined,
     });
+
+    blazor.registerCustomEventType("sliderchange", {
+        browserEventName: "change",
+        createEventArgs: ({ target }) => ({
+            value: target.value,
+            valueStart: target.valueStart,
+            valueEnd: target.valueEnd,
+        }),
+    });
+
+    blazor.registerCustomEventType("sliderinput", {
+        browserEventName: "input",
+        createEventArgs: ({ target }) => ({
+            value: target.value,
+            valueStart: target.valueStart,
+            valueEnd: target.valueEnd,
+        }),
+    });
+
+    blazor.registerCustomEventType("tabchanged", {
+        browserEventName: "change",
+        createEventArgs: ({ target }) => {
+            const tab = target.activeTab;
+
+            tab.dispatchEvent("activated");
+
+            return {
+                index: target.activeTabIndex,
+            };
+        },
+    });
+
+    blazor.registerCustomEventType("tabactivated", {
+        browserEventName: "activated",
+        createEventArgs: ({ target}) => ({
+            checked: target.active,
+        }),
+    });
 }
