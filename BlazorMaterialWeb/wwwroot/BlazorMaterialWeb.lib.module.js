@@ -127,4 +127,24 @@ export function afterStarted(blazor) {
             valueEnd: target.valueEnd,
         }),
     });
+
+    blazor.registerCustomEventType("tabchanged", {
+        browserEventName: "change",
+        createEventArgs: ({ target }) => {
+            const tab = target.activeTab;
+
+            tab.dispatchEvent("activated");
+
+            return {
+                index: target.activeTabIndex,
+            };
+        },
+    });
+
+    blazor.registerCustomEventType("tabactivated", {
+        browserEventName: "activated",
+        createEventArgs: ({ target}) => ({
+            checked: target.active,
+        }),
+    });
 }

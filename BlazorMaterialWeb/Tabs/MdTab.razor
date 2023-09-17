@@ -1,0 +1,11 @@
+@namespace BlazorMaterialWeb
+@inherits DefaultMdComponent
+
+<DynamicTag Tag="@(TagName)" @attributes="AdditionalAttributes"
+            active="@(Active)"
+            has-icon="@(HasIcon)"
+            icon-only="@(IconOnly)"
+            inline-icon="@(InlineIcon)"
+            @ontabactivated="OnTabActivated">
+    @(ChildContent)
+</DynamicTag>

@@ -24,6 +24,10 @@
 // Slider
 [EventHandler("onsliderchange", typeof(MdSliderChangeEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 [EventHandler("onsliderinput", typeof(MdSliderChangeEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+
+// Tabs
+[EventHandler("ontabchanged", typeof(MdTabChangeEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+[EventHandler("ontabactivated", typeof(MdCheckedEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 public static class EventHandlers { }
 
 public class MdCheckedEventArgs : EventArgs
@@ -49,4 +53,9 @@ public class MdSliderChangeEventArgs : EventArgs
     public double Value { get; set; }
     public double ValueStart { get; set; }
     public double ValueEnd { get; set; }
+}
+
+public class MdTabChangeEventArgs : EventArgs
+{
+    public int Index { get; set; }
 }

@@ -1,0 +1,11 @@
+@namespace BlazorMaterialWeb
+@inherits DefaultMdComponent
+
+@inject IJSRuntime Js;
+
+<md-tabs @ref="el" @attributes="AdditionalAttributes"
+         @ontabchanged="OnTabChanged">
+    <CascadingValue Value="TabType">
+        @(ChildContent)
+    </CascadingValue>
+</md-tabs>

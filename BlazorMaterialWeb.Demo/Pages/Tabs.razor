@@ -1,0 +1,100 @@
+﻿@page "/tabs"
+
+<PageTitle>Tabs</PageTitle>
+
+<h1>Tabs</h1>
+
+<p>
+    <a href="https://m3.material.io/components/tabs/overview">
+        Tabs
+    </a>
+    organize content across different screens and views
+</p>
+
+<div class="my-5">
+    <div class="vstack gap-3">
+        @foreach (var tabType in Enum.GetValues<MdTabType>())
+        {
+            <div>
+                <p>@(tabType) Tabs</p>
+
+                <MdTabs @ref="tabRefs[tabType]" TabType="@(tabType)" OnTabChanged="OnTabChanged">
+                    @foreach (var (icon, text) in DemoTabs)
+                    {
+                        <MdTab InlineIcon="inlineIcon" IconOnly="@(!showLabel)">
+                            @if (showIcon)
+                            {
+                                <MdIcon slot="@(MdTab.IconSlot)">@(icon)</MdIcon>
+                            }
+                            
+                            @if (showLabel)
+                            {
+                                @(text)
+                            }
+                        </MdTab>
+                    }
+                </MdTabs>
+            </div>
+        }
+    </div>
+</div>
+
+<div>
+    <label class="me-3">
+        <MdCheckbox @bind-Checked="showLabel" />
+        Show Labels
+    </label>
+
+    <label class="me-3">
+        <MdCheckbox @bind-Checked="showIcon" />
+        Show Icons
+    </label>
+
+    <label class="me-3">
+        <MdCheckbox @bind-Checked="inlineIcon" Disabled="@(!showIcon)" />
+        Inline Icons
+    </label>
+</div>
+
+<p>
+    Recently selected tab index (<code>OnTabChanged</code> event of <code>MdTabs</code>): @(activeTabIndex?.ToString() ?? "Non yet")
+</p>
+
+<p>
+    <MdButton @onclick="Select3rdTabs">
+        Programmatically select 3rd tabs
+    </MdButton>
+</p>
+
+@code {
+
+    static readonly (string, string)[] DemoTabs =
+    {
+        ("Videocam", "Video"),
+        ("photo", "Photos"),
+        ("music_note", "Audio"),
+    };
+
+    Dictionary<MdTabType, MdTabs> tabRefs = new();
+
+    bool showIcon = true;
+    bool showLabel = true;
+
+    bool inlineIcon;
+
+    int? activeTabIndex;
+
+    void OnTabChanged(MdTabChangeEventArgs e)
+    {
+        activeTabIndex = e.Index;
+    }
+
+    async Task Select3rdTabs()
+    {
+        foreach (var t in tabRefs.Values)
+        {
+            await t.SetActiveTabIndexAsync(2);
+        }
+    }
+
+}
