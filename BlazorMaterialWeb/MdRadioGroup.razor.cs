@@ -12,7 +12,7 @@ partial class MdRadioGroup
     [Parameter]
     public EventCallback<string> ValueChanged { get; set; }
 
-    async Task OnCheckedChanged(CheckedEventArgs e)
+    async Task OnCheckedChanged(MdCheckedEventArgs e)
     {
         if (!e.Checked) { return; }
 

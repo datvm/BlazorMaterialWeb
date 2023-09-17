@@ -29,7 +29,7 @@ partial class MdSwitch
     [Parameter]
     public string? Value { get; set; }
 
-    async Task OnSelectedChanged(CheckedEventArgs e)
+    async Task OnSelectedChanged(MdCheckedEventArgs e)
     {
         Selected = e.Checked;
         await SelectedChanged.InvokeAsync(Selected);

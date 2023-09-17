@@ -29,7 +29,7 @@ partial class MdCheckbox
     [Parameter]
     public string? Value { get; set; }
 
-    async Task OnCheckedChanged(CheckboxChangeEventArgs e)
+    async Task OnCheckedChanged(MdCheckboxChangeEventArgs e)
     {
         var intermediateChanged = e.Indeterminate != Indeterminate;
 

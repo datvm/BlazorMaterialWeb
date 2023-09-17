@@ -15,7 +15,7 @@ partial class MdFilterChip
     [Parameter]
     public EventCallback OnRemove { get; set; }
 
-    async Task OnSelectedChanged(CheckedEventArgs e)
+    async Task OnSelectedChanged(MdCheckedEventArgs e)
     {
         Selected = e.Checked;
         await SelectedChanged.InvokeAsync(Selected);

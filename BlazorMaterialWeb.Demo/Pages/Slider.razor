@@ -1,0 +1,99 @@
+﻿@page "/slider"
+
+<PageTitle>Sliders</PageTitle>
+
+<h1>Sliders</h1>
+
+<p>
+    <a href="https://m3.material.io/components/sliders">
+        Sliders
+    </a>
+    let users make selections from a range of values.
+</p>
+
+<div class="my-5 text-center">
+    <div class="row mb-3">
+        <div class="col">
+            <p>
+                <MdSlider Labeled="labeled"
+                          Step="@(hasStep ? step : null)"
+                          Ticks="ticks"
+                @bind-Value="value" />
+            </p>
+            Value = @(value)
+        </div>
+
+        <div class="col">
+            <p>
+                <MdSlider Range
+                           Labeled="labeled"
+                           Step="@(hasStep ? step : null)"
+                           Value="0"
+                 @bind-ValueStart="rangeStart"
+                 @bind-ValueEnd="rangeEnd" />
+             </p>
+             Start = @(rangeStart), End = @(rangeEnd)
+        </div>
+    </div>
+
+    <p>
+        Use <code>@@bind-...:event</code> to <code>ValueInput</code> <code>ValueStartInput</code> and <code>ValueEndInput</code>
+        to have the slider update the value as the user drags the slider.
+    </p>
+
+    <div class="row">
+        <div class="col">
+            <p>
+                <MdSlider Labeled="labeled"
+                          Step="@(hasStep ? step : null)"
+                          Ticks="ticks"
+                          ValueLabel="Hello"
+                @bind-Value="value" @bind-Value:event="ValueInput" />
+            </p>
+            Value = @(value)
+        </div>
+
+        <div class="col">
+            <p>
+                <MdSlider Range
+                           Labeled="labeled"
+                           Step="@(hasStep ? step : null)"
+                           Value="0"
+                 @bind-ValueStart="rangeStart" @bind-ValueStart:event="ValueStartInput"
+                 @bind-ValueEnd="rangeEnd" @bind-ValueEnd:event="ValueEndInput" />
+             </p>
+             Start = @(rangeStart), End = @(rangeEnd)
+        </div>
+    </div>
+</div>
+
+<div class="vstack gap-3">
+    <label class="hstack gap-3">
+        <MdSwitch @bind-Selected="labeled" />
+        Labeled
+    </label>
+
+    <label class="hstack gap-3">
+        <MdSwitch @bind-Selected="ticks" />
+        Ticks
+    </label>
+
+    <label class="hstack gap-3">
+        <MdSwitch @bind-Selected="hasStep" />
+        Step = @(step)
+    </label>
+</div>
+
+@code {
+
+    double value = 50;
+    double rangeStart = 20;
+    double rangeEnd = 70;
+
+    bool labeled;
+    bool ticks;
+
+    bool hasStep;
+    const int step = 10;
+
+}

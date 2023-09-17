@@ -15,7 +15,8 @@ public class DynamicTag : DefaultMdComponent
 
         if (AdditionalAttributes?.Any() == true)
         {
-            builder.AddMultipleAttributes(1, AdditionalAttributes);
+            builder.AddMultipleAttributes(1, 
+                AdditionalAttributes.Where(q => q.Value is not null)!);
         }
 
         if (ChildContent is not null)

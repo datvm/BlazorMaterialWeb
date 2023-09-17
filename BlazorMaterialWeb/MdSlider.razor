@@ -1,0 +1,24 @@
+@inherits DefaultMdComponent
+
+<md-slider @attributes="AdditionalAttributes"
+           disabled="@(Disabled)"
+           min="@(Min)"
+           max="@(Max)"
+           value="@(Value)"
+           value-start="@(ValueStart)"
+           value-end="@(ValueEnd)"
+           value-label="@(ValueLabel)"
+           value-label-start="@(ValueLabelStart)"
+           value-label-end="@(ValueLabelEnd)"
+           aria-label-start="@(AriaLabelStart)"
+           aria-valuetext-start="@(AriaValueTextStart)"
+           aria-label-end="@(AriaLabelEnd)"
+           aria-valuetext-end="@(AriaValueTextEnd)"
+           step="@(Step)"
+           ticks="@(Ticks)"
+           labeled="@(Labeled)"
+           range="@(Range)"
+           @onsliderchange="OnSliderValueChanged"
+           @onsliderinput="OnSliderInput">
+    @(ChildContent)
+</md-slider>

@@ -23,7 +23,7 @@ partial class MdRadio
     [Parameter, CascadingParameter(Name = "MdRadioName")]
     public string? Name { get; set; }
 
-    async Task OnCheckedChanged(CheckedEventArgs e)
+    async Task OnCheckedChanged(MdCheckedEventArgs e)
     {
         Checked = e.Checked;
         await CheckedChanged.InvokeAsync(Checked);

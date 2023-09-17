@@ -43,7 +43,7 @@ partial class MdDialog
         await OnOpened.InvokeAsync();
     }
 
-    async Task OnDomClosed(DialogReturnEventArgs e)
+    async Task OnDomClosed(MdDialogReturnEventArgs e)
     {
         Open = false;
         await OpenChanged.InvokeAsync(false);

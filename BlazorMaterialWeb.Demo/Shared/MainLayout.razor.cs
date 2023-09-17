@@ -14,6 +14,7 @@ sealed partial class MainLayout : IDisposable
         ("Menus", "/menu"),
         ("Progress", "/progress"),
         ("Ripple", "/ripple"),
+        ("Sliders", "/slider"),
     };
 
     protected override void OnInitialized() => 
