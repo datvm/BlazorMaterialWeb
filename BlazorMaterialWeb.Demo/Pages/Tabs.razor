@@ -11,6 +11,14 @@
     organize content across different screens and views
 </p>
 
+<div class="alert alert-warning">
+    <p class="mb-0">
+        <code>MdTab</code>'s <code>ActiveChanged</code> event is only fired when a tab is selected.
+        It's not possible to know when a tab is deactivated without additional Javascript.
+        <code>@@bind-Active</code> is therefore unreliable (<code>Active</code> remains <code>true</code> after user selects another tab)
+    </p>
+</div>
+
 <div class="my-5">
     <div class="vstack gap-3">
         @foreach (var tabType in Enum.GetValues<MdTabType>())
