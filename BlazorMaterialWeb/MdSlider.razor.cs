@@ -5,49 +5,49 @@
 /// <a href="https://m3.material.io/components/sliders/overview">Design</a>,
 /// <a href="https://material-web.dev/components/slider/">Component</a>
 /// </summary>
-partial class MdSlider
+partial class MdSlider<TValue>
 {
     [Parameter]
     public bool Disabled { get; set; } = false;
 
     [Parameter]
-    public double? Min { get; set; } = 0;
+    public TValue? Min { get; set; }
 
     [Parameter]
-    public double? Max { get; set; } = 100;
+    public TValue? Max { get; set; }
 
     [Parameter]
-    public double Value { get; set; }
+    public TValue Value { get; set; }
 
     [Parameter]
-    public EventCallback<double> ValueChanged { get; set; }
+    public EventCallback<TValue> ValueChanged { get; set; }
 
     [Parameter]
-    public EventCallback<double> ValueInput { get; set; }
+    public EventCallback<TValue> ValueInput { get; set; }
 
     [Parameter]
-    public double ValueStart { get; set; }
+    public TValue ValueStart { get; set; }
 
     [Parameter]
-    public EventCallback<double> ValueStartChanged { get; set; }
+    public EventCallback<TValue> ValueStartChanged { get; set; }
 
     [Parameter]
-    public EventCallback<double> ValueStartInput { get; set; }
+    public EventCallback<TValue> ValueStartInput { get; set; }
 
     [Parameter]
-    public double ValueEnd { get; set; }
+    public TValue ValueEnd { get; set; }
 
     [Parameter]
-    public EventCallback<double> ValueEndChanged { get; set; }
+    public EventCallback<TValue> ValueEndChanged { get; set; }
 
     [Parameter]
-    public EventCallback<double> ValueEndInput { get; set; }
+    public EventCallback<TValue> ValueEndInput { get; set; }
 
     [Parameter]
-    public EventCallback<(double Start, double End)> RangeChanged { get; set; }
+    public EventCallback<(TValue Start, TValue End)> RangeChanged { get; set; }
 
     [Parameter]
-    public EventCallback<(double Start, double End)> RangeInput { get; set; }
+    public EventCallback<(TValue Start, TValue End)> RangeInput { get; set; }
 
     [Parameter]
     public string? ValueLabel { get; set; }
@@ -71,7 +71,7 @@ partial class MdSlider
     public string? AriaValueTextEnd { get; set; }
 
     [Parameter]
-    public double? Step { get; set; }
+    public TValue? Step { get; set; }
 
     [Parameter]
     public bool Ticks { get; set; }
@@ -86,27 +86,29 @@ partial class MdSlider
     {
         SetValue(e);
 
-        await ValueInput.InvokeAsync(e.Value);
-        await ValueStartInput.InvokeAsync(e.ValueStart);
-        await ValueEndInput.InvokeAsync(e.ValueEnd);
-        await RangeInput.InvokeAsync((e.ValueStart, e.ValueEnd));
+        await ValueInput.InvokeAsync(Value);
+        await ValueStartInput.InvokeAsync(ValueStart);
+        await ValueEndInput.InvokeAsync(ValueEnd);
+        await RangeInput.InvokeAsync((ValueStart, ValueEnd));
     }
 
     async Task OnSliderValueChanged(MdSliderChangeEventArgs e)
     {
         SetValue(e);
 
-        await ValueChanged.InvokeAsync(e.Value);
-        await ValueStartChanged.InvokeAsync(e.ValueStart);
-        await ValueEndChanged.InvokeAsync(e.ValueEnd);
-        await RangeChanged.InvokeAsync((e.ValueStart, e.ValueEnd));
+        await ValueChanged.InvokeAsync(Value);
+        await ValueStartChanged.InvokeAsync(ValueStart);
+        await ValueEndChanged.InvokeAsync(ValueEnd);
+        await RangeChanged.InvokeAsync((ValueStart, ValueEnd));
     }
 
     void SetValue(MdSliderChangeEventArgs e)
     {
-        Value = e.Value;
-        ValueStart = e.ValueStart;
-        ValueEnd = e.ValueEnd;
+        Value = GetValue(e.Value);
+        ValueStart = GetValue(e.ValueStart);
+        ValueEnd = GetValue(e.ValueEnd);
     }
 
+    static TValue GetValue(double value) =>
+        (TValue)Convert.ChangeType(value, typeof(TValue));
 }

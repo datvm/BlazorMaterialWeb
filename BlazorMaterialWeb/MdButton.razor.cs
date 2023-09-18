@@ -3,7 +3,7 @@
 /// <summary>
 /// Common buttons prompt most actions in a UI
 /// <a href="https://m3.material.io/components/buttons/overview">Design</a>,
-/// <a href="https://material-web.dev/components/button/#types">Component</a>
+/// <a href="https://material-web.dev/components/button/">Component</a>
 /// </summary>
 partial class MdButton
 {

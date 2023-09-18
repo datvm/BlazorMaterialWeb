@@ -16,7 +16,7 @@
         <div class="col">
             <p>
                 <MdSlider Labeled="labeled"
-                          Step="@(hasStep ? step : null)"
+                          Step="step"
                           Ticks="ticks"
                 @bind-Value="value" />
             </p>
@@ -27,7 +27,7 @@
             <p>
                 <MdSlider Range
                            Labeled="labeled"
-                           Step="@(hasStep ? step : null)"
+                           Step="step"
                            Value="0"
                  @bind-ValueStart="rangeStart"
                  @bind-ValueEnd="rangeEnd" />
@@ -45,9 +45,8 @@
         <div class="col">
             <p>
                 <MdSlider Labeled="labeled"
-                          Step="@(hasStep ? step : null)"
+                          Step="step"
                           Ticks="ticks"
-                          ValueLabel="Hello"
                 @bind-Value="value" @bind-Value:event="ValueInput" />
             </p>
             Value = @(value)
@@ -57,7 +56,7 @@
             <p>
                 <MdSlider Range
                            Labeled="labeled"
-                           Step="@(hasStep ? step : null)"
+                           Step="step"
                            Value="0"
                  @bind-ValueStart="rangeStart" @bind-ValueStart:event="ValueStartInput"
                  @bind-ValueEnd="rangeEnd" @bind-ValueEnd:event="ValueEndInput" />
@@ -79,21 +78,26 @@
     </label>
 
     <label class="hstack gap-3">
-        <MdSwitch @bind-Selected="hasStep" />
-        Step = @(step)
+        <MdSwitch @bind-Selected="step10" @bind-Selected:after="UpdateStep" />
+        Step = 10 (Unchecked = 0.25)
     </label>
+
 </div>
 
 @code {
 
-    double value = 50;
-    double rangeStart = 20;
-    double rangeEnd = 70;
+    double value = 50.5;
+    double rangeStart = 20.5;
+    double rangeEnd = 70.5;
+    double step = .25;
 
     bool labeled;
     bool ticks;
+    bool step10;
 
-    bool hasStep;
-    const int step = 10;
+    void UpdateStep()
+    {
+        step = step10 ? 10 : .25;
+    }
 
 }
