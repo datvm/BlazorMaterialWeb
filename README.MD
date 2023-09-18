@@ -6,6 +6,7 @@ Check out the [Demo Page](https://blazorwebmaterial.lukevo.com/) for the impleme
 
 - [Demo Page](https://blazorwebmaterial.lukevo.com/)
 - [Nuget Package](https://www.nuget.org/packages/BlazorMaterialWeb/)
+- [Bundled ESM Module](https://github.com/datvm/material-web)
 - [Roadmap](#roadmap)
 - Google References:
   - [Components Design](https://m3.material.io/components)
@@ -13,11 +14,15 @@ Check out the [Demo Page](https://blazorwebmaterial.lukevo.com/) for the impleme
   - [Web Components Source Code](https://github.com/material-components/material-web/)
 
 > **Note**  
-> This project is still in development and not all components are implemented yet, including Google's project.
+> This project and Google's Material Web Component are still under development and not all components are implemented yet.
 
 Help is very appreciated to correctly map the properties and maintain them. Making demo pages for each component is also a big help.
 
 A Nuget package should be available once the basic components are ready.
+
+# Installation & Usage
+
+See [Demo Page](https://blazorwebmaterial.lukevo.com/) for more setup and usage.
 
 # Roadmap
 
@@ -27,7 +32,7 @@ This project depends on Google's [Material Web Component](https://github.com/mat
 | --- | --- | --- | --- |
 | Button | ✅ | ✅ | [Button](https://blazorwebmaterial.lukevo.com/button) |
 | FAB | ✅ | ✅ | 🟡 |
-| Icon button | ✅ | ✅ | 🟡 |
+| Icon button | ✅ | ✅ | [Icon button](https://blazorwebmaterial.lukevo.com/icon-buttons) |
 | Checkbox | ✅ | ✅ | [Checkbox](https://blazorwebmaterial.lukevo.com/checkbox) |
 | Chips | ✅ | ✅ | 🟡 |
 | Dialog | ✅ | ✅ | 🟡 |
@@ -35,14 +40,14 @@ This project depends on Google's [Material Web Component](https://github.com/mat
 | Elevation | ✅ | ✅ | 🟡 |
 | Focus ring | ✅ | ✅ | 🟡 |
 | List | ✅ | ✅ | 🟡 |
-| Menu | 🟡 | 🟡 | 🟡 |
-| Progress indicators | 🟡 | ✅ | 🟡 |
-| Radio | 🟡 | ✅ | 🟡 |
-| Ripple | 🟡 | ✅ | 🟡 |
+| Menu | ✅ | 🟡 | [Menus](https://blazorwebmaterial.lukevo.com/menu) |
+| Progress indicators | ✅ | ✅ | [Progress](https://blazorwebmaterial.lukevo.com/progress) |
+| Radio | ✅ | ✅ | 🟡 |
+| Ripple | ✅ | ✅ | [Ripple](https://blazorwebmaterial.lukevo.com/ripple) |
 | Select | 🟡 | 🟡 | 🟡 |
-| Slider | 🟡 | ✅ | 🟡 |
+| Slider | ✅ | ✅ | [Slider](https://blazorwebmaterial.lukevo.com/slider) |
 | Switch | ✅ | ✅ | 🟡 |
-| Tabs | 🟡 | ✅ | 🟡 |
+| Tabs | ✅ | ✅ | [Tab](https://blazorwebmaterial.lukevo.com/tabs) |
 | Text field | ✅ | ✅ | 🟡 |
 | Catalog | 💤 | 💤 | 💤 |
 | Density | 💤 | 💤 | 💤 |

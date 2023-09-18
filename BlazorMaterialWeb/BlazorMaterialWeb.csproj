@@ -1,18 +1,36 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 
+	<PropertyGroup>
+		<Title>Blazor Material Web</Title>
+		<Authors>Luke Vo</Authors>
+		<Description>A Blazor wrapper for Google's Material Web Component so you can use it in your WebAssembly website or MAUI Blazor Hybrid apps</Description>
+		<Copyright>https://github.com/datvm/BlazorMaterialWeb/blob/master/LICENSE.MD</Copyright>
+		<PackageProjectUrl>https://github.com/datvm/BlazorMaterialWeb</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/datvm/BlazorMaterialWeb</RepositoryUrl>
+		<PackageTags>web-component;material;material-ui;blazor</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>README.MD</PackageReadmeFile>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <SupportedPlatform Include="browser" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\README.MD">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.10" />
-  </ItemGroup>
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.10" />
+	</ItemGroup>
 
 </Project>
