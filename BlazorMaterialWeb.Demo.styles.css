@@ -6,6 +6,10 @@
     overflow: auto;
 }
 
+    .code-container code[b-0c21yggip2] {
+        min-height: min(90vh, 10rem);
+    }
+
     .code-container[b-0c21yggip2] .btn-copy {
         position: absolute;
         right: 1rem;

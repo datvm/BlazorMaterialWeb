@@ -3,6 +3,7 @@ export function beforeStart() {
 
         constructor() {
             this.#overrideDispatch();
+            this.#observeChips();
         }
 
         getElementProperty(element, propertyName) {
@@ -35,6 +36,30 @@ export function beforeStart() {
                 return original.call(this, arg);
             }
         }
+
+        #observeChips() {
+            const obs = new MutationObserver(changes => {
+                for (const change of changes) {
+                    const name = change.target.nodeName.toUpperCase();
+                    if (name.startsWith("MD") && name.endsWith("CHIP")) {
+                        const chip = change.target;
+                        chip.dispatchEvent(new CustomEvent("selected", {
+                            bubbles: true,
+                            detail: {
+                                value: chip.value,
+                                checked: chip.selected,
+                            }
+                        }));
+                    }
+                }
+            });
+
+            obs.observe(document.body, {
+                attributeFilter: ["selected"],
+                attributes: true,
+                subtree: true,
+            })
+        }
     }();
 }
 
@@ -53,11 +78,11 @@ export function afterStarted(blazor) {
         }
     });
 
-    blazor.registerCustomEventType("selected", {
+    blazor.registerCustomEventType("chipselected", {
         browserEventName: "selected",
-        createEventArgs: e => ({
+        createEventArgs: ({ target }) => ({
             value: target.value,
-            checked: e.target.selected
+            checked: target.selected
         }),
     });
 
@@ -143,7 +168,7 @@ export function afterStarted(blazor) {
 
     blazor.registerCustomEventType("tabactivated", {
         browserEventName: "activated",
-        createEventArgs: ({ target}) => ({
+        createEventArgs: ({ target }) => ({
             checked: target.active,
         }),
     });
