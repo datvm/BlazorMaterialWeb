@@ -86,7 +86,7 @@ export function afterStarted(blazor) {
         }),
     });
 
-    blazor.registerCustomEventType("remove", {
+    blazor.registerCustomEventType("chipremove", {
         browserEventName: "remove",
         createEventArgs: () => undefined,
     });

@@ -7,9 +7,9 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
-      "BlazorMaterialWeb.Bundled.dll": "sha256-aUc4e5UsPbbmiVEN+baRPTeLHEXx6lgv0Rp2NoTeEXA=",
-      "BlazorMaterialWeb.Demo.dll": "sha256-BqAvTq9yZpxsOqi+srWz6wmXBR16R9CII9TRkowMBoQ=",
-      "BlazorMaterialWeb.dll": "sha256-3EqHpoYnEVkxXMEMilssv2KI4PQOhmkdV8kMJLorwGU=",
+      "BlazorMaterialWeb.Bundled.dll": "sha256-2oao\/ec8yiRDstYw6wvrEkIwVmzW+QABuXz2Gpm4kUs=",
+      "BlazorMaterialWeb.Demo.dll": "sha256-mN05TC5FAsOdHJjB1qWicI7CQWhIZ0OqHy9Cb66Wzd4=",
+      "BlazorMaterialWeb.dll": "sha256-6uRnWvOUgXLI416vOdXGPpq4m4CCDg\/5ZnKFQYgtPvg=",
       "Microsoft.AspNetCore.Components.dll": "sha256-ivfpmAje8WWoTUEb4VDxqgZ6uRW6FXgbOKfeDYPU5j4=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-Qwp\/LUQPvlE\/Y2J0zcfgh9nh7YBeJx2H4j9Xo8w7hTc=",
       "Microsoft.AspNetCore.Components.WebAssembly.dll": "sha256-GthKrHcSc8uOL6XXkGQP6uGfESlsj9kHhiGlLA+w5iM=",
@@ -43,7 +43,7 @@
     "libraryInitializers": {
       "BlazorMaterialWeb.Demo.lib.module.js": "sha256-BOMcLWy3md8g52gqE2WPsFUFpXhZcZFyGwHHnhrCDKE=",
       "_content\/BlazorMaterialWeb.Bundled\/BlazorMaterialWeb.Bundled.lib.module.js": "sha256-AmdXDFNOQgXEo0JDzxWKu89\/vF9wmLhyH8yrp8hYXuk=",
-      "_content\/BlazorMaterialWeb\/BlazorMaterialWeb.lib.module.js": "sha256-S94NBtUO\/WXgfYL0j5\/huYgUjAU3NjgBUA\/0fGdqMZE="
+      "_content\/BlazorMaterialWeb\/BlazorMaterialWeb.lib.module.js": "sha256-kPYY9ME1FsVjo4BVcrE9T4HdYNsXyYeOcjtCbuBo3\/E="
     },
     "pdb": null,
     "runtime": {
