@@ -11,9 +11,6 @@ partial class MdChipset
     [Parameter, EditorRequired]
     public MdChipType Type { get; set; } = MdChipType.Suggestion;
 
-    [Parameter]
-    public bool SingleSelect { get; set; } 
-
 }
 
 /// <summary>

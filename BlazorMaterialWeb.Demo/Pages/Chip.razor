@@ -13,7 +13,7 @@
         <div class="vstack gap-3">
             <div>
                 <h4>Assist Chips</h4>
-                <MdChipset Type="MdChipType.Assist" SingleSelect="singleSelect">
+                <MdChipset Type="MdChipType.Assist">
                     <MdAssistChip @onclick="AddAssist"
                                   Label="Assist chip" Elevated="elevated" Disabled="disabled" />
                     <MdAssistChip @onclick="AddAssist"
@@ -34,7 +34,7 @@
             <div>
                 <h4>Filter Chips</h4>
 
-                <MdChipset Type="MdChipType.Filter" SingleSelect="singleSelect">
+                <MdChipset Type="MdChipType.Filter">
                     <MdFilterChip @bind-Selected="filterSelected[0]"
                                   Label="Filter chip" Elevated="elevated" Disabled="disabled" />
                     <MdFilterChip @bind-Selected="filterSelected[1]"
@@ -55,7 +55,57 @@
                         <span>You have removed the removable filter chip.</span>
                     }
                 </p>
+            </div>
 
+            <div>
+                <h4>Input Chips</h4>
+
+                <MdChipset Type="MdChipType.Input">
+                    <MdInputChip @onclick="@(AddInput)" OnRemove="OnInputRemoved"
+                                 Label="Input chip" Elevated="elevated" Disabled="disabled" />
+                    <MdInputChip @onclick="@(AddInput)" OnRemove="OnInputRemoved"
+                                 Label="Input chip with icon" Elevated="elevated" Disabled="disabled">
+                        <MdIcon slot="@(MdInputChip.IconSlot)">keyboard</MdIcon>
+                    </MdInputChip>
+                    <MdInputChip @onclick="@(AddInput)" OnRemove="OnInputRemoved"
+                                 Label="Input chip with avatar" Elevated="elevated" Disabled="disabled"
+                                              Avatar>
+                        <img slot="@(MdInputChip.IconSlot)" src="https://picsum.photos/id/237/64" />
+                    </MdInputChip>
+                    <MdInputChip OnRemove="OnInputRemoved"
+                                 Label="Remove-only input chip" Elevated="elevated" Disabled="disabled"
+                                              RemoveOnly />
+                     <MdInputChip @onclick="@(AddInput)" OnRemove="OnInputRemoved"
+                                  Href="https://github.com/datvm/BlazorMaterialWeb" Target="@(targetBlank ? "_blank" : null)"
+                                  Label="Input chip with Link" Elevated="elevated" Disabled="disabled">
+                         <MdIcon slot="@(MdInputChip.IconSlot)">link</MdIcon>
+                     </MdInputChip>
+                 </MdChipset>
+
+                 <p>
+                     You clicked @(inputClickCount) times.
+                    You have removed @(inputRemovedCount) chips.
+                </p>
+            </div>
+
+            <div>
+                <h4>Suggestion Chips</h4>
+                <MdChipset Type="MdChipType.Suggestion">
+                    <MdSuggestionChip @onclick="AddSuggestion"
+                                  Label="Suggestion chip" Elevated="elevated" Disabled="disabled" />
+                    <MdSuggestionChip @onclick="AddSuggestion"
+                                  Label="Suggestion chip with icon" Elevated="elevated" Disabled="disabled">
+                        <MdIcon slot="@(MdSuggestionChip.IconSlot)">home</MdIcon>
+                    </MdSuggestionChip>
+                    <MdSuggestionChip @onclick="AddSuggestion"
+                                  Label="Suggestion Chip with Link" Elevated="elevated" Disabled="disabled"
+                                  Href="https://github.com/datvm/BlazorMaterialWeb"
+                                  Target="@(targetBlank ? "_blank" : null)">
+                        <MdIcon slot="@(MdSuggestionChip.IconSlot)">link</MdIcon>
+                    </MdSuggestionChip>
+                </MdChipset>
+
+                <p>You clicked @(suggestionClickCount) times.</p>
             </div>
         </div>
     </ComponentDemo>
@@ -79,16 +129,23 @@
 
 @code {
 
-    bool singleSelect;
     bool targetBlank;
     bool elevated = true;
     bool disabled;
 
     int assistClickCount;
+    int inputClickCount;
+    int inputRemovedCount;
+    int suggestionClickCount;
 
     bool[] filterSelected = new bool[3];
     bool filterRemoved;
 
     void AddAssist() => assistClickCount++;
+
+    void AddInput() => inputClickCount++;
+    void OnInputRemoved() => inputRemovedCount++;
+
+    void AddSuggestion() => suggestionClickCount++;
 
 }

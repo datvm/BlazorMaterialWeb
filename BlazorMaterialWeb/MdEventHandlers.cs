@@ -6,7 +6,7 @@
 // Chip
 // TODO: onremove is working now with temporary workaround: https://github.com/material-components/material-web/issues/4905
 [EventHandler("onchipselected", typeof(MdCheckedEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
-[EventHandler("onremove", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+[EventHandler("onchipremove", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 
 // Dialog
 [EventHandler("onopen", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]

@@ -2,7 +2,7 @@
 
 @inherits DefaultMdComponent
 
-<md-chip-set type="@(Type.ToString().ToLower())" single-select="@(SingleSelect)">
+<md-chip-set type="@(Type.ToString().ToLower())">
     <CascadingValue Value="@(Type)">
         @(ChildContent)
     </CascadingValue>
