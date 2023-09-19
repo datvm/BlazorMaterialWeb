@@ -1,43 +1,47 @@
 ﻿@page "/checkbox"
 
-<PageTitle>Checkbox</PageTitle>
+<ComponentDemoPage Name="Checkboxes"
+                   DesignUrl="https://m3.material.io/components/checkbox/overview"
+                   ComponentUrl="https://material-web.dev/components/checkbox/"
+                   ComponentSourcePath="checkbox"
+                   BlazorComponentSourcePath="MdCheckbox.razor"
+                   BlazorDemoSourceName="Checkbox">
+    <Description>
+        Checkboxes let users select one or more items from a list, or turn an item on or off
+    </Description>
+    <ComponentDemo>
+        <div class="row text-center mb-1">
+            <div class="col">
+                <MdCheckbox @bind-Checked="isChecked" @bind-Indeterminate="@(isIndeterminate)"
+                            Disabled="disabled" />
+            </div>
+            <div class="col">
+                <label>
+                    <MdCheckbox @bind-Checked="isChecked" @bind-Indeterminate="@(isIndeterminate)"
+                                Disabled="disabled" />
+                    This one is wrapped inside a label
+                </label>
+            </div>
+        </div>
 
-<h1>Checkbox</h1>
 
-<p>
-    <a target="_blank" href="https://m3.material.io/components/checkbox/overview">Checkboxes</a>
-    let users select one or more items from a list, or turn an item on or off
-</p>
+        <p>Checked: @(isChecked)</p>
+        <p>Indeterminate: @(isIndeterminate)</p>
+    </ComponentDemo>
+    <Tweaks>
+        <label class="hstack gap-3">
+            <MdSwitch @bind-Selected="disabled" Icons />
+             <span>Disabled</span>
+         </label>
 
-<div class="my-5 row text-center">
-    <div class="col">
-        <MdCheckbox @bind-Checked="isChecked" @bind-Indeterminate="@(isIndeterminate)"
-                    Disabled="disabled" />
-    </div>
-    <div class="col">
-        <label>
-            <MdCheckbox @bind-Checked="isChecked" @bind-Indeterminate="@(isIndeterminate)"
-                        Disabled="disabled" />
-            This one is wrapped inside a label
-        </label>
-    </div>
-
-</div>
-
-<p>Checked: @(isChecked)</p>
-<p>Indeterminate: @(isIndeterminate)</p>
-
-<label class="mb-3 hstack gap-3">
-    <MdSwitch @bind-Selected="disabled" Icons />
-    <span>Disabled</span>    
-</label>
-
-<div>
-    <MdButton @onclick="@(() => isIndeterminate = true)">
-        <MdIcon slot="@(MdButton.IconSlot)">indeterminate_check_box</MdIcon>
-        Set to Indeterminate
-    </MdButton>
-</div>
+         <div>
+             <MdButton @onclick="@(() => isIndeterminate = true)">
+                 <MdIcon slot="@(MdButton.IconSlot)">indeterminate_check_box</MdIcon>
+                 Set to Indeterminate
+             </MdButton>
+         </div>
+    </Tweaks>
+</ComponentDemoPage>
 
 @code {
 
