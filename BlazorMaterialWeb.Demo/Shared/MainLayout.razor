@@ -13,13 +13,7 @@
 
 <div class="content">
     <nav class="page-nav @(menuCollapsed ? "collapsed" : "")">
-        <MdList>
-            @foreach (var url in NavUrls)
-            {
-                <MdListItem Href="@(url.Url)" Headline="@(url.Text)"
-                            Active="@(url == activeUrl)" />
-            }
-        </MdList>
+        <PageNav />
     </nav>
     <main class="page-content-container p-3">
         <MdElevation ElevationLevel="3" BorderRadius="var(--catalog-shape-m, .75rem)">
@@ -29,3 +23,7 @@
         </MdElevation>        
     </main>
 </div>
+
+@code {
+    bool menuCollapsed;
+}

@@ -1,0 +1,26 @@
+﻿@inject NavigationManager Nav;
+
+@code {
+
+    static readonly (string Text, string Url)[] NavUrls =
+    {
+        ("Buttons", "/button"),
+        ("Checkbox", "/checkbox"),
+        ("Chips", "/chip"),
+        ("Icon Buttons", "/icon-buttons"),
+        ("Menus", "/menu"),
+        ("Progress", "/progress"),
+        ("Ripple", "/ripple"),
+        ("Sliders", "/slider"),
+        ("Tabs", "/tabs"),
+    };
+
+}
+
+<MdList>
+    @foreach (var url in NavUrls)
+    {
+        <MdListItem Href="@(url.Url)" Headline="@(url.Text)"
+                    Active="@(url == activeUrl)" />
+    }
+</MdList>

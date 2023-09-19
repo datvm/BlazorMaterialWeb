@@ -3,6 +3,10 @@
     overflow: auto;
 }
 
+    .code-container code {
+        min-height: min(90vh, 10rem);
+    }
+
     .code-container ::deep.btn-copy {
         position: absolute;
         right: 1rem;

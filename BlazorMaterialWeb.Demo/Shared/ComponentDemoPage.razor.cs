@@ -46,8 +46,19 @@ partial class ComponentDemoPage
         var codeUrl = DemoCodeContentRawUri.AbsoluteUri;
         if (currCodeUrl == codeUrl) { return; }
 
-        demoCode = await Http.GetStringAsync(codeUrl);
-        currCodeUrl = codeUrl;
+        try
+        {
+            // Set URL first to prevent code keep loading everytime
+            // state change
+            currCodeUrl = codeUrl;
+
+            demoCode = await Http.GetStringAsync(codeUrl);            
+        }
+        catch
+        {
+            demoCode = "Error loading demo code";
+        }
+        
     }
 
     public Uri DemoCodeContentUri => new(

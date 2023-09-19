@@ -1,0 +1,94 @@
+﻿@page "/chip"
+
+<ComponentDemoPage Name="Chips"
+                   DesignUrl="https://m3.material.io/components/chips/overview"
+                   ComponentUrl="https://material-web.dev/components/chip/"
+                   ComponentSourcePath="chips"
+                   BlazorComponentSourcePath="Chips"
+                   BlazorDemoSourceName="Chip">
+    <Description>
+        Chips help people enter information, make selections, filter content, or trigger actions
+    </Description>
+    <ComponentDemo>
+        <div class="vstack gap-3">
+            <div>
+                <h4>Assist Chips</h4>
+                <MdChipset Type="MdChipType.Assist" SingleSelect="singleSelect">
+                    <MdAssistChip @onclick="AddAssist"
+                                  Label="Assist chip" Elevated="elevated" Disabled="disabled" />
+                    <MdAssistChip @onclick="AddAssist"
+                                  Label="Assist chip with icon" Elevated="elevated" Disabled="disabled">
+                        <MdIcon slot="@(MdAssistChip.IconSlot)">home</MdIcon>
+                    </MdAssistChip>
+                    <MdAssistChip @onclick="AddAssist"
+                                  Label="Assist Chip with Link" Elevated="elevated" Disabled="disabled"
+                                  Href="https://github.com/datvm/BlazorMaterialWeb"
+                                  Target="@(targetBlank ? "_blank" : null)">
+                        <MdIcon slot="@(MdAssistChip.IconSlot)">link</MdIcon>
+                    </MdAssistChip>
+                </MdChipset>
+
+                <p>You clicked @(assistClickCount) times.</p>
+            </div>
+
+            <div>
+                <h4>Filter Chips</h4>
+
+                <MdChipset Type="MdChipType.Filter" SingleSelect="singleSelect">
+                    <MdFilterChip @bind-Selected="filterSelected[0]"
+                                  Label="Filter chip" Elevated="elevated" Disabled="disabled" />
+                    <MdFilterChip @bind-Selected="filterSelected[1]"
+                                  Label="Filter chip with icon" Elevated="elevated" Disabled="disabled">
+                        <MdIcon slot="@(MdFilterChip.IconSlot)">filter_alt</MdIcon>
+                    </MdFilterChip>
+                    <MdFilterChip @bind-Selected="filterSelected[2]" OnRemove="@(() => filterRemoved = true)"
+                                  Label="Removable filter chip" Elevated="elevated" Disabled="disabled" Removable>
+                        <MdIcon slot="@(MdFilterChip.IconSlot)">filter_alt</MdIcon>
+                    </MdFilterChip>
+                </MdChipset>
+
+                <p>
+                    Selected: @(string.Join(", ", filterSelected)).
+
+                    @if (filterRemoved)
+                    {
+                        <span>You have removed the removable filter chip.</span>
+                    }
+                </p>
+
+            </div>
+        </div>
+    </ComponentDemo>
+    <Tweaks>
+        <label class="hstack gap-3">
+            <MdSwitch @bind-Selected="targetBlank" />
+            Add <code>_blank</code> to target (Linked chips)
+        </label>
+
+        <label class="hstack gap-3">
+            <MdSwitch @bind-Selected="elevated" />
+            Elevated
+        </label>
+
+        <label class="hstack gap-3">
+            <MdSwitch @bind-Selected="disabled" />
+            Disabled (does not work with Linked chips)
+        </label>
+    </Tweaks>
+</ComponentDemoPage>
+
+@code {
+
+    bool singleSelect;
+    bool targetBlank;
+    bool elevated = true;
+    bool disabled;
+
+    int assistClickCount;
+
+    bool[] filterSelected = new bool[3];
+    bool filterRemoved;
+
+    void AddAssist() => assistClickCount++;
+
+}
