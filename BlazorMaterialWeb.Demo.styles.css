@@ -1,5 +1,17 @@
 @import '_content/BlazorMaterialWeb/BlazorMaterialWeb.bundle.scp.css';
 
+/* /Shared/CodeBlock.razor.rz.scp.css */
+.code-container[b-0c21yggip2] {
+    max-height: min(90vh, 500px);
+    overflow: auto;
+}
+
+    .code-container[b-0c21yggip2] .btn-copy {
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        z-index: 2;
+    }
 /* /Shared/MainLayout.razor.rz.scp.css */
 .page-header[b-k68xj1x1tp] {
     display: flex;
