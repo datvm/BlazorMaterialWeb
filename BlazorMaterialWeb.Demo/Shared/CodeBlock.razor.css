@@ -1,0 +1,11 @@
+﻿.code-container {
+    max-height: min(90vh, 500px);
+    overflow: auto;
+}
+
+    .code-container ::deep.btn-copy {
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        z-index: 2;
+    }

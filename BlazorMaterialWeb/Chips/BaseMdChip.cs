@@ -2,6 +2,7 @@
 
 public abstract class BaseMdChip : DefaultMdComponent
 {
+    public const string IconSlot = "icon";
 
     [Parameter]
     public bool Elevated { get; set; }

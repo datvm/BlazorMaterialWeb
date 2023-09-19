@@ -9,7 +9,7 @@ partial class MdChipset
 {
 
     [Parameter, EditorRequired]
-    public ChipType Type { get; set; } = ChipType.Suggestion;
+    public MdChipType Type { get; set; } = MdChipType.Suggestion;
 
     [Parameter]
     public bool SingleSelect { get; set; } 
@@ -19,7 +19,7 @@ partial class MdChipset
 /// <summary>
 /// From: <a href="https://github.com/material-components/material-web/blob/c26a578448666fda50eb2b25be59b88390e32097/chips/internal/chip-set.ts#L18">chip-set.ts</a>
 /// </summary>
-public enum ChipType
+public enum MdChipType
 {
     Assist,
     Suggestion,

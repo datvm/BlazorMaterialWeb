@@ -4,7 +4,7 @@ partial class MdAssistChip
 {
 
     // For Suggestion Chip support
-    protected virtual ChipType Type => ChipType.Assist;
+    protected virtual MdChipType Type => MdChipType.Assist;
 
     [Parameter]
     public string? Href { get; set; }

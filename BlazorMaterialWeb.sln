@@ -11,8 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\build-github-pages.yml = .github\workflows\build-github-pages.yml
 		LICENSE.MD = LICENSE.MD
-		README.MD = README.MD
 		pack.ps1 = pack.ps1
+		README.MD = README.MD
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorMaterialWeb.Bundled", "BlazorMaterialWeb.Bundled\BlazorMaterialWeb.Bundled.csproj", "{60E95BE5-10D7-4888-8F4A-3F0C93B6DB25}"

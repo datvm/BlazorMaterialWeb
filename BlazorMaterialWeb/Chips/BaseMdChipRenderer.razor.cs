@@ -4,7 +4,7 @@ partial class BaseMdChipRenderer
 {
 
     [Parameter, EditorRequired]
-    public ChipType Type { get; set; }
+    public MdChipType Type { get; set; }
 
     [Parameter, EditorRequired]
     public bool Elevated { get; set; }
@@ -17,12 +17,12 @@ partial class BaseMdChipRenderer
 
     string TagName => GetTagName(Type);
 
-    public static string GetTagName(ChipType type) => type switch
+    public static string GetTagName(MdChipType type) => type switch
     {
-        ChipType.Assist => "md-assist-chip",
-        ChipType.Suggestion => "md-suggestion-chip",
-        ChipType.Filter => "md-filter-chip",
-        ChipType.Input => "md-input-chip",
+        MdChipType.Assist => "md-assist-chip",
+        MdChipType.Suggestion => "md-suggestion-chip",
+        MdChipType.Filter => "md-filter-chip",
+        MdChipType.Input => "md-input-chip",
         _ => throw new NotImplementedException("Unknown chip type: " + type),
     };
 

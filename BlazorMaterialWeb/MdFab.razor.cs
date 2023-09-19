@@ -7,6 +7,7 @@
 /// </summary>
 partial class MdFab
 {
+    public const string IconSlot = "icon";
 
     [Parameter]
     public MdFabVariant Variant { get; set; } = MdFabVariant.Surface;

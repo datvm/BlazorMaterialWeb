@@ -3,6 +3,6 @@
 public class MdSuggestionChip : MdAssistChip
 {
 
-    protected override ChipType Type => ChipType.Suggestion;
+    protected override MdChipType Type => MdChipType.Suggestion;
 
 }

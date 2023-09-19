@@ -1,0 +1,16 @@
+﻿@if (Code is null)
+{
+    <div class="text-center">
+        <MdProgress Style="MdProgressStyle.Circular" Indeterminate />
+    </div>
+}
+else
+{
+    <div class="code-container position-relative">
+        <pre><code class="language-@(Language)">@(Code)</code></pre>
+        
+        <MdFab class="btn-copy" Label="Copy this code">
+            <MdIcon slot="@(MdFab.IconSlot)">content_copy</MdIcon>
+        </MdFab>
+    </div>
+}

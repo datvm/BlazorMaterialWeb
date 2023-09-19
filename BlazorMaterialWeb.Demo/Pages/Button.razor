@@ -1,99 +1,82 @@
 ﻿@page "/button"
 
-<PageTitle>Buttons</PageTitle>
-
-<h1>Buttons</h1>
-
-<p><a href="https://m3.material.io/components/buttons">Buttons</a> help people initiate actions, from sending an email, to sharing a document, to liking a post.</p>
-<p>There are five types of common buttons: elevated, filled, filled tonal, outlined, and text.</p>
-
-<div class="row text-center my-3">
-    @foreach (var type in Enum.GetValues<MdButtonStype>())
-    {
-        <div class="col">
-            <MdButton @onclick="@(() => clickedType = type.ToString())"
-                      Disabled="@(disabled)"
-                      Style="@(type)"
-                      TrailingIcon="@(trailingIcon)"
-                      Href="@(hasHref ? "https://example.com" : null)"
-                      Target="@(hasHref && targetBlank ? "_blank" : "")">
-                @(type.ToString())
-
-                @if (!string.IsNullOrEmpty(icon))
-                {
-                    <MdIcon slot="icon">@(icon)</MdIcon>
-                }
-            </MdButton>
-        </div>
-    }
-</div>
-
-@if (clickedType is null)
-{
-    <p>You haven't clicked any button</p>
-}
-else
-{
-    <p>You clicked: @(clickedType)</p>
-}
-
-<p>
-    <label class="me-3">
-        <MdCheckbox @bind-Checked="disabled" />
-        Disabled
-    </label>
-
-    <label class="me-3">
-        <MdCheckbox @bind-Checked="hasHref" />
-        Has Href
-    </label>
-
-    <label class="me-3">
-        <MdCheckbox @bind-Checked="targetBlank" Disabled="@(!hasHref)" />
-        Set Target to <code>_blank</code>
-    </label>
-</p>
-
-<div class="row align-items-center">
-    <div class="col-auto">
-        <label>
-            <MdCheckbox @bind-Checked="trailingIcon" />
-            Trailing Icon
-        </label>
-    </div>
-    <div class="col">
-        <MdTextField @bind-Value="icon"
-                     Label="Icon"
-                     class="w-100"
-                     HasLeadingIcon="false">
-            <MdIcon slot="leading-icon">Emoticon</MdIcon>
-        </MdTextField>
-    </div>
-</div>
-
-<MdDivider class="my-5" />
-
-<pre><code>
-@@foreach (var type in Enum.GetValues&lt;MdButtonType&gt;())
-{
-    &lt;div class=&quot;col&quot;&gt;
-        &lt;MdButton @@onclick=&quot;@@(() =&gt; clickedType = type.ToString())&quot;
-                    Disabled=&quot;@@(disabled)&quot;
-                    ButtonType=&quot;@@(type)&quot;
-                    TrailingIcon=&quot;@@(trailingIcon)&quot;
-                    Href=&quot;@@(hasHref ? &quot;https://example.com&quot; : null)&quot;
-                    Target=&quot;@@(hasHref &amp;&amp; targetBlank ? &quot;_blank&quot; : &quot;&quot;)&quot;&gt;
-            @@(type.ToString())
-
-            @@if (!string.IsNullOrEmpty(icon))
+<ComponentDemoPage Name="Buttons"
+                   DesignUrl="https://m3.material.io/components/buttons/overview"
+                   ComponentUrl="https://material-web.dev/components/button/"
+                   ComponentSourcePath="button"
+                   BlazorComponentSourcePath="MdButton.razor"
+                   BlazorDemoSourceName="Button">
+    <Description>
+        Common buttons prompt most actions in a UI
+    </Description>
+    <ComponentDemo>
+        <div class="row">
+            @foreach (var type in Enum.GetValues<MdButtonStype>())
             {
-                &lt;MdIcon slot=&quot;icon&quot;&gt;@@(icon)&lt;/MdIcon&gt;
-            }
-        &lt;/MdButton&gt;
-    &lt;/div&gt;
-}
-</code></pre>
+                <div class="col">
+                    <MdButton @onclick="@(() => clickedType = type.ToString())"
+                              Disabled="@(disabled)"
+                              Style="@(type)"
+                              TrailingIcon="@(trailingIcon)"
+                              Href="@(hasHref ? "https://example.com" : null)"
+                              Target="@(hasHref && targetBlank ? "_blank" : "")">
+                        @(type.ToString())
 
+                        @if (!string.IsNullOrEmpty(icon))
+                        {
+                            <MdIcon slot="icon">@(icon)</MdIcon>
+                        }
+                    </MdButton>
+                </div>
+            }
+        </div>
+
+
+        @if (clickedType is null)
+        {
+            <p>You haven't clicked any button</p>
+        }
+        else
+        {
+            <p>You clicked: @(clickedType)</p>
+        }
+    </ComponentDemo>
+    <Tweaks>
+        <div>
+            <label class="me-3">
+                <MdCheckbox @bind-Checked="disabled" />
+                Disabled
+            </label>
+
+            <label class="me-3">
+                <MdCheckbox @bind-Checked="hasHref" />
+                Has Href
+            </label>
+
+            <label class="me-3">
+                <MdCheckbox @bind-Checked="targetBlank" Disabled="@(!hasHref)" />
+                Set Target to <code>_blank</code>
+            </label>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col-auto">
+                <label>
+                    <MdCheckbox @bind-Checked="trailingIcon" />
+                    Trailing Icon
+                </label>
+            </div>
+            <div class="col">
+                <MdTextField @bind-Value="icon"
+                             Label="Icon"
+                             class="w-100"
+                             HasLeadingIcon="false">
+                    <MdIcon slot="leading-icon">Emoticon</MdIcon>
+                </MdTextField>
+            </div>
+        </div>
+    </Tweaks>
+</ComponentDemoPage>
 
 @code {
 

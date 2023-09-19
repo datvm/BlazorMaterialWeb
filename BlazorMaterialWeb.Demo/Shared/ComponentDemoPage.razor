@@ -1,0 +1,44 @@
+﻿@inject HttpClient Http;
+@inject IJSRuntime Js;
+
+<PageTitle>@(Name) - Blazor Material Web</PageTitle>
+
+<article>
+    <h1>@(Name)</h1>
+
+    <div>
+        @(Description)
+    </div>
+
+    <MdChipset Type="MdChipType.Assist">
+        <MdAssistChip Label="Design" Href="@(DesignUrl)">
+            <MdIcon slot="@(MdAssistChip.IconSlot)">design_services</MdIcon>
+        </MdAssistChip>
+        <MdAssistChip Label="Component" Href="@(ComponentUrl)">
+            <MdIcon slot="@(MdAssistChip.IconSlot)">add_circle</MdIcon>
+        </MdAssistChip>
+        <MdAssistChip Label="Component Source Code" Href="@(WebComponentSourceUri.AbsoluteUri)">
+            <MdIcon slot="@(MdAssistChip.IconSlot)">code</MdIcon>
+        </MdAssistChip>
+        <MdAssistChip Label="Blazor Source Code" Href="@(BlazorComponentSourceUri.AbsoluteUri)">
+            <MdIcon slot="@(MdAssistChip.IconSlot)">code</MdIcon>
+        </MdAssistChip>
+        <MdAssistChip Label="Demo Source Code" Href="@(DemoCodeContentUri.AbsoluteUri)">
+            <MdIcon slot="@(MdAssistChip.IconSlot)">code</MdIcon>
+        </MdAssistChip>
+    </MdChipset>
+
+    <MdDivider class="mt-3" />
+</article>
+
+<div class="my-5 vstack gap-3">
+    @(ComponentDemo)
+</div>
+
+<div class="vstack gap-3 mb-5">
+    @(Tweaks)
+</div>
+
+<MdDivider class="mb-5" />
+
+<CodeBlock Code="@(demoCode)" />
