@@ -9,7 +9,7 @@ partial class MdTextField
 {
 
     [Parameter]
-    public MdTextFieldStyle Style { get; set; } = MdTextFieldStyle.Outlined;
+    public MdTextFieldStyle TextFieldStyle { get; set; } = MdTextFieldStyle.Outlined;
 
     /// <summary>
     /// This property is a string with MdTextFieldTypes because you can
@@ -66,11 +66,11 @@ partial class MdTextField
     [Parameter]
     public EventCallback<string?> ValueChanged { get; set; }
 
-    string TagName => Style switch
+    string TagName => TextFieldStyle switch
     {
         MdTextFieldStyle.Filled => "md-filled-text-field",
         MdTextFieldStyle.Outlined => "md-outlined-text-field",
-        _ => throw new NotImplementedException("Unknown style: " + Style.ToString()),
+        _ => throw new NotImplementedException("Unknown style: " + TextFieldStyle.ToString()),
     };
 
     async Task OnValueChanged(ChangeEventArgs e)

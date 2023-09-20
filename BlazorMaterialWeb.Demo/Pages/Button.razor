@@ -16,7 +16,7 @@
                 <div class="col">
                     <MdButton @onclick="@(() => clickedType = type.ToString())"
                               Disabled="@(disabled)"
-                              Style="@(type)"
+                              ButtonStyle="@(type)"
                               TrailingIcon="@(trailingIcon)"
                               Href="@(hasHref ? "https://example.com" : null)"
                               Target="@(hasHref && targetBlank ? "_blank" : "")">

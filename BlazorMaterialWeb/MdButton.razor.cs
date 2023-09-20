@@ -11,7 +11,7 @@ partial class MdButton
     public const string IconSlot = "icon";
 
     [Parameter]
-    public MdButtonStype Style { get; set; } = MdButtonStype.Elevated;
+    public MdButtonStype ButtonStyle { get; set; } = MdButtonStype.Elevated;
 
     [Parameter]
     public bool Disabled { get; set; }
@@ -34,14 +34,14 @@ partial class MdButton
     [Parameter]
     public string? Value { get; set; }
 
-    string ButtonTagName => Style switch
+    string ButtonTagName => ButtonStyle switch
     {
         MdButtonStype.Elevated => "md-elevated-button",
         MdButtonStype.Filled => "md-filled-button",
         MdButtonStype.Tonal => "md-filled-tonal-button",
         MdButtonStype.Outlined => "md-outlined-button",
         MdButtonStype.Text => "md-text-button",
-        _ => throw new NotImplementedException(Style.ToString()),
+        _ => throw new NotImplementedException(ButtonStyle.ToString()),
     };
 
 }

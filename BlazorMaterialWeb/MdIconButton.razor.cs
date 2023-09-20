@@ -4,7 +4,7 @@ partial class MdIconButton
 {
 
     [Parameter]
-    public MdIconButtonStyle Style { get; set; } = MdIconButtonStyle.Default;
+    public MdIconButtonStyle ButtonStyle { get; set; } = MdIconButtonStyle.Default;
 
     [Parameter]
     public bool Disabled { get; set; }
@@ -36,13 +36,13 @@ partial class MdIconButton
     [Parameter]
     public string? Value { get; set; }
 
-    string TagName => Style switch
+    string TagName => ButtonStyle switch
     {
         MdIconButtonStyle.Default => "md-icon-button",
         MdIconButtonStyle.Filled => "md-filled-icon-button",
         MdIconButtonStyle.Tonal => "md-filled-tonal-icon-button",
         MdIconButtonStyle.Outlined => "md-outlined-icon-button",
-        _ => throw new NotImplementedException("Unknown style: " + Style.ToString()),
+        _ => throw new NotImplementedException("Unknown style: " + ButtonStyle.ToString()),
     };
 
     async Task OnSelectedChanged(MdCheckedEventArgs e)

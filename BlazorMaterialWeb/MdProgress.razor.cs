@@ -9,7 +9,7 @@ partial class MdProgress
 {
 
     [Parameter]
-    public MdProgressStyle Style { get; set; } = MdProgressStyle.Linear;
+    public MdProgressStyle ProgressStyle { get; set; } = MdProgressStyle.Linear;
 
     [Parameter]
     public double? Buffer { get; set; }
@@ -26,11 +26,11 @@ partial class MdProgress
     [Parameter]
     public bool FourColor { get; set; }
 
-    string TagName => Style switch
+    string TagName => ProgressStyle switch
     {
         MdProgressStyle.Circular => "md-circular-progress",
         MdProgressStyle.Linear => "md-linear-progress",
-        _ => throw new NotImplementedException("Unknown style: " + Style),
+        _ => throw new NotImplementedException("Unknown style: " + ProgressStyle),
     };
 }
 

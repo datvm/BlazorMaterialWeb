@@ -16,7 +16,7 @@
         @foreach (var style in Enum.GetValues<MdProgressStyle>())
         {
             <div class="col">
-                <MdProgress Style="@(style)"
+                <MdProgress ProgressStyle="@(style)"
                             Indeterminate="indeterminate"
                             FourColor="fourColor"
                             Value="value" Max="max"
@@ -43,7 +43,7 @@
 </div>
 
 <div class="mb-3">
-    <MdButton Style="MdButtonStype.Filled" @onclick="SimulateProgress">
+    <MdButton ButtonStyle="MdButtonStype.Filled" @onclick="SimulateProgress">
         Simulate Progress
     </MdButton>
 </div>
