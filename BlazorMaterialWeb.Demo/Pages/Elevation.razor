@@ -1,0 +1,58 @@
+﻿@page "/elevation"
+
+<ComponentDemoPage Name="Elevation"
+                   DesignUrl="https://m3.material.io/styles/elevation/overview"
+                   ComponentUrl="https://github.com/material-components/material-web/blob/main/docs/components/elevation.md"
+                   ComponentSourcePath="elevation"
+                   BlazorComponentSourcePath="MdElevation.razor"
+                   BlazorDemoSourceName="Elevation">
+    <Description>
+        Elevation is the distance between two surfaces on the z-axis
+    </Description>
+    <ComponentDemo>
+        <div style="width: 300px; @(animationCss)">
+            <MdElevation ElevationLevel="elevation">
+                <div class="d-flex align-items-center justify-content-center"
+                     style="height: 300px; background: white;">
+                    Some content
+                </div>
+            </MdElevation>
+        </div>
+    </ComponentDemo>
+    <Tweaks>
+        <div class="hstack gap-1">
+            <label for="txt-elevation">
+                Elevation
+            </label>
+
+            <MdSlider id="txt-elevation" @bind-Value="elevation" @bind-Value:event="ValueInput" Min="1" Max="5" Step="1" Ticks />
+
+             <span>@(elevation)</span>
+        </div>
+
+        <div class="hstack gap-1">
+            <label class="hstack gap-1">
+                <MdSwitch @bind-Selected="animation" />
+                Animation
+            </label>
+        </div>
+    </Tweaks>
+</ComponentDemoPage>
+
+@code {
+
+    int elevation = 3;
+    string? animationCss;
+
+    bool animation
+    {
+        get => animationCss is not null;
+        set
+        {
+            animationCss = value ?
+            "--md-elevation-transition-duration: 250ms; --md-elevation-transition-timing-function: ease-in-out;" :
+            null;
+        }
+    }
+
+}

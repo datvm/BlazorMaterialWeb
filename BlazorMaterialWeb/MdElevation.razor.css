@@ -1,6 +1,8 @@
 .md-elevation-container {
     position: relative;
     border-radius: var(--md-elevation-border-radius, 0);
+    transition-duration: var(--md-elevation-transition-duration, 0);
+    transition-timing-function: var(--md-elevation-transition-timing-function, none);
 }
 
     .md-elevation-container ::deep > *:not(md-elevation) {

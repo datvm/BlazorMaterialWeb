@@ -10,6 +10,10 @@
         Chips help people enter information, make selections, filter content, or trigger actions
     </Description>
     <ComponentDemo>
+        <MarkdownBlock>
+            **Note**: If you have issue with spacing between chips when using Blazor `@@if` or other syntax, try using `@@preservewhitespace true` (see [this issue](https://github.com/dotnet/aspnetcore/issues/26426#issuecomment-700837788))
+        </MarkdownBlock>
+
         <div class="vstack gap-3">
             <div>
                 <h4>Assist Chips</h4>
@@ -92,15 +96,15 @@
                 <h4>Suggestion Chips</h4>
                 <MdChipset Type="MdChipType.Suggestion">
                     <MdSuggestionChip @onclick="AddSuggestion"
-                                  Label="Suggestion chip" Elevated="elevated" Disabled="disabled" />
+                                      Label="Suggestion chip" Elevated="elevated" Disabled="disabled" />
                     <MdSuggestionChip @onclick="AddSuggestion"
-                                  Label="Suggestion chip with icon" Elevated="elevated" Disabled="disabled">
+                                      Label="Suggestion chip with icon" Elevated="elevated" Disabled="disabled">
                         <MdIcon slot="@(MdSuggestionChip.IconSlot)">home</MdIcon>
                     </MdSuggestionChip>
                     <MdSuggestionChip @onclick="AddSuggestion"
-                                  Label="Suggestion Chip with Link" Elevated="elevated" Disabled="disabled"
-                                  Href="https://github.com/datvm/BlazorMaterialWeb"
-                                  Target="@(targetBlank ? "_blank" : null)">
+                                      Label="Suggestion Chip with Link" Elevated="elevated" Disabled="disabled"
+                                      Href="https://github.com/datvm/BlazorMaterialWeb"
+                                      Target="@(targetBlank ? "_blank" : null)">
                         <MdIcon slot="@(MdSuggestionChip.IconSlot)">link</MdIcon>
                     </MdSuggestionChip>
                 </MdChipset>
