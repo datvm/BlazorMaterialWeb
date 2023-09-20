@@ -31,12 +31,12 @@ This project depends on Google's [Material Web Component](https://github.com/mat
 | Component | Blazored | Material Web | Demo Page |
 | --- | --- | --- | --- |
 | Button | ✅ | ✅ | [Button](https://blazorwebmaterial.lukevo.com/button) |
-| FAB | ✅ | ✅ | 🟡 |
+| FAB | ✅ | ✅ | [FAB](https://blazorwebmaterial.lukevo.com/fab) |
 | Icon button | ✅ | ✅ | [Icon button](https://blazorwebmaterial.lukevo.com/icon-buttons) |
 | Checkbox | ✅ | ✅ | [Checkbox](https://blazorwebmaterial.lukevo.com/checkbox) |
-| Chips | ✅ | ✅ | 🟡 |
+| Chips | ✅ | ✅ | [Checkbox](https://blazorwebmaterial.lukevo.com/chip) |
 | Dialog | ✅ | ✅ | [Dialog](https://blazorwebmaterial.lukevo.com/dialog) |
-| Divider | ✅ | ✅ | 🟡 |
+| Divider | ✅ | ✅ | [Divider](https://blazorwebmaterial.lukevo.com/divider) |
 | Elevation | ✅ | ✅ | 🟡 |
 | Focus ring | ✅ | ✅ | 🟡 |
 | List | ✅ | ✅ | 🟡 |

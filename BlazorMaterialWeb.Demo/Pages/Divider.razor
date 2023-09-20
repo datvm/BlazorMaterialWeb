@@ -1,0 +1,43 @@
+﻿@page "/divider"
+
+<ComponentDemoPage Name="Divider"
+                   DesignUrl="https://m3.material.io/components/divider/overview"
+                   ComponentUrl="@(null)"
+                   ComponentSourcePath="divider"
+                   BlazorComponentSourcePath="MdDivider.razor"
+                   BlazorDemoSourceName="Divider">
+    <Description>
+        Dividers are thin lines that group content in lists or other containers
+    </Description>
+    <ComponentDemo>
+        <div>Some content</div>
+        
+        <MdDivider Inset="inset" InsetStart="insetStart" InsetEnd="insetEnd" />
+
+        <div>Some content</div>
+    </ComponentDemo>
+    <Tweaks>
+        <div class="hstack gap-3">
+            <label class="hstack gap-1">
+                <MdSwitch @bind-Selected="inset" />
+                Inset
+            </label>
+            <label class="hstack gap-1">
+                <MdSwitch @bind-Selected="insetStart" />
+                Inset Start
+            </label>
+            <label class="hstack gap-1">
+                <MdSwitch @bind-Selected="insetEnd" />
+                Inset End
+            </label>
+        </div>
+    </Tweaks>
+</ComponentDemoPage>
+
+@code {
+
+    bool inset;
+    bool insetStart;
+    bool insetEnd;
+
+}
