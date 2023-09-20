@@ -88,51 +88,56 @@ export function afterStarted(blazor) {
 
     blazor.registerCustomEventType("chipremove", {
         browserEventName: "remove",
-        createEventArgs: () => undefined,
+        createEventArgs: () => null,
     });
 
-    blazor.registerCustomEventType("open", {
+    blazor.registerCustomEventType("diagopen", {
         browserEventName: "open",
-        createEventArgs: () => undefined,
+        createEventArgs: () => ({ }),
     });
 
-    blazor.registerCustomEventType("opened", {
+    blazor.registerCustomEventType("diagopened", {
         browserEventName: "opened",
-        createEventArgs: () => undefined,
+        createEventArgs: () => ({}),
     });
 
-    blazor.registerCustomEventType("close", {
+    blazor.registerCustomEventType("diagclose", {
         browserEventName: "close",
         createEventArgs: e => ({
             returnValue: e.target.returnValue,
         }),
     });
 
-    blazor.registerCustomEventType("closed", {
+    blazor.registerCustomEventType("diagclosed", {
         browserEventName: "closed",
         createEventArgs: e => ({
             returnValue: e.target.returnValue,
         }),
     });
 
-    blazor.registerCustomEventType("cancel", {
+    blazor.registerCustomEventType("diagcancel", {
         browserEventName: "cancel",
-        createEventArgs: () => undefined,
+        createEventArgs: () => null,
     });
 
-    blazor.registerCustomEventType("opening", {
+    blazor.registerCustomEventType("menuopening", {
         browserEventName: "opening",
-        createEventArgs: () => undefined,
+        createEventArgs: () => null,
     });
 
-    blazor.registerCustomEventType("closing", {
+    blazor.registerCustomEventType("menuopened", {
+        browserEventName: "opened",
+        createEventArgs: () => null,
+    });
+
+    blazor.registerCustomEventType("menuclosing", {
         browserEventName: "closing",
-        createEventArgs: () => undefined,
+        createEventArgs: () => null,
     });
 
     blazor.registerCustomEventType("menuclosed", {
         browserEventName: "closed",
-        createEventArgs: () => undefined,
+        createEventArgs: () => null,
     });
 
     blazor.registerCustomEventType("sliderchange", {
