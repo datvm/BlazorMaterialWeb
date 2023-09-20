@@ -44,7 +44,7 @@ public enum MdFabVariant
 /// </summary>
 public enum MdFabSize
 {
-    Medium,
     Small,
+    Medium,    
     Large,
 }

@@ -1,8 +1,10 @@
 @inherits DefaultMdComponent
 
 <DynamicTag Tag="@(TagName)" @attributes="AdditionalAttributes" @bind-DynamicElementReference="el"
-            variant="@(Variant.ToString().ToLower())"
             label="@(Label)"
-            size="@(Size.ToString().ToLower())">
+            variant="@(Variant.ToString().ToLower())"
+            size="@(Size.ToString().ToLower())"
+            lowered="@(Lowered)"
+            branded="@(Branded)">
     @(ChildContent)
 </DynamicTag>

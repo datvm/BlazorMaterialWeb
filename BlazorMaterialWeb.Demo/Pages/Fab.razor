@@ -1,0 +1,70 @@
+﻿@page "/fab"
+
+<ComponentDemoPage Name="Floating action buttons (FAB)"
+                   DesignUrl="https://m3.material.io/components/floating-action-button/overview"
+                   ComponentUrl="https://material-web.dev/components/fab/"
+                   ComponentSourcePath="fab"
+                   BlazorComponentSourcePath="MdFab.razor"
+                   BlazorDemoSourceName="Fab">
+    <Description>
+        Floating action buttons (FABs) help people take primary actions.
+    </Description>
+    <ComponentDemo>
+        @foreach (var size in Enum.GetValues<MdFabSize>())
+        {
+            <div>
+                <h4>@(size)</h4>
+
+                <div class="row">
+                    @foreach (var variant in Enum.GetValues<MdFabVariant>())
+                    {
+                        <div class="col text-center">
+                            <MdFab @onclick="@(()=> lastClick = $"{size} - {variant}")"
+                                   Size="size" Variant="variant"
+                                   Lowered="lowered"
+                                   Label="@(label ? "Edit" : null)"
+                                   Branded="branded">
+                                <MdIcon slot="@(MdFab.IconSlot)">edit</MdIcon>
+                            </MdFab>
+
+                            <div>@(variant)</div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+
+        @if (lastClick is null)
+        {
+            <p>You haven't clicked anything yet.</p>
+        }
+        else
+        {
+            <p>You clicked @(lastClick)</p>
+        }
+    </ComponentDemo>
+    <Tweaks>
+        <label class="hstack gap-3">
+            <MdSwitch @bind-Selected="lowered" />
+            Lowered
+        </label>
+        <label class="hstack gap-3">
+            <MdSwitch @bind-Selected="label" />
+            Label (Extended)
+        </label>
+        <label class="hstack gap-3">
+            <MdSwitch @bind-Selected="branded" />
+            Branded
+        </label>
+    </Tweaks>
+</ComponentDemoPage>
+
+@code {
+
+    bool lowered;
+    bool label;
+    bool branded;
+
+    string? lastClick;
+
+}
