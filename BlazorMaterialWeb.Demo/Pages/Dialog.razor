@@ -1,0 +1,156 @@
+﻿@page "/dialog"
+
+<ComponentDemoPage Name="Dialogs"
+                   DesignUrl="https://m3.material.io/components/dialogs/overview"
+                   ComponentUrl="https://material-web.dev/components/dialog/"
+                   ComponentSourcePath="dialog"
+                   BlazorComponentSourcePath="MdDialog.razor"
+                   BlazorDemoSourceName="Dialog">
+    <Description>
+        Dialogs provide important prompts in a user flow
+    </Description>
+    <ComponentDemo>
+        <div class="hstack gap-3">
+            <div>
+                <MdButton @onclick="(() => isOpen[0] = true)">Show @(DialogNames[0])</MdButton>
+                    <p>@(DialogNames[0]) Open: @(isOpen[0])</p>
+            </div>
+            <div>
+                <MdButton @onclick="OpenDialog1Async">Manually Open and Close</MdButton>
+                <p>@(DialogNames[1]) Open: @(isOpen[1])</p>
+            </div>
+            <div>
+                <MdButton @onclick="(() => isOpen[2] = true)">Show @(DialogNames[2])</MdButton>
+                <MdButton @onclick="OpenDialogForResultAsync">Show @(DialogNames[2]) and Wait for Result</MdButton>
+
+                <p>@(DialogNames[2]) Open: @(isOpen[2])</p>
+            </div>
+        </div>
+
+        <div>
+            <div>
+                <label for="txt-ev-log">Event Log</label>
+            </div>
+
+            <MdTextField id="txt-ev-log" class="w-100" Value="@(log)" ReadOnly
+                          Type="@(MdTextFieldTypes.TextArea)" Rows="10" />
+         </div>
+
+         <MdDialog @ref="diags[0]" @bind-Open="isOpen[0]"
+                   OnOpen="OnDiagOpen" OnOpened="OnDiagOpened"
+                   OnClose="OnDiagClose" OnClosed="OnDiagClosed">
+             <Headline>
+                 Simple Dialog Title
+             </Headline>
+             <ChildContent>
+                 <form id="frm-simple" method="dialog">
+                     A simple dialog with free-form content.
+                 </form>
+             </ChildContent>
+             <Actions>
+                 <MdButton form="frm-simple">
+                     Ok
+                 </MdButton>
+             </Actions>
+         </MdDialog>
+
+         <MdDialog @ref="diags[1]" @bind-Open="isOpen[1]"
+                   OnOpen="OnDiagOpen" OnOpened="OnDiagOpened"
+                   OnClose="OnDiagClose" OnClosed="OnDiagClosed">
+             <Headline>
+                 Open &amp; Close manually
+             </Headline>
+             <ChildContent>
+                 <form id="frm-manual" method="dialog">
+                     This dialog closes after 3 seconds.
+                     It was opened by <code>ShowAsync()</code> method
+                     and will be closed by <code>CloseAsync()</code> method.
+                 </form>
+             </ChildContent>
+         </MdDialog>
+
+         <MdDialog @ref="diags[2]" @bind-Open="isOpen[2]"
+                   OnOpen="OnDiagOpen" OnOpened="OnDiagOpened"
+                   OnClose="OnDiagClose" OnClosed="OnDiagClosed">
+             <Headline>
+                 Return Value
+             </Headline>
+             <ChildContent>
+                 <form id="frm-value" method="dialog">
+                     <MdTextField Label="Enter your name" @bind-Value="@(enteredName)" />
+                 </form>
+             </ChildContent>
+             <Actions>
+                 <MdButton form="frm-value" Value="cancel">
+                     Nevermind
+                 </MdButton>
+                 <MdButton form="frm-value" Value="ok">
+                     Say Hello
+                 </MdButton>
+             </Actions>
+         </MdDialog>
+
+     </ComponentDemo>
+     <Tweaks>
+     </Tweaks>
+ </ComponentDemoPage>
+
+ @code {
+
+    string log = "";
+
+    MdDialog[] diags = new MdDialog[3];
+    bool[] isOpen = new bool[3];
+    string? enteredName;
+
+    async Task OpenDialog1Async()
+    {
+        await diags[1].OpenAsync();
+        await Task.Delay(3000);
+        await diags[1].CloseAsync();
+    }
+
+    async Task OpenDialogForResultAsync()
+    {
+        var (diag, result) = await diags[2].OpenForResultAsync();
+
+        log += $"{GetDiagName(diag)} was opened and got the following result: {result}\r\n";
+
+        if (result == "ok")
+        {
+            log += $"Hello there, {enteredName}!\r\n";
+        }
+    }
+
+    static readonly string[] DialogNames = { "Simple Dialog", "Open & Close Dialog", "Return Value Dialog" };
+    string GetDiagName(MdDialog diag)
+    {
+        var index = Array.IndexOf(diags, diag);
+        return DialogNames[index];
+    }
+
+    void OnDiagOpen(MdDialogReturnCallbackArgs e)
+    {
+        log += $"{GetDiagName(e.Dialog)} open.\r\n";
+    }
+
+    void OnDiagOpened(MdDialogReturnCallbackArgs e)
+    {
+        log += $"{GetDiagName(e.Dialog)} opened.\r\n";
+    }
+
+    void OnDiagClose(MdDialogReturnCallbackArgs e)
+    {
+        log += $"{GetDiagName(e.Dialog)} closing with value: {e.ReturnValue}\r\n";
+    }
+
+    void OnDiagClosed(MdDialogReturnCallbackArgs e)
+    {
+        log += $"{GetDiagName(e.Dialog)} closed with value: {e.ReturnValue}\r\n";
+    }
+
+    void OnDiagCancelled(MdDialogReturnCallbackArgs e)
+    {
+        log += "{GetDiagName(e.Dialog)} cancelled" + "\r\n";
+    }
+}

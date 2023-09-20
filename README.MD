@@ -35,7 +35,7 @@ This project depends on Google's [Material Web Component](https://github.com/mat
 | Icon button | ✅ | ✅ | [Icon button](https://blazorwebmaterial.lukevo.com/icon-buttons) |
 | Checkbox | ✅ | ✅ | [Checkbox](https://blazorwebmaterial.lukevo.com/checkbox) |
 | Chips | ✅ | ✅ | 🟡 |
-| Dialog | ✅ | ✅ | 🟡 |
+| Dialog | ✅ | ✅ | [Dialog](https://blazorwebmaterial.lukevo.com/dialog) |
 | Divider | ✅ | ✅ | 🟡 |
 | Elevation | ✅ | ✅ | 🟡 |
 | Focus ring | ✅ | ✅ | 🟡 |

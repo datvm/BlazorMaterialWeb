@@ -20,9 +20,9 @@
          stay-open-on-focusout="@(StayOpenOnFocusout)"
          skip-restore-focus="@(SkipRestoreFocus)"
          default-focus="@(DefaultFocus)"
-         @onopening="OnOpening"
-         @onopened="OnMenuOpened"
-         @onclosing="OnClosing"
+         @onmenuopening="OnOpening"
+         @onmenuopened="OnMenuOpened"
+         @onmenuclosing="OnClosing"
          @onmenuclosed="OnMenuClosed">
     @(ChildContent)
 </md-menu>

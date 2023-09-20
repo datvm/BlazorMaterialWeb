@@ -22,34 +22,42 @@ partial class MdDialog
     public MdDialogType? Type { get; set; }
 
     [Parameter]
-    public EventCallback OnOpen { get; set; }
+    public EventCallback<MdDialogReturnCallbackArgs> OnOpen { get; set; }
 
     [Parameter]
-    public EventCallback OnOpened { get; set; }
+    public EventCallback<MdDialogReturnCallbackArgs> OnOpened { get; set; }
 
     [Parameter]
-    public EventCallback OnClose { get; set; }
+    public EventCallback<MdDialogReturnCallbackArgs> OnClose { get; set; }
 
     [Parameter]
-    public EventCallback<string> OnClosed { get; set; }
+    public EventCallback<MdDialogReturnCallbackArgs> OnClosed { get; set; }
 
     [Parameter]
-    public EventCallback OnCancel { get; set; }
+    public EventCallback<MdDialogReturnCallbackArgs> OnCancel { get; set; }
+
+    Task OnDomOpen() => OnOpen.InvokeAsync(new(this));
 
     async Task OnDomOpened()
     {
         Open = true;
         await OpenChanged.InvokeAsync(true);
-        await OnOpened.InvokeAsync();
+        await OnOpened.InvokeAsync(new(this));
     }
+
+    Task OnDomClose(MdDialogReturnEventArgs e) =>
+        OnClose.InvokeAsync(new(this, e.ReturnValue));
 
     async Task OnDomClosed(MdDialogReturnEventArgs e)
     {
         Open = false;
         await OpenChanged.InvokeAsync(false);
-        await OnClosed.InvokeAsync(e.ReturnValue);
+        await OnClosed.InvokeAsync(new(this, e.ReturnValue));
         closeTcs?.TrySetResult(e.ReturnValue);
     }
+
+    Task OnDomCancelled() =>
+        OnCancel.InvokeAsync(new(this));
 
     public async Task<string> GetReturnValueAsync() =>
         await Js.GetElementPropertyAsync<string>(el, "returnValue");
@@ -64,12 +72,12 @@ partial class MdDialog
         await Js.InvokeElementMethodAsync(el, "close");
     }
 
-    public async Task<string> OpenForResultAsync()
+    public async Task<MdDialogReturnCallbackArgs> OpenForResultAsync()
     {
         var tcs = closeTcs = new TaskCompletionSource<string>();
         _ = OpenAsync(); // Don't need to wait for this
-        
-        return await closeTcs.Task;
+
+        return new(this, await closeTcs.Task);
     }
 
 }
@@ -78,3 +86,5 @@ public enum MdDialogType
 {
     Alert,
 }
+
+public record MdDialogReturnCallbackArgs(MdDialog Dialog, string? ReturnValue = null);

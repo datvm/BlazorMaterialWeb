@@ -9,16 +9,16 @@
 [EventHandler("onchipremove", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 
 // Dialog
-[EventHandler("onopen", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
-[EventHandler("onopened", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
-[EventHandler("onclose", typeof(MdDialogReturnEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
-[EventHandler("onclosed", typeof(MdDialogReturnEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
-[EventHandler("oncancel", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+[EventHandler("ondiagopen", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+[EventHandler("ondiagopened", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+[EventHandler("ondiagclose", typeof(MdDialogReturnEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+[EventHandler("ondiagclosed", typeof(MdDialogReturnEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+[EventHandler("ondiagcancel", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 
 // Menu
-[EventHandler("onopening", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
-// onopened is already registered by dialog
-[EventHandler("onclosing", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+[EventHandler("onmenuopening", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+[EventHandler("onmenuopened", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+[EventHandler("onmenuclosing", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 [EventHandler("onmenuclosed", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 
 // Slider
