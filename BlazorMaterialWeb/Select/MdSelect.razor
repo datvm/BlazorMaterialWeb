@@ -1,0 +1,21 @@
+@namespace BlazorMaterialWeb
+@inherits DefaultMdComponent
+
+<DynamicTag Tag="@(TagName)" @bind-DynamicElementReference="el" @attributes="AdditionalAttributes"
+            quick="@(Quick)"
+            required="@(Required)"
+            value="@(Value)"
+            selected-index="@(SelectedIndex)"
+            disabled="@(Disabled)"
+            error-text="@(ErrorText)"
+            label="@(Label)"
+            supporting-text="@(SupportingText)"
+            error="@(Error)"
+            menu-fixed="@(MenuFixed)"
+            typeahead-delay="@(TypeaheadDelay)"
+            has-leading-icon="@(HasLeadingIcon)"
+            display-text="@(DisplayText)"
+            @onselectchange="OnChangeAsync"
+            @onselectinput="OnInput">
+    @(ChildContent)
+</DynamicTag>

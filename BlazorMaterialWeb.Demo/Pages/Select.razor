@@ -1,0 +1,32 @@
+﻿@page "/select"
+
+<ComponentDemoPage Name="Select"
+                   DesignUrl="@(null)"
+                   ComponentUrl="https://github.com/material-components/material-web/blob/main/docs/components/select.md"
+                   ComponentSourcePath="select"
+                   BlazorComponentSourcePath="MdSelect.razor"
+                   BlazorDemoSourceName="Select">
+    <Description>
+        Select menus display a list of choices on temporary surfaces and display the currently selected menu item above the menu.
+    </Description>
+    <ComponentDemo>
+        <div class="alert alert-warning">
+            This component is still under development by Material Web.
+            It is not working yet.
+        </div>
+
+        <MdSelect SelectStyle="style">
+            <MdSelectOption Headline="Apple" Selected />
+            <MdSelectOption Headline="Apricot" />
+        </MdSelect>
+    </ComponentDemo>
+    <Tweaks>
+
+    </Tweaks>
+</ComponentDemoPage>
+
+@code {
+
+    MdSelectStyle style = MdSelectStyle.Outlined;
+
+}

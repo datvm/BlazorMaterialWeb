@@ -177,4 +177,31 @@ export function afterStarted(blazor) {
             checked: target.active,
         }),
     });
+
+    function createMdSelectEventArgs(target) {
+        return {
+            value: target.value,
+            selectedIndex: target.selectedIndex,
+        };
+    }
+
+    blazor.registerCustomEventType("selectchange", {
+        browserEventName: "change",
+        createEventArgs: ({ target }) => createMdSelectEventArgs(target),
+    });
+
+    blazor.registerCustomEventType("selectinput", {
+        browserEventName: "input",
+        createEventArgs: ({ target }) => createMdSelectEventArgs(target),
+    });
+
+    blazor.registerCustomEventType("requestselection", {
+        browserEventName: "request-selection",
+        createEventArgs: () => null,
+    });
+
+    blazor.registerCustomEventType("requestdeselection", {
+        browserEventName: "request-deselection",
+        createEventArgs: () => null,
+    });
 }

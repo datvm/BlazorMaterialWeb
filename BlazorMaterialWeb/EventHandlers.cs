@@ -28,6 +28,12 @@
 // Tabs
 [EventHandler("ontabchanged", typeof(MdTabChangeEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 [EventHandler("ontabactivated", typeof(MdCheckedEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+
+// Select
+[EventHandler("onselectchange", typeof(MdSelectChangeEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+[EventHandler("onselectinput", typeof(MdSelectChangeEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+[EventHandler("onrequestselection", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+[EventHandler("onrequestdeselection", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 public static class EventHandlers { }
 
 public class MdCheckedEventArgs : EventArgs
@@ -58,4 +64,10 @@ public class MdSliderChangeEventArgs : EventArgs
 public class MdTabChangeEventArgs : EventArgs
 {
     public int Index { get; set; }
+}
+
+public class MdSelectChangeEventArgs : EventArgs
+{
+    public string Value { get; set; } = "";
+    public int SelectedIndex { get; set; }
 }
