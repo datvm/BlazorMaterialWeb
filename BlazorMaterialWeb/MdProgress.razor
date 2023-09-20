@@ -1,6 +1,6 @@
 @inherits DefaultMdComponent
 
-<DynamicTag Tag="@(TagName)" @attributes="AdditionalAttributes"
+<DynamicTag Tag="@(TagName)" @attributes="AdditionalAttributes" @bind-DynamicElementReference="el"
             buffer="@(Buffer)"
             value="@(Value)"
             max="@(Max)"

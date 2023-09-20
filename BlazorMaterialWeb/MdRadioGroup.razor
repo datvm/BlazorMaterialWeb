@@ -1,6 +1,6 @@
 @inherits DefaultMdComponent
 
-<div @attributes="AdditionalAttributes" @oncheckedchange="OnCheckedChanged">
+<div @attributes="AdditionalAttributes" @oncheckedchange="OnCheckedChanged" @ref="el">
     <CascadingValue Name="MdRadioName" Value="@(Name)">
         @(ChildContent)
     </CascadingValue>

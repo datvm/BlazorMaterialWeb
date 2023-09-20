@@ -3,7 +3,6 @@
 partial class MdDialog
 {
 
-    ElementReference el;
     TaskCompletionSource<string>? closeTcs;
 
     [Parameter]

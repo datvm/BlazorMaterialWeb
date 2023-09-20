@@ -1,6 +1,6 @@
 @inherits DefaultMdComponent
 
-<md-focus-ring @attributes="AdditionalAttributes"
+<md-focus-ring @attributes="AdditionalAttributes" @ref="el"
                visible="@(Visible)"
                inward="@(Inward)">
     @(ChildContent)

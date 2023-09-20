@@ -1,5 +1,7 @@
 ﻿@page "/button"
 
+@inject IJSRuntime Js;
+
 <ComponentDemoPage Name="Buttons"
                    DesignUrl="https://m3.material.io/components/buttons/overview"
                    ComponentUrl="https://material-web.dev/components/button/"
@@ -31,7 +33,6 @@
             }
         </div>
 
-
         @if (clickedType is null)
         {
             <p>You haven't clicked any button</p>
@@ -40,6 +41,12 @@
         {
             <p>You clicked: @(clickedType)</p>
         }
+
+        <div>
+            <MdButton @ref="refDemo" @onclick="PrintHtmlRefAsync">
+                Print to Console (ElementReference demo)
+            </MdButton>
+        </div>
     </ComponentDemo>
     <Tweaks>
         <div>
@@ -87,5 +94,12 @@
 
     bool hasHref;
     bool targetBlank;
+
+    MdButton refDemo = null!;
+
+    async Task PrintHtmlRefAsync()
+    {
+        await Js.InvokeVoidAsync("console.log", refDemo.ElementReference);       
+    }
 
 }

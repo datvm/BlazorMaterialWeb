@@ -2,6 +2,9 @@
 public class DefaultMdComponent : ComponentBase
 {
 
+    protected ElementReference el;
+    public ElementReference ElementReference => el;
+
     [Parameter(CaptureUnmatchedValues = true)]
     public IEnumerable<KeyValuePair<string, object?>>? AdditionalAttributes { get; set; }
 

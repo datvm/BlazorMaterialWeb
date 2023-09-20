@@ -82,7 +82,6 @@ partial class MdMenu
         await OnClosed.InvokeAsync();
     }
 
-    ElementReference el;
     public async Task ShowAsync()
     {
         await Js.InvokeElementMethodAsync(el, "show");

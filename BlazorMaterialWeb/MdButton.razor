@@ -1,6 +1,6 @@
 @inherits DefaultMdComponent
 
-<DynamicTag Tag="@(ButtonTagName)" @attributes="AdditionalAttributes"
+<DynamicTag Tag="@(ButtonTagName)" @attributes="AdditionalAttributes" @bind-DynamicElementReference="el"
             disabled="@(Disabled)"
             href="@(Href)"
             target="@(Target)"

@@ -1,7 +1,7 @@
 @typeparam TValue where TValue: struct, IConvertible;
 @inherits DefaultMdComponent
 
-<md-slider @attributes="AdditionalAttributes"
+<md-slider @attributes="AdditionalAttributes" @ref="el"
            disabled="@(Disabled)"
            min="@(Min)"
            max="@(Max)"

@@ -17,8 +17,6 @@ partial class MdTabs
     [Parameter]
     public EventCallback<MdTabChangeEventArgs> OnTabChanged { get; set; }
 
-    ElementReference el;
-
     public async Task<int> GetActiveTabIndexAsync()
     {
         return await Js.GetElementPropertyAsync<int>(el, "activeTabIndex");

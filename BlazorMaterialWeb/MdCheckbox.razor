@@ -1,6 +1,6 @@
 @inherits DefaultMdComponent
 
-<md-checkbox @oncheckedchange="OnCheckedChanged" @attributes="AdditionalAttributes"
+<md-checkbox @oncheckedchange="OnCheckedChanged" @attributes="AdditionalAttributes" @ref="el"
              checked="@(Checked)"
              indeterminate="@(Indeterminate)"
              disabled="@(Disabled)"
