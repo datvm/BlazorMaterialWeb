@@ -5,7 +5,7 @@
 /// <a href="https://m3.material.io/components/text-fields/overview">Design</a>,
 /// <a href="https://github.com/material-components/material-web/blob/main/docs/components/text-field.md">Component</a>
 /// </summary>
-partial class MdTextField
+partial class MdTextField<TValue>
 {
 
     [Parameter]
@@ -44,11 +44,11 @@ partial class MdTextField
     [Parameter]
     public string? InputMode { get; set; }
     [Parameter]
-    public string? Max { get; set; }
+    public TValue? Max { get; set; }
     [Parameter]
     public int? MaxLength { get; set; }
     [Parameter]
-    public string? Min { get; set; }
+    public TValue? Min { get; set; }
     [Parameter]
     public int? MinLength { get; set; }
     [Parameter]
@@ -58,13 +58,13 @@ partial class MdTextField
     [Parameter]
     public bool ReadOnly { get; set; }
     [Parameter]
-    public string? Step { get; set; }
+    public TValue? Step { get; set; }
 
     [Parameter]
-    public string? Value { get; set; }
+    public TValue? Value { get; set; }
 
     [Parameter]
-    public EventCallback<string?> ValueChanged { get; set; }
+    public EventCallback<TValue?> ValueChanged { get; set; }
 
     string TagName => TextFieldStyle switch
     {
@@ -75,7 +75,7 @@ partial class MdTextField
 
     async Task OnValueChanged(ChangeEventArgs e)
     {
-        Value = e.Value as string;
+        Value = (TValue?)Convert.ChangeType(e.Value, typeof(TValue));
         await ValueChanged.InvokeAsync(Value);
     }
 
