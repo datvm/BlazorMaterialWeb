@@ -1,0 +1,9 @@
+﻿<template data-markdown="true" style="display: none !important">
+    @(ChildContent)
+</template>
+
+@code {
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}
