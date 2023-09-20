@@ -13,9 +13,12 @@
     @preservewhitespace true
 
     <MdChipset Type="MdChipType.Assist">
-        <MdAssistChip Label="Design" Href="@(DesignUrl)">
-            <MdIcon slot="@(MdAssistChip.IconSlot)">design_services</MdIcon>
-        </MdAssistChip>
+        @if (DesignUrl is not null)
+        {
+            <MdAssistChip Label="Design" Href="@(DesignUrl)">
+                <MdIcon slot="@(MdAssistChip.IconSlot)">design_services</MdIcon>
+            </MdAssistChip>
+        }
         
         @if (ComponentUrl is not null)
         {

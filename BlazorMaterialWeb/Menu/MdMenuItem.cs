@@ -13,7 +13,8 @@ public class MdMenuItem : MdListItem
     public bool KeepOpen { get; set; }
 
     protected override IEnumerable<KeyValuePair<string, object?>>? ProtectedAdditionalAttributes =>
-        new KeyValuePair<string, object?>[] {
+        new KeyValuePair<string, object?>[]
+        {
             new("keep-open", KeepOpen),
         };
 

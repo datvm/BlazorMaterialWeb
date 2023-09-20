@@ -18,7 +18,7 @@ partial class ComponentDemoPage
     public RenderFragment Description { get; set; } = null!;
 
     [Parameter, EditorRequired]
-    public string DesignUrl { get; set; } = null!;
+    public string? DesignUrl { get; set; } = null!;
 
     [Parameter, EditorRequired]
     public string? ComponentUrl { get; set; }
