@@ -14,9 +14,18 @@
         <MdAssistChip Label="Design" Href="@(DesignUrl)">
             <MdIcon slot="@(MdAssistChip.IconSlot)">design_services</MdIcon>
         </MdAssistChip>
-        <MdAssistChip Label="Component" Href="@(ComponentUrl)">
-            <MdIcon slot="@(MdAssistChip.IconSlot)">add_circle</MdIcon>
-        </MdAssistChip>
+
+        @if (ComponentUrl is not null)
+        {
+            <MdAssistChip Label="Component" Href="@(ComponentUrl)">
+                <MdIcon slot="@(MdAssistChip.IconSlot)">add_circle</MdIcon>
+            </MdAssistChip>
+        }
+        else
+        {
+            <text>&nbsp;</text>
+        }
+
         <MdAssistChip Label="Component Source Code" Href="@(WebComponentSourceUri.AbsoluteUri)">
             <MdIcon slot="@(MdAssistChip.IconSlot)">code</MdIcon>
         </MdAssistChip>

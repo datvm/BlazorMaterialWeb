@@ -21,7 +21,7 @@ partial class ComponentDemoPage
     public string DesignUrl { get; set; } = null!;
 
     [Parameter, EditorRequired]
-    public string ComponentUrl { get; set; } = null!;
+    public string? ComponentUrl { get; set; }
 
     [Parameter, EditorRequired]
     public string ComponentSourcePath { get; set; } = null!;
