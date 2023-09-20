@@ -10,6 +10,10 @@
         Dialogs provide important prompts in a user flow
     </Description>
     <ComponentDemo>
+        <MarkdownBlock>
+            `BlazorMaterialWeb` provides the `OpenForResultAsync` method on `MdDialog` so you can open a dialog and wait for the result.
+        </MarkdownBlock>
+
         <div class="hstack gap-3">
             <div>
                 <MdButton @onclick="(() => isOpen[0] = true)">Show @(DialogNames[0])</MdButton>
