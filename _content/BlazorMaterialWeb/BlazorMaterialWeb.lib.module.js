@@ -24,7 +24,7 @@ export function beforeStart() {
             EventTarget.prototype.dispatchEvent = function (event) {
                 let arg = event;
 
-                if (!event.bubbles && this.tagName.startsWith("MD-")) {
+                if (!event.bubbles && this.tagName?.startsWith("MD-")) {
                     arg = new CustomEvent(event.type, {
                         bubbles: true,
                         detail: event.detail,
@@ -77,6 +77,20 @@ export function afterStarted(blazor) {
             };
         }
     });
+
+    blazor.registerCustomEventType("radiochecked", {
+        browserEventName: "change",
+        createEventArgs: ({ target }) => {
+            if (target.disabled) {
+                return null;
+            }
+
+            return {
+                value: target.value,
+                checked: target.checked,
+            };
+        }
+    });    
 
     blazor.registerCustomEventType("chipselected", {
         browserEventName: "selected",
