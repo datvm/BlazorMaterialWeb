@@ -24,7 +24,7 @@ export function beforeStart() {
             EventTarget.prototype.dispatchEvent = function (event) {
                 let arg = event;
 
-                if (!event.bubbles && this.tagName.startsWith("MD-")) {
+                if (!event.bubbles && this.tagName?.startsWith("MD-")) {
                     arg = new CustomEvent(event.type, {
                         bubbles: true,
                         detail: event.detail,

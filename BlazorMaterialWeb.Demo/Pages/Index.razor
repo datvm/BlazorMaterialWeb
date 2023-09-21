@@ -53,8 +53,8 @@
                     <a href="https://github.com/dotnet/maui/issues/15234">this issue</a> for more details).
                     You need to add the following script tags manually:
                 </p>
-                <pre><code>&lt;script src=&quot;./_content/BlazorMaterialWeb.Bundled/BlazorMaterialWeb.Bundled.lib.module.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;./_content/BlazorMaterialWeb/BlazorMaterialWeb.lib.module.js&quot;&gt;&lt;/script&gt;</code></pre>
+                <pre><code>&lt;script app-name=&quot;YOUR-ASSEMBLY-NAME&quot; defer src=&quot;_content/BlazorMaterialWeb/initializersLoader.webview.js&quot;&gt;&lt;/script&gt;
+&lt;script defer src=&quot;_framework/blazor.webview.js&quot; autostart=&quot;false&quot;&gt;&lt;/script&gt;</code></pre>
             </div>
         </li>
         <li>
