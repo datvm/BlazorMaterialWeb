@@ -1,7 +1,7 @@
 @namespace BlazorMaterialWeb
 @inherits DefaultMdComponent
 
-<div @attributes="AdditionalAttributes" @oncheckedchange="OnCheckedChanged" @ref="el">
+<div @attributes="AdditionalAttributes" @onradiochecked="OnCheckedChanged" @ref="el">
     <CascadingValue Name="MdRadioName" Value="@(Name)">
         @(ChildContent)
     </CascadingValue>

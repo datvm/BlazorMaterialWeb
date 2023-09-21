@@ -78,6 +78,20 @@ export function afterStarted(blazor) {
         }
     });
 
+    blazor.registerCustomEventType("radiochecked", {
+        browserEventName: "change",
+        createEventArgs: ({ target }) => {
+            if (target.disabled) {
+                return null;
+            }
+
+            return {
+                value: target.value,
+                checked: target.checked,
+            };
+        }
+    });    
+
     blazor.registerCustomEventType("chipselected", {
         browserEventName: "selected",
         createEventArgs: ({ target }) => ({

@@ -3,6 +3,9 @@
 // Checkbox
 [EventHandler("oncheckedchange", typeof(MdCheckboxChangeEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 
+// Radio
+[EventHandler("onradiochecked", typeof(MdCheckedEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+
 // Chip
 // TODO: onremove is working now with temporary workaround: https://github.com/material-components/material-web/issues/4905
 [EventHandler("onchipselected", typeof(MdCheckedEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
