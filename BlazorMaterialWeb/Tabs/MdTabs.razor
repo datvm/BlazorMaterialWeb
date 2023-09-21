@@ -5,7 +5,7 @@
 
 <md-tabs @ref="el" @attributes="AdditionalAttributes"
          @ontabchanged="OnTabChanged">
-    <CascadingValue Value="TabType">
+    <CascadingValue Name="TabType" Value="TabType">
         @(ChildContent)
     </CascadingValue>
 </md-tabs>

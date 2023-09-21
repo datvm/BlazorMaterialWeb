@@ -9,8 +9,11 @@ partial class MdTab
 {
     public const string IconSlot = "icon";
 
-    [Parameter, CascadingParameter]
-    public MdTabType Type { get; set; } = MdTabType.Primary;
+    [Parameter]
+    public MdTabType? Type { get; set; }
+
+    [CascadingParameter(Name = "TabType")]
+    public MdTabType? GroupType { get; set; }
 
     /// <summary>
     /// Primary Tab only
@@ -36,7 +39,7 @@ partial class MdTab
         await ActiveChanged.InvokeAsync(Active);
     }
 
-    string TagName => Type switch
+    string TagName => (Type ?? GroupType ?? MdTabType.Primary) switch
     {
         MdTabType.Primary => "md-primary-tab",
         MdTabType.Secondary => "md-secondary-tab",

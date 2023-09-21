@@ -42,7 +42,7 @@ This project depends on Google's [Material Web Component](https://github.com/mat
 | List | ✅ | ✅ | 🟡 |
 | Menu | ✅ | 🟡 | [Menus](https://blazorwebmaterial.lukevo.com/menu) |
 | Progress indicators | ✅ | ✅ | [Progress](https://blazorwebmaterial.lukevo.com/progress) |
-| Radio | ✅ | ✅ | 🟡 |
+| Radio | ✅ | ✅ | [Radio](https://blazorwebmaterial.lukevo.com/radio) |
 | Ripple | ✅ | ✅ | [Ripple](https://blazorwebmaterial.lukevo.com/ripple) |
 | Select | 🟡 | 🟡 | 🟡 |
 | Slider | ✅ | ✅ | [Slider](https://blazorwebmaterial.lukevo.com/slider) |
