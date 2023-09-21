@@ -37,16 +37,16 @@ This project depends on Google's [Material Web Component](https://github.com/mat
 | Chips | ✅ | ✅ | [Checkbox](https://blazorwebmaterial.lukevo.com/chip) |
 | Dialog | ✅ | ✅ | [Dialog](https://blazorwebmaterial.lukevo.com/dialog) |
 | Divider | ✅ | ✅ | [Divider](https://blazorwebmaterial.lukevo.com/divider) |
-| Elevation | ✅ | ✅ | 🟡 |
+| Elevation | ✅ | ✅ | [Elevation](https://blazorwebmaterial.lukevo.com/elevation) |
 | Focus ring | ✅ | ✅ | 🟡 |
 | List | ✅ | ✅ | 🟡 |
 | Menu | ✅ | 🟡 | [Menus](https://blazorwebmaterial.lukevo.com/menu) |
 | Progress indicators | ✅ | ✅ | [Progress](https://blazorwebmaterial.lukevo.com/progress) |
 | Radio | ✅ | ✅ | [Radio](https://blazorwebmaterial.lukevo.com/radio) |
 | Ripple | ✅ | ✅ | [Ripple](https://blazorwebmaterial.lukevo.com/ripple) |
-| Select | 🟡 | 🟡 | 🟡 |
+| Select | 🟡 | 🟡 | [Select](https://blazorwebmaterial.lukevo.com/select) |
 | Slider | ✅ | ✅ | [Slider](https://blazorwebmaterial.lukevo.com/slider) |
-| Switch | ✅ | ✅ | 🟡 |
+| Switch | ✅ | ✅ | [Switch](https://blazorwebmaterial.lukevo.com/switch) |
 | Tabs | ✅ | ✅ | [Tab](https://blazorwebmaterial.lukevo.com/tabs) |
 | Text field | ✅ | ✅ | 🟡 |
 | Catalog | 💤 | 💤 | 💤 |
