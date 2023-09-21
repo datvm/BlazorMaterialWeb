@@ -64,40 +64,37 @@ export function beforeStart() {
 }
 
 export function afterStarted(blazor) {
+    function createCheckEventArgs(target, hasIndeterminate) {
+        const result = {
+            value: target.value,
+            checked: Boolean(target.checked || target.selected),
+        };
+
+        if (hasIndeterminate) {
+            result.indeterminate = Boolean(target.indeterminate);
+        }
+
+        return result;
+    }
+
     blazor.registerCustomEventType("checkedchange", {
         browserEventName: "change",
-        createEventArgs: ({ target }) => {
-            if (target.disabled) {
-                return null;
-            }
-            return {
-                value: target.value,
-                checked: target.checked || target.selected, // For both switch and checkboxes
-                indeterminate: target.indeterminate,
-            };
-        }
+        createEventArgs: ({ target }) => createCheckEventArgs(target, true),
     });
 
     blazor.registerCustomEventType("radiochecked", {
         browserEventName: "change",
-        createEventArgs: ({ target }) => {
-            if (target.disabled) {
-                return null;
-            }
+        createEventArgs: ({ target }) => createCheckEventArgs(target),
+    });
 
-            return {
-                value: target.value,
-                checked: target.checked,
-            };
-        }
-    });    
+    blazor.registerCustomEventType("switchchange", {
+        browserEventName: "change",
+        createEventArgs: ({ target }) => createCheckEventArgs(target),
+    });
 
     blazor.registerCustomEventType("chipselected", {
         browserEventName: "selected",
-        createEventArgs: ({ target }) => ({
-            value: target.value,
-            checked: target.selected
-        }),
+        createEventArgs: ({ target }) => createCheckEventArgs(target),
     });
 
     blazor.registerCustomEventType("chipremove", {
@@ -107,7 +104,7 @@ export function afterStarted(blazor) {
 
     blazor.registerCustomEventType("diagopen", {
         browserEventName: "open",
-        createEventArgs: () => ({ }),
+        createEventArgs: () => ({}),
     });
 
     blazor.registerCustomEventType("diagopened", {
