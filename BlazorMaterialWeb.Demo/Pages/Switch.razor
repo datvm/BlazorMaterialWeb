@@ -1,0 +1,62 @@
+﻿@page "/switch"
+
+<ComponentDemoPage Name="Switch"
+                   DesignUrl="https://m3.material.io/components/switch/overview"
+                   ComponentUrl="https://material-web.dev/components/switch/"
+                   ComponentSourcePath="switch"
+                   BlazorComponentSourcePath="MdSwitch.razor"
+                   BlazorDemoSourceName="Switch">
+    <Description>
+        Switches toggle the state of an item on or off
+    </Description>
+    <ComponentDemo>
+        <div class="row text-center mb-1">
+            <div class="col">
+                <MdSwitch @bind-Selected="isChecked[0]"
+                          Disabled="disabled"
+                          Icons="icons"
+                          ShowOnlySelectedIcon="iconOnlyOnSelected" />
+
+                <p>Checked: @(isChecked[0])</p>
+            </div>
+            <div class="col">
+                <label class="d-inline-flex hstack gap-3">
+                    <MdSwitch @bind-Selected="isChecked[1]"
+                              Disabled="disabled"
+                              Icons="icons"
+                              ShowOnlySelectedIcon="iconOnlyOnSelected" />
+                    This one is wrapped inside a label
+                </label>
+
+                <p>Checked: @(isChecked[1])</p>
+            </div>
+        </div>
+    </ComponentDemo>
+    <Tweaks>
+        <label class="hstack gap-3">
+            <MdSwitch @bind-Selected="disabled" Icons />
+             <span>Disabled</span>
+         </label>
+
+         <div class="hstack gap-5">
+             <label class="hstack gap-3">
+                 <MdCheckbox @bind-Checked="icons" />
+                 <span>Show icons</span>
+             </label>
+
+             <label class="hstack gap-3">
+                 <MdCheckbox @bind-Checked="iconOnlyOnSelected" Disabled="@(!icons)" />
+                 <span>Show icons only when selected</span>
+             </label>
+         </div>
+     </Tweaks>
+ </ComponentDemoPage>
+
+ @code {
+
+    bool[] isChecked = new bool[2];
+    bool disabled;
+    bool icons;
+    bool iconOnlyOnSelected;
+
+}

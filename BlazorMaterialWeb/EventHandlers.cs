@@ -3,6 +3,9 @@
 // Checkbox
 [EventHandler("oncheckedchange", typeof(MdCheckboxChangeEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 
+// Switch
+[EventHandler("onswitchchange", typeof(MdCheckedEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+
 // Radio
 [EventHandler("onradiochecked", typeof(MdCheckedEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 
