@@ -1,9 +1,11 @@
+@namespace BlazorMaterialWeb
 @inherits DefaultMdComponent
 
 <md-radio @attributes="AdditionalAttributes" @ref="el"
           @oncheckedchange="OnCheckedChanged"
           checked="@(Checked)"
           disabled="@(Disabled)"
-          value="@(Value)">
+          value="@(Value)"
+          name="@(Name ?? GroupName)">
     @(ChildContent)
 </md-radio>

@@ -1,0 +1,111 @@
+﻿@page "/radio-button"
+
+<ComponentDemoPage Name="Radio button"
+                   DesignUrl="https://m3.material.io/components/radio-button"
+                   ComponentUrl="https://material-web.dev/components/checkbox/"
+                   ComponentSourcePath="radio"
+                   BlazorComponentSourcePath="Radio/MdRadio.razor"
+                   BlazorDemoSourceName="Radio">
+    <Description>
+        Radio buttons let people select one option from a set of options
+    </Description>
+    <ComponentDemo>
+        <h4>Simple radio buttons</h4>
+
+        <div>
+            <MdIcon>warning</MdIcon>
+            There is no way to detect when a radio button is unchecked.
+            <code>@@bind-Checked</code> is therefore not possible.
+        </div>
+
+        <div class="hstack gap-3">
+            @for (int i = 0; i < Options1.Length; i++)
+            {
+                var z = i;
+                var item = Options1[z];
+
+                <label>
+                    <MdRadio Checked="isChecked[z]" Name="opt-group-1"
+                             Disabled="@(z == Options1.Length - 1)" />
+                    @(item)
+                </label>
+            }
+        </div>
+
+        <div>
+            Checked: @(string.Join(", ", isChecked))
+        </div>
+
+        <div>
+            The more appropriate way is to store the selected value instead:
+        </div>
+
+        <div class="hstack gap-3">
+            @for (int i = 0; i < Options2.Length; i++)
+            {
+                var z = i;
+                var item = Options2[z];
+
+                <label>
+                    <MdRadio Checked="lastChecked == item" Name="opt-group-2"
+                             CheckedChanged="OnRadioSelected"
+                             Disabled="@(z == Options2.Length - 1)"
+                             Value="@(item)"/>
+                    @(item)
+                </label>
+            }
+        </div>
+
+        <div>
+            Checked: @(lastChecked).
+        </div>
+
+        <h4>Use MdRadioGroup</h4>
+
+        <div>
+            Alternatively, Blazor Material Web provides <code>MdRadioGroup</code>
+            that handles it automatically. It also provides a <code>CascadingParameter</code> for <code>Name</code> property.
+        </div>
+
+        <MdRadioGroup Name="opt-blazor-group" @bind-Value="lastCheckedBlazor">
+            <div class="hstack gap-3">
+                @foreach (var item in Options1)
+                {
+                    <label>
+                        <MdRadio Value="@(item)" Disabled="@(item == "Disabled")" />
+                        @(item)
+                    </label>
+                }
+            </div>
+        </MdRadioGroup>
+
+        <div>
+            Checked: @(lastCheckedBlazor).
+        </div>
+    </ComponentDemo>
+    <Tweaks>
+
+    </Tweaks>
+</ComponentDemoPage>
+
+@code {
+
+    static readonly string[] Options1 = { "Cats", "Dogs", "Birds", "Disabled", };
+    static readonly string[] Options2 = { "Apples", "Apricots", "Bananas", "Disabled", };
+
+    bool[] isChecked = new bool[Options1.Length];
+    string lastChecked = Options2[0];
+
+    string lastCheckedBlazor = Options2[0];
+
+    public Radio()
+    {
+        isChecked[0] = true;
+    }
+
+    void OnRadioSelected(MdCheckedEventArgs e)
+    {
+        lastChecked = e.Value ?? "None";
+    }
+
+}

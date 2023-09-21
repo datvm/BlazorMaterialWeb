@@ -12,7 +12,7 @@ partial class MdRadio
     public bool Checked { get; set; }
 
     [Parameter]
-    public EventCallback<bool> CheckedChanged { get; set; }
+    public EventCallback<MdCheckedEventArgs> CheckedChanged { get; set; }
 
     [Parameter]
     public bool Disabled { get; set; }
@@ -20,13 +20,16 @@ partial class MdRadio
     [Parameter]
     public string? Value { get; set; }
 
-    [Parameter, CascadingParameter(Name = "MdRadioName")]
+    [Parameter]
     public string? Name { get; set; }
+
+    [CascadingParameter(Name = "MdRadioName")]
+    public string? GroupName { get; set; }
 
     async Task OnCheckedChanged(MdCheckedEventArgs e)
     {
         Checked = e.Checked;
-        await CheckedChanged.InvokeAsync(Checked);
+        await CheckedChanged.InvokeAsync(e);
     }
 
 }

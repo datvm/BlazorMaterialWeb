@@ -14,7 +14,7 @@ partial class MdRadioGroup
 
     async Task OnCheckedChanged(MdCheckedEventArgs e)
     {
-        if (!e.Checked) { return; }
+        if (!e.Checked || e.Value == Value) { return; }
 
         Value = e.Value;
         await ValueChanged.InvokeAsync(Value);
