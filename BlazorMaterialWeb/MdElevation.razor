@@ -1,7 +1,6 @@
 @inherits DefaultMdComponent
 
-<div class="md-elevation-container" style="@(StyleOutput)" @ref="el">
-    <md-elevation @attributes="AdditionalAttributes"></md-elevation>
-
+<md-elevation @attributes="AdditionalAttributes" @ref="el"
+              style="@(FinalStyle)">
     @(ChildContent)
-</div>
+</md-elevation>

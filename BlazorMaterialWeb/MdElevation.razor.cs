@@ -3,14 +3,16 @@
 partial class MdElevation
 {
 
-    [Parameter]
-    public string? BorderRadius { get; set; }
-
     [Parameter, EditorRequired]
     public int ElevationLevel { get; set; }
 
-    string StyleOutput => string.Join(";",
-        $"--md-elevation-level: {ElevationLevel};",
-        BorderRadius is null ? null : $"--md-elevation-border-radius: {BorderRadius}");
+    [Parameter]
+    public string Style { get; set; } = "";
+
+    // Do not put a ; at the end
+    string InternalStyleOutput => $"--md-elevation-level: {ElevationLevel}";
+
+    string FinalStyle =>
+        $"{InternalStyleOutput};{Style}";
 
 }
