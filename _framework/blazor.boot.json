@@ -7,9 +7,9 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
-      "BlazorMaterialWeb.Bundled.dll": "sha256-jXytHODPGGnRtaDLMK+sL3YvbzTj+SC+aCwgZjyYREQ=",
-      "BlazorMaterialWeb.Demo.dll": "sha256-W2OeJ\/Ib\/NVHt1JyuI\/pMZBB3sF5AmvE20RUyoEPHzU=",
-      "BlazorMaterialWeb.dll": "sha256-TxDsfi7GIPtvRXz92ROoqW6wp6aL2Cw+EMwx\/AoD8DY=",
+      "BlazorMaterialWeb.Bundled.dll": "sha256-S5VZfInEAIbv\/TdAMbUu4s2MMU6\/O9zHIw\/kHSL5wTs=",
+      "BlazorMaterialWeb.Demo.dll": "sha256-yTwNRMw3csOr3D3\/PHcb+x8CG4H9w8fy0Uw9ZOcajZg=",
+      "BlazorMaterialWeb.dll": "sha256-ujDyRq1BmlSd\/hC3FnmJ1FRq\/lThVxYMruUoYkzGZGE=",
       "Microsoft.AspNetCore.Components.dll": "sha256-I16HWJ9GGqsxB90NkYignFt3K2+3J0WUpXLlZP++N4c=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-Qwp\/LUQPvlE\/Y2J0zcfgh9nh7YBeJx2H4j9Xo8w7hTc=",
       "Microsoft.AspNetCore.Components.WebAssembly.dll": "sha256-GthKrHcSc8uOL6XXkGQP6uGfESlsj9kHhiGlLA+w5iM=",
