@@ -1,0 +1,51 @@
+﻿@page "/focus-ring"
+
+<ComponentDemoPage Name="Focus Ring"
+                   DesignUrl="@(null)"
+                   ComponentUrl="https://github.com/material-components/material-web/blob/main/docs/components/focus-ring.md"
+                   ComponentSourcePath="focus"
+                   BlazorComponentSourcePath="MdFocusRing.razor"
+                   BlazorDemoSourceName="FocusRing">
+    <Description>
+        Focus rings are accessible outlines for components to show keyboard focus.
+    </Description>
+    <ComponentDemo>
+        <div class="row text-center">
+            @foreach (var r in radiuses)
+            {
+                <div class="col">
+                    <p>@(r)</p>
+
+                    <button style="
+                        position: relative;
+                        width: 150px; height: 150px;
+                        border-radius: var(--md-focus-ring-shape);
+                        --md-focus-ring-shape: @(r);">
+                        <MdFocusRing Visible="visible" Inward="inward" />
+                    </button>
+                </div>
+            }
+        </div>
+        
+        <p class="mb-0">Press Tab to focus the button or toggle Visible to see the effect again</p>
+    </ComponentDemo>
+    <Tweaks>
+        <label class="hstack gap-1">
+            <MdSwitch @bind-Selected="visible" />
+            Visible
+        </label>
+
+        <label class="hstack gap-1">
+            <MdSwitch @bind-Selected="inward" />
+            Inward
+        </label>
+    </Tweaks>
+</ComponentDemoPage>
+
+@code {
+    string[] radiuses = { "0", "12px", "50%" };
+
+    bool visible = true;
+    bool inward;
+
+}
