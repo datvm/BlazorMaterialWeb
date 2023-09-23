@@ -25,7 +25,7 @@
                 var item = Options1[z];
 
                 <label>
-                    <MdRadio @bind-Checked="isChecked[z]" Name="opt-group-1" Value="false"
+                    <MdRadio @bind-Checked="isChecked[z]" Name="opt-group-1" TValue="string"
                              Disabled="@(z == Options1.Length - 1)" />
                     @(item)
                 </label>
@@ -48,16 +48,32 @@
 
                 <label>
                     <MdRadio Checked="lastChecked == item" Name="opt-group-2"
-                             OnChecked="OnRadioSelected"
+                             TValue="string" OnChecked="OnRadioSelected"
                              Disabled="@(z == Options2.Length - 1)"
-                             Value="@(item)"/>
+                             Value="@(item)" />
+                    @(item)
+                </label>
+            }
+        </div>
+
+        <div class="hstack gap-3">
+            @for (int i = 0; i < Options3.Length; i++)
+            {
+                var z = i;
+                var item = Options3[z];
+
+                <label>
+                    <MdRadio Checked="lastCheckedNumber == item" Name="opt-group-3"
+                             TValue="double" OnChecked="OnNumberRadioSelected"
+                             Disabled="@(z == Options3.Length - 1)"
+                             Value="@(item)" />
                     @(item)
                 </label>
             }
         </div>
 
         <div>
-            Checked: @(lastChecked).
+            Checked: @(lastChecked), @(lastCheckedNumber).
         </div>
 
         <h4>Use MdRadioGroup</h4>
@@ -79,14 +95,33 @@
             </div>
         </MdRadioGroup>
 
+        <MdRadioGroup Name="opt-blazor-number-group" @bind-Value="lastCheckedNumberBlazor">
+            <div class="hstack gap-3">
+                @foreach (var item in Options3)
+                {
+                    <label>
+                        <MdRadio Value="@(item)" Disabled="@(item == 0)" />
+                        @(item)
+                    </label>
+                }
+            </div>
+        </MdRadioGroup>
+
         <div>
-            Checked: @(lastCheckedBlazor).
+            Checked: @(lastCheckedBlazor), @(lastCheckedNumberBlazor).
         </div>
     </ComponentDemo>
     <Tweaks>
-        <MdButton @onclick="Select2nd">
-            Programmatically select the 2nd option
-        </MdButton>
+        <div class="hstack gap-3">
+            <MdButton @onclick="() => SelectIndex(1)">
+                Programmatically select the 2nd option
+            </MdButton>
+
+            <MdButton @onclick="() => SelectIndex(Options1.Length - 1)">
+                Select the disabled option
+            </MdButton>
+        </div>
+
     </Tweaks>
 </ComponentDemoPage>
 
@@ -94,31 +129,41 @@
 
     static readonly string[] Options1 = { "Cats", "Dogs", "Birds", "Disabled", };
     static readonly string[] Options2 = { "Apples", "Apricots", "Bananas", "Disabled", };
+    static readonly double[] Options3 = { 1.618, 2.71828, 3.14, 0 };
 
     bool[] isChecked = new bool[Options1.Length];
     string lastChecked = Options2[0];
+    double lastCheckedNumber = Options3[0];
 
     string lastCheckedBlazor = Options1[0];
+    double lastCheckedNumberBlazor = Options3[0];
 
     public Radio()
     {
         isChecked[0] = true;
     }
 
-    void Select2nd()
+    void SelectIndex(int index)
     {
         for (int i = 0; i < isChecked.Length; i++)
         {
-            isChecked[i] = i == 1;
+            isChecked[i] = i == index;
         }
 
-        lastChecked = Options2[1];
-        lastCheckedBlazor = Options1[1];
+        lastChecked = Options2[index];
+        lastCheckedNumber = Options3[index];
+        lastCheckedBlazor = Options1[index];
+        lastCheckedNumberBlazor = Options3[index];
     }
 
-    void OnRadioSelected(MdCheckedEventArgs e)
+    void OnRadioSelected(string value)
     {
-        lastChecked = e.Value ?? "None";
+        lastChecked = value ?? "None";
+    }
+
+    void OnNumberRadioSelected(double value)
+    {
+        lastCheckedNumber = value;
     }
 
     void AfterBlazorBindValue()

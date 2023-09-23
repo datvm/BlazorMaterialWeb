@@ -15,7 +15,7 @@ partial class MdRadio<TValue>
     public EventCallback<bool> CheckedChanged { get; set; }
 
     [Parameter]
-    public EventCallback<MdCheckedEventArgs> OnChecked { get; set;}
+    public EventCallback<TValue?> OnChecked { get; set;}
 
     [Parameter]
     public bool Disabled { get; set; }
@@ -39,12 +39,13 @@ partial class MdRadio<TValue>
         
         if (Checked)
         {
-            await OnChecked.InvokeAsync(e);
+            var value = (TValue?)Convert.ChangeType(e.Value, typeof(TValue));
+            await OnChecked.InvokeAsync(value);
         }
     }
 
     bool IsChecked() =>
-        Checked ||
-        GroupChecked?.Invoke(Value) == true;
+        GroupChecked?.Invoke(Value) ??
+        Checked;
 
 }
