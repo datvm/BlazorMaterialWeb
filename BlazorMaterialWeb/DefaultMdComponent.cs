@@ -1,16 +1,28 @@
 ﻿namespace BlazorMaterialWeb;
-public class DefaultMdComponent : ComponentBase
-{
 
+public abstract class BaseDefaultMdComponent : ComponentBase
+{
     protected ElementReference el;
     public ElementReference ElementReference => el;
 
     [Parameter(CaptureUnmatchedValues = true)]
     public IEnumerable<KeyValuePair<string, object?>>? AdditionalAttributes { get; set; }
+}
+
+public class DefaultMdComponent : BaseDefaultMdComponent
+{
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
     
+}
+
+public class DefaultMdComponent<TValue> : BaseDefaultMdComponent
+{
+
+    [Parameter]
+    public RenderFragment<TValue>? ChildContent { get; set; }
+
 }
 
 public class DefaultInheritableComponent : DefaultMdComponent

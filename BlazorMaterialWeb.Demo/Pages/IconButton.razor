@@ -36,7 +36,7 @@
 <p>
     Function:
 
-    <MdRadioGroup Name="opt-function" ValueChanged="SetTo">
+    <MdRadioGroup Name="opt-function" ValueChanged="SetTo" TValue="string">
         <label class="me-3">
             <MdRadio name="opt-function" Checked="button" Value="@(nameof(button))" />
             Button
@@ -71,7 +71,7 @@
 
     bool targetBlank;
 
-    void SetTo(string value)
+    void SetTo(string? value)
     {
         button = value == nameof(button);
         toggle = value == nameof(toggle);

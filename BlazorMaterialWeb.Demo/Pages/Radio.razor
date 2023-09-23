@@ -15,7 +15,7 @@
         <div>
             <MdIcon>warning</MdIcon>
             There is no way to detect when a radio button is unchecked.
-            <code>@@bind-Checked</code> is therefore not possible.
+            <code>@@bind-Checked</code> is therefore can only set the value to <code>true</code> and not back to <code>false</code>:
         </div>
 
         <div class="hstack gap-3">
@@ -25,7 +25,7 @@
                 var item = Options1[z];
 
                 <label>
-                    <MdRadio Checked="isChecked[z]" Name="opt-group-1"
+                    <MdRadio @bind-Checked="isChecked[z]" Name="opt-group-1" Value="false"
                              Disabled="@(z == Options1.Length - 1)" />
                     @(item)
                 </label>
@@ -37,7 +37,7 @@
         </div>
 
         <div>
-            The more appropriate way is to store the selected value instead:
+            The more appropriate way is to store the selected value using <code>OnChecked</code> event instead:
         </div>
 
         <div class="hstack gap-3">
@@ -48,7 +48,7 @@
 
                 <label>
                     <MdRadio Checked="lastChecked == item" Name="opt-group-2"
-                             CheckedChanged="OnRadioSelected"
+                             OnChecked="OnRadioSelected"
                              Disabled="@(z == Options2.Length - 1)"
                              Value="@(item)"/>
                     @(item)
@@ -64,7 +64,7 @@
 
         <div>
             Alternatively, Blazor Material Web provides <code>MdRadioGroup</code>
-            that handles it automatically. It also provides a <code>CascadingParameter</code> for <code>Name</code> property.
+            that handles it automatically. It also provides a <code>CascadingParameter</code> for <code>Name</code> and <code>Checked</code> properties.
         </div>
 
         <MdRadioGroup Name="opt-blazor-group" @bind-Value="lastCheckedBlazor" @bind-Value:after="AfterBlazorBindValue">
@@ -84,7 +84,9 @@
         </div>
     </ComponentDemo>
     <Tweaks>
-
+        <MdButton @onclick="Select2nd">
+            Programmatically select the 2nd option
+        </MdButton>
     </Tweaks>
 </ComponentDemoPage>
 
@@ -96,11 +98,22 @@
     bool[] isChecked = new bool[Options1.Length];
     string lastChecked = Options2[0];
 
-    string lastCheckedBlazor = Options2[0];
+    string lastCheckedBlazor = Options1[0];
 
     public Radio()
     {
         isChecked[0] = true;
+    }
+
+    void Select2nd()
+    {
+        for (int i = 0; i < isChecked.Length; i++)
+        {
+            isChecked[i] = i == 1;
+        }
+
+        lastChecked = Options2[1];
+        lastCheckedBlazor = Options1[1];
     }
 
     void OnRadioSelected(MdCheckedEventArgs e)

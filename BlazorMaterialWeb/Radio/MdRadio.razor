@@ -1,9 +1,11 @@
 @namespace BlazorMaterialWeb
+
+@typeparam TValue where TValue: IConvertible, IEquatable<TValue>;
 @inherits DefaultMdComponent
 
 <md-radio @attributes="AdditionalAttributes" @ref="el"
-          @onradiochecked="OnCheckedChanged"
-          checked="@(Checked)"
+          @onradiochecked="OnDomCheckedChangedAsync"
+          checked="@(IsChecked())"
           disabled="@(Disabled)"
           value="@(Value)"
           name="@(Name ?? GroupName)">

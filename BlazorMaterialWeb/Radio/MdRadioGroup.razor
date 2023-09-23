@@ -1,8 +1,12 @@
 @namespace BlazorMaterialWeb
-@inherits DefaultMdComponent
+@typeparam TValue where TValue: IConvertible, IEquatable<TValue>;
+@inherits DefaultMdComponent<TValue>
 
 <div @attributes="AdditionalAttributes" @onradiochecked="OnCheckedChanged" @ref="el">
     <CascadingValue Name="MdRadioName" Value="@(Name)">
-        @(ChildContent)
+        <CascadingValue Name="MdRadioChecked"
+                        Value="RadioCheckGroup">
+            @(ChildContent?.Invoke(Value))
+        </CascadingValue>
     </CascadingValue>
 </div>
