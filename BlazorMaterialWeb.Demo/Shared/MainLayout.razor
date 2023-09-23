@@ -2,13 +2,22 @@
 
 @inject NavigationManager Nav;
 
-<header class="page-header align-items-center">
+<header class="hstack page-header">
     <MdFab @onclick="@(() => menuCollapsed = !menuCollapsed)"
            Size="MdFabSize.Small">
         <MdIcon slot="icon">menu</MdIcon>
     </MdFab>
 
     <a href="/" class="home-link my-0">Blazor Material Web</a>
+
+    <div class="ms-auto"></div>
+
+    
+
+    <MdIconButton Target="_blank" Href="https://github.com/datvm/BlazorMaterialWeb/">
+        <img src="/img/github.svg" />
+    </MdIconButton>
+
 </header>
 
 <div class="content">
@@ -22,7 +31,7 @@
             <div class="container-fluid page-content">
                 @Body
             </div>
-        </div>        
+        </div>
     </main>
 </div>
 

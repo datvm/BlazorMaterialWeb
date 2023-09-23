@@ -1,7 +1,4 @@
 ﻿.page-header {
-    display: flex;
-    flex-direction: row;
-    column-gap: var(--catalog-spacing-m);
     padding: var(--catalog-spacing-m) var(--catalog-spacing-s);
     background-color: var(--md-sys-color-surface-container);
     color: var(--md-sys-color-on-surface);
