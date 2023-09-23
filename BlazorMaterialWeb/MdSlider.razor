@@ -1,4 +1,4 @@
-@typeparam TValue where TValue: IConvertible;
+@typeparam TValue where TValue: IConvertible, IEquatable<TValue>;
 @inherits DefaultMdComponent
 
 <md-slider @attributes="AdditionalAttributes" @ref="el"

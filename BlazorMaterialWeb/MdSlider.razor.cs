@@ -11,43 +11,43 @@ partial class MdSlider<TValue>
     public bool Disabled { get; set; } = false;
 
     [Parameter]
-    public TValue? Min { get; set; }
+    public string? Min { get; set; }
 
     [Parameter]
-    public TValue? Max { get; set; }
+    public string? Max { get; set; }
 
     [Parameter]
-    public TValue Value { get; set; }
+    public TValue? Value { get; set; }
 
     [Parameter]
-    public EventCallback<TValue> ValueChanged { get; set; }
+    public EventCallback<TValue?> ValueChanged { get; set; }
 
     [Parameter]
-    public EventCallback<TValue> ValueInput { get; set; }
+    public EventCallback<TValue?> ValueInput { get; set; }
 
     [Parameter]
-    public TValue ValueStart { get; set; }
+    public TValue? ValueStart { get; set; }
 
     [Parameter]
-    public EventCallback<TValue> ValueStartChanged { get; set; }
+    public EventCallback<TValue?> ValueStartChanged { get; set; }
 
     [Parameter]
-    public EventCallback<TValue> ValueStartInput { get; set; }
+    public EventCallback<TValue?> ValueStartInput { get; set; }
 
     [Parameter]
-    public TValue ValueEnd { get; set; }
+    public TValue? ValueEnd { get; set; }
 
     [Parameter]
-    public EventCallback<TValue> ValueEndChanged { get; set; }
+    public EventCallback<TValue?> ValueEndChanged { get; set; }
 
     [Parameter]
-    public EventCallback<TValue> ValueEndInput { get; set; }
+    public EventCallback<TValue?> ValueEndInput { get; set; }
 
     [Parameter]
-    public EventCallback<(TValue Start, TValue End)> RangeChanged { get; set; }
+    public EventCallback<(TValue? Start, TValue? End)> RangeChanged { get; set; }
 
     [Parameter]
-    public EventCallback<(TValue Start, TValue End)> RangeInput { get; set; }
+    public EventCallback<(TValue? Start, TValue? End)> RangeInput { get; set; }
 
     [Parameter]
     public string? ValueLabel { get; set; }
@@ -109,6 +109,6 @@ partial class MdSlider<TValue>
         ValueEnd = GetValue(e.ValueEnd);
     }
 
-    static TValue GetValue(double value) =>
-        (TValue)Convert.ChangeType(value, typeof(TValue));
+    static TValue? GetValue(double value) =>
+        (TValue?)Convert.ChangeType(value, typeof(TValue?));
 }
