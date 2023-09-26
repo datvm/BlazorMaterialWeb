@@ -10,18 +10,18 @@ internal static class JsExtensions
     public static async Task SetElementPropertyAsync(this IJSRuntime js, ElementReference el, string propertyName, object value) =>
         await js.InvokeVoidAsync(Prefix("setElementProperty"), el, propertyName, value);
 
-    public static async Task InvokeElementMethodAsync(this IJSRuntime js, ElementReference el, string methodName, params object[] parameters) =>
+    public static async Task InvokeElementMethodAsync(this IJSRuntime js, ElementReference el, string methodName, params object?[] parameters) =>
         await js.InvokeVoidAsync(
             Prefix("invokeElementMethodAsync"),
             GetInvokeParameters(el, methodName, parameters));
 
-    public static async Task<T> InvokeElementMethodAsync<T>(this IJSRuntime js, ElementReference el, string methodName, params object[] parameters) =>
+    public static async Task<T> InvokeElementMethodAsync<T>(this IJSRuntime js, ElementReference el, string methodName, params object?[] parameters) =>
         await js.InvokeAsync<T>(
             Prefix("invokeElementMethodAsync"),
             GetInvokeParameters(el, methodName, parameters));
 
-    static object[] GetInvokeParameters(ElementReference el, string methodName, params object[] parameters) =>
-        new object[] { el, methodName }
+    static object?[] GetInvokeParameters(ElementReference el, string methodName, params object?[] parameters) =>
+        new object?[] { el, methodName }
         .Concat(parameters)
         .ToArray();
 

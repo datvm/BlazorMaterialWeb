@@ -10,14 +10,208 @@
         Text fields let users enter text into a UI
     </Description>
     <ComponentDemo>
+        <div class="row align-items-center">
+            <div class="col">
+                <ErrorBoundary @ref="numberErrHandler">
+                    <ChildContent>
+                        <MdTextField @ref="txtNumber" @bind-Value="numberValue" @attributes="GetAttributes(MdTextFieldTypes.Number, numberValue)">
+                            @if (leadingIcon)
+                            {
+                                <MdIcon slot="@(MdTextField.LeadingIconSlot)">search</MdIcon>
+                            }
 
+                            @if (trailingIcon)
+                            {
+                                <MdIconButton slot="@(MdTextField.TrailingIconSlot)" @onclick="@(() => txtNumber.ReportValidityAsync())">
+                                    <MdIcon>rule</MdIcon>
+                                </MdIconButton>
+                            }
+                        </MdTextField>
+                    </ChildContent>
+                    <ErrorContent>
+                        <p>
+                            <MdButton @onclick="() => numberErrHandler.Recover()">
+                                Try again
+                            </MdButton>
+                        </p>
+
+                        <p>
+                            There was an error parsing value:
+                            <pre>@(context.ToString())</pre>
+                        </p>
+                    </ErrorContent>
+                </ErrorBoundary>
+            </div>
+            <div class="col">
+                Value:
+                <pre>@(numberValue)</pre>
+            </div>
+        </div>
+
+        @foreach (var (key, value) in SupportedTypes)
+        {
+            <div class="row align-items-center">
+                <div class="col">
+                    @* Do not bind to "value" here, it won't update back to the dictionary *@
+                    <MdTextField @ref="txtRefs[key]" @bind-Value="SupportedTypes[key]" @attributes="GetAttributes(key, value)">
+                        @if (leadingIcon)
+                        {
+                            <MdIcon slot="@(MdTextField.LeadingIconSlot)">search</MdIcon>
+                        }
+
+                        @if (trailingIcon)
+                        {
+                            <MdIconButton slot="@(MdTextField.TrailingIconSlot)" @onclick="@(() => txtRefs[key].ReportValidityAsync())">
+                                <MdIcon>rule</MdIcon>
+                            </MdIconButton>
+                        }
+                    </MdTextField>
+                </div>
+                <div class="col">
+                    Value:
+                    <pre>@(SupportedTypes[key])</pre>
+                </div>
+            </div>
+        }
     </ComponentDemo>
     <Tweaks>
+        <MdRadioGroup Name="opt-style" @bind-Value="style" class="hstack gap-3">
+            <span>Style:</span>
+
+            @foreach (var s in Enum.GetValues<MdTextFieldStyle>())
+            {
+                <label>
+                    <MdRadio Value="@(s.ToString())" />
+                    @(s)
+                </label>
+            }
+        </MdRadioGroup>
+
+        <div class="hstack gap-3">
+            <LabeledSwitch @bind-Selected="hasLabel" Label="Label" />
+            <LabeledSwitch @bind-Selected="disabled" Label="Disabled" />
+            <LabeledSwitch @bind-Selected="hasError" Label="Error" />
+            <LabeledSwitch @bind-Selected="required" Label="Required" />
+            <LabeledSwitch @bind-Selected="hasSupportingText" Label="Supporting text" />
+            <LabeledSwitch @bind-Selected="rtl" Label="RTL text direction" />
+        </div>
+
+        <div class="hstack gap-3">
+            <LabeledSwitch @bind-Selected="prefixText" Label="Prefix text" />
+            <LabeledSwitch @bind-Selected="suffixText" Label="Suffix text" />
+            <LabeledSwitch @bind-Selected="leadingIcon" Label="Leading icon" />
+            <LabeledSwitch @bind-Selected="trailingIcon" Label="Trailing icon" />
+        </div>
+
+        <div class="hstack gap-3">
+            <LabeledSwitch @bind-Selected="minLength" Label="Min length (3)" />
+            <LabeledSwitch @bind-Selected="maxLength" Label="Max length (15)" />
+            <span>
+                <a target="_blank" href="https://stackoverflow.com/questions/45929862/why-doesnt-input-minlength-check-work-with-initial-value">
+                    <strong>Note:</strong> does not work for initial value (by-design)
+                </a>
+            </span>
+        </div>
+
+        <MdRadioGroup Name="opt-invalid-behavior" @bind-Value="invalidBehavior">
+            <p>
+                In case user enters an invalid value and .NET cannot parse the value,
+                what should it do
+                (you can test it using the number input box):
+            </p>
+
+            <div class="hstack gap-3">
+                @foreach (var b in Enum.GetValues<MdTextFieldInvalidBehavior>())
+                {
+                    <label>
+                        <MdRadio Value="@(b.ToString())" />
+                        @(b.ToString())
+                    </label>
+                }
+            </div>
+        </MdRadioGroup>
     </Tweaks>
 </ComponentDemoPage>
 
 @code {
+    ErrorBoundary numberErrHandler = null!;
 
+    bool hasLabel = true;
+    bool disabled;
+    bool hasError;
+    bool required = true;
+    bool prefixText;
+    bool suffixText;
+    bool leadingIcon = true;
+    bool trailingIcon = true;
+    bool hasSupportingText = true;
+    bool rtl = false;
+    bool minLength = false;
+    bool maxLength = false;
+    string style = MdTextFieldStyle.Outlined.ToString();
+    string invalidBehavior = MdTextFieldInvalidBehavior.Ignore.ToString();
 
+    double numberValue = Math.PI;
+    MdTextField<double> txtNumber = null!;
+
+    Dictionary<string, MdTextField<string>> txtRefs = new();
+    Dictionary<string, string> SupportedTypes = new()
+    {
+        { MdTextFieldTypes.Email, "name@example.com" },
+        { MdTextFieldTypes.Password, "password" },
+        { MdTextFieldTypes.Search, "math homework" },
+        { MdTextFieldTypes.Tel, "1234567890" },
+        { MdTextFieldTypes.Text, "A generic text content" },
+        { MdTextFieldTypes.Url, "https://www.example.com" },
+        { MdTextFieldTypes.TextArea, "A multiline value\r\nIt may also contain <script>alert('HTML code')</script>" },
+    };
+
+    Dictionary<string, object?> GetAttributes(string key, object value)
+    {
+        var result = new Dictionary<string, object?>()
+        {
+            { nameof(MdTextField<int>.Type), key },
+            { nameof(MdTextField<int>.Label), hasLabel ? key : null},
+            { nameof(MdTextField<int>.TextFieldStyle), Enum.Parse<MdTextFieldStyle>(style) },
+            { nameof(MdTextField<int>.Disabled), disabled },
+            { nameof(MdTextField<int>.Error), hasError },
+            { nameof(MdTextField<int>.ErrorText), hasError ? $"Input for {key} is invalid" : null },
+            { nameof(MdTextField<int>.InvalidBehavior), Enum.Parse<MdTextFieldInvalidBehavior>(invalidBehavior) },
+            { nameof(MdTextField<int>.Required), required },
+            { nameof(MdTextField<int>.PrefixText), prefixText ? key + ":" : null },
+            { nameof(MdTextField<int>.SuffixText), suffixText ? key + "-suffix" : null },
+            { nameof(MdTextField<int>.SupportingText), hasSupportingText ? key + " supporting text" : null },
+            { nameof(MdTextField<int>.TextDirection), rtl ? "rtl" : null },
+            { nameof(MdTextField<int>.MinLength), minLength ? 5 : null },
+            { nameof(MdTextField<int>.MaxLength), maxLength ? 15 : null },
+            { "class", "w-100" },
+        };
+
+        if (key == MdTextFieldTypes.TextArea)
+        {
+            if (hasSupportingText)
+            {
+                result[nameof(MdTextField<int>.SupportingText)] =
+                $"This has the {nameof(MdTextField<int>.MaxLength)} set so you should see the character counter.";
+            }
+
+            result[nameof(MdTextField<int>.Rows)] = 5;
+        }
+
+        if (key == MdTextFieldTypes.Tel)
+        {
+            const string TelPattern = @"\d{9}";
+            if (hasSupportingText)
+            {
+                result[nameof(MdTextField<int>.SupportingText)] =
+                $"This has a nine-digit requirement to demo Pattern parameter ({TelPattern})";
+            }
+
+            // Regex pattern for 9 digits
+            result[nameof(MdTextField<int>.Pattern)] = @"\d{9}";
+        }
+
+        return result;
+    }
 
 }

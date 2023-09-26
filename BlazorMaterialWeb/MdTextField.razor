@@ -1,10 +1,12 @@
 @typeparam TValue where TValue: IConvertible;
 @inherits DefaultMdComponent
 
+@inject IJSRuntime Js;
+
 <DynamicTag Tag="@(TagName)" @attributes="AdditionalAttributes" @bind-DynamicElementReference="el"
             disabled="@(Disabled)"
             error="@(Error)"
-            errorText="@(ErrorText)"
+            error-text="@(ErrorText)"
             label="@(Label)"
             required="@(Required)"
             prefix-text="@(PrefixText)"
@@ -16,9 +18,9 @@
             rows="@(Rows)"
             input-mode="@(InputMode)"
             max="@(Max)"
-            max-length="@(MaxLength)"
+            maxlength="@(MaxLength)"
             min="@(Min)"
-            min-length="@(MinLength)"
+            minlength="@(MinLength)"
             pattern="@(Pattern)"
             placeholder="@(Placeholder)"
             readonly="@(ReadOnly)"
