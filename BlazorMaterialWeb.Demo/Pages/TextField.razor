@@ -14,7 +14,10 @@
             <div class="col">
                 <ErrorBoundary @ref="numberErrHandler">
                     <ChildContent>
-                        <MdTextField @ref="txtNumber" @bind-Value="numberValue" @attributes="GetAttributes(MdTextFieldTypes.Number, numberValue)">
+                        <MdTextField @ref="txtNumber" @bind-Value="numberValue" @attributes="GetAttributes(MdTextFieldTypes.Number, numberValue)"
+                                     Min="@(min ? "-5" : null)"
+                                     Max="@(max ? "5" : null)"
+                                     Step="@(step ? "0.01" : null)">
                             @if (leadingIcon)
                             {
                                 <MdIcon slot="@(MdTextField.LeadingIconSlot)">search</MdIcon>
@@ -87,9 +90,11 @@
             }
         </MdRadioGroup>
 
-        <div class="hstack gap-3">
+        <div class="hstack gap-3 flex-wrap">
             <LabeledSwitch @bind-Selected="hasLabel" Label="Label" />
             <LabeledSwitch @bind-Selected="disabled" Label="Disabled" />
+            <LabeledSwitch @bind-Selected="isReadonly" Label="Readonly" />
+            <LabeledSwitch @bind-Selected="placeholder" Label="Placeholder" />
             <LabeledSwitch @bind-Selected="hasError" Label="Error" />
             <LabeledSwitch @bind-Selected="required" Label="Required" />
             <LabeledSwitch @bind-Selected="hasSupportingText" Label="Supporting text" />
@@ -104,6 +109,14 @@
         </div>
 
         <div class="hstack gap-3">
+            <span>For number:</span>
+            <LabeledSwitch @bind-Selected="min" Label="Min (-5)" />
+            <LabeledSwitch @bind-Selected="max" Label="Max (5)" />
+            <LabeledSwitch @bind-Selected="step" Label="Step (0.01)" />
+        </div>
+
+        <div class="hstack gap-3">
+            <span>For non-number:</span>
             <LabeledSwitch @bind-Selected="minLength" Label="Min length (3)" />
             <LabeledSwitch @bind-Selected="maxLength" Label="Max length (15)" />
             <span>
@@ -115,7 +128,8 @@
 
         <MdRadioGroup Name="opt-invalid-behavior" @bind-Value="invalidBehavior">
             <p>
-                In case user enters an invalid value and .NET cannot parse the value,
+                In case user enters an invalid value and
+                .NET cannot parse the value to a number,
                 what should it do
                 (you can test it using the number input box):
             </p>
@@ -146,8 +160,13 @@
     bool trailingIcon = true;
     bool hasSupportingText = true;
     bool rtl = false;
+    bool placeholder = true;
+    bool isReadonly;
     bool minLength = false;
     bool maxLength = false;
+    bool min;
+    bool max;
+    bool step;
     string style = MdTextFieldStyle.Outlined.ToString();
     string invalidBehavior = MdTextFieldInvalidBehavior.Ignore.ToString();
 
@@ -184,6 +203,8 @@
             { nameof(MdTextField<int>.TextDirection), rtl ? "rtl" : null },
             { nameof(MdTextField<int>.MinLength), minLength ? 5 : null },
             { nameof(MdTextField<int>.MaxLength), maxLength ? 15 : null },
+            { nameof(MdTextField<int>.ReadOnly), isReadonly },
+            { nameof(MdTextField<int>.Placeholder), placeholder? $"Placeholder text for {key}" : null },
             { "class", "w-100" },
         };
 
