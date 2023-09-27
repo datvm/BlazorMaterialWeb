@@ -12,6 +12,7 @@ body {
     display: flex;
     flex-direction: column;
     background-color: var(--md-sys-color-surface-container);
+    color: var(--md-sys-color-on-surface);
 }
 
 #app {
@@ -26,42 +27,62 @@ body {
 :root, :host {
     --md-ref-typeface-plain: Roboto,system-ui;
     --md-sys-color-background: #fcf8ff;
-    --md-sys-color-on-background: #1b1b25;
+    --md-sys-color-on-background: #1b1b24;
     --md-sys-color-surface: #fcf8ff;
     --md-sys-color-surface-dim: #dbd8e6;
     --md-sys-color-surface-bright: #fcf8ff;
     --md-sys-color-surface-container-lowest: #ffffff;
     --md-sys-color-surface-container-low: #f5f2ff;
     --md-sys-color-surface-container: #efecfa;
-    --md-sys-color-surface-container-high: #e9e6f5;
-    --md-sys-color-surface-container-highest: #e3e1ef;
-    --md-sys-color-on-surface: #1b1b25;
-    --md-sys-color-surface-variant: #e2e0f6;
+    --md-sys-color-surface-container-high: #e9e6f4;
+    --md-sys-color-surface-container-highest: #e3e1ee;
+    --md-sys-color-on-surface: #1b1b24;
+    --md-sys-color-surface-variant: #e3e0f5;
     --md-sys-color-on-surface-variant: #454556;
     --md-sys-color-inverse-surface: #302f3a;
     --md-sys-color-inverse-on-surface: #f2effd;
-    --md-sys-color-outline: #767588;
-    --md-sys-color-outline-variant: #c6c4d9;
+    --md-sys-color-outline: #767587;
+    --md-sys-color-outline-variant: #c6c4d8;
     --md-sys-color-shadow: #000000;
     --md-sys-color-scrim: #000000;
-    --md-sys-color-surface-tint: #3e41f3;
-    --md-sys-color-primary: #1f1add;
+    --md-sys-color-surface-tint: #4243eb;
+    --md-sys-color-primary: #221bd2;
     --md-sys-color-on-primary: #ffffff;
-    --md-sys-color-primary-container: #4c50ff;
+    --md-sys-color-primary-container: #4d4ff5;
     --md-sys-color-on-primary-container: #ffffff;
     --md-sys-color-inverse-primary: #c0c1ff;
-    --md-sys-color-secondary: #5356a6;
+    --md-sys-color-secondary: #5457a0;
     --md-sys-color-on-secondary: #ffffff;
-    --md-sys-color-secondary-container: #b1b4ff;
-    --md-sys-color-on-secondary-container: #202271;
-    --md-sys-color-tertiary: #7d008b;
+    --md-sys-color-secondary-container: #b8b9ff;
+    --md-sys-color-on-secondary-container: #262870;
+    --md-sys-color-tertiary: #8d039c;
     --md-sys-color-on-tertiary: #ffffff;
-    --md-sys-color-tertiary-container: #ae2dbc;
+    --md-sys-color-tertiary-container: #b93fc5;
     --md-sys-color-on-tertiary-container: #ffffff;
     --md-sys-color-error: #ba1a1a;
     --md-sys-color-on-error: #ffffff;
     --md-sys-color-error-container: #ffdad6;
     --md-sys-color-on-error-container: #410002;
+    --catalog-display-xl-font-size: 88px;
+    --catalog-display-m-font-size: 45px;
+    --catalog-title-l-font-size: 22px;
+    --catalog-title-m-font-size: 16px;
+    --catalog-title-s-font-size: 14px;
+    --catalog-body-l-font-size: 16px;
+    --catalog-body-m-font-size: 14px;
+    --catalog-headline-s-font-size: 24px;
+    --catalog-label-s-font-size: 11px;
+    --catalog-shape-xl: 28px;
+    --catalog-shape-l: 16px;
+    --catalog-shape-m: 12px;
+    --catalog-shape-s: 8px;
+    --catalog-shape-xs: 4px;
+    --catalog-spacing-xl: 28px;
+    --catalog-spacing-l: 16px;
+    --catalog-spacing-m: 12px;
+    --catalog-spacing-s: 8px;
+    --catalog-top-app-bar-height: calc(48px + 2 * var(--catalog-spacing-m));
+    scroll-padding-block-start: calc(var(--catalog-top-app-bar-height) + var(--catalog-top-app-bar-padding-block) * 2)
 }
 
 #blazor-error-ui {

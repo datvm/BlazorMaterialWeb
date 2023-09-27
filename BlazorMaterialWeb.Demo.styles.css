@@ -43,11 +43,16 @@
     max-width: 300px;
     height: 100%;
     overflow-y: auto;
+    --md-list-container-color: transparent;
 }
 
     .page-nav.collapsed[b-k68xj1x1tp] {
         max-width: 0;
     }
+
+[b-k68xj1x1tp] .page-nav md-list-item[active] {
+    background-color: var(--md-sys-color-surface-container-highest);
+}
 
 .page-content-container[b-k68xj1x1tp] {
     min-width: 0;

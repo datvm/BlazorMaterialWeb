@@ -1,5 +1,21 @@
 export function beforeStart() {
 
+    function trimSameLeadingSpaces(input) {
+        const lines = input.split("\n");
+
+        let minSpace = Number.MAX_SAFE_INTEGER;
+        for (const line of lines) {
+            if (line.trim().length !== 0) {
+                const space = line.match(/^\s*/)[0].length;
+                minSpace = Math.min(minSpace, space);
+            }
+        }
+
+        return lines
+            .map(line => line.substring(minSpace))
+            .join("\n");
+    }
+
     function observeCodeHighlight() {
         const obs = new MutationObserver((e) => {
             if (e.some(record => {
@@ -27,7 +43,7 @@ export function beforeStart() {
                 for (const node of record.addedNodes) {
                     node.querySelectorAll?.("template[data-markdown='true']")?.forEach(el => {
                         el.setAttribute("data-markdown", "false");
-                        const md = el.textContent.trim();
+                        const md = trimSameLeadingSpaces(el.textContent);
 
                         const html = marked.parse(md);
                         const div = document.createElement("div");
