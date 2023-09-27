@@ -131,26 +131,6 @@ export function afterStarted(blazor) {
         createEventArgs: () => null,
     });
 
-    blazor.registerCustomEventType("menuopening", {
-        browserEventName: "opening",
-        createEventArgs: () => null,
-    });
-
-    blazor.registerCustomEventType("menuopened", {
-        browserEventName: "opened",
-        createEventArgs: () => null,
-    });
-
-    blazor.registerCustomEventType("menuclosing", {
-        browserEventName: "closing",
-        createEventArgs: () => null,
-    });
-
-    blazor.registerCustomEventType("menuclosed", {
-        browserEventName: "closed",
-        createEventArgs: () => null,
-    });
-
     blazor.registerCustomEventType("sliderchange", {
         browserEventName: "change",
         createEventArgs: ({ target }) => ({
@@ -189,30 +169,11 @@ export function afterStarted(blazor) {
         }),
     });
 
-    function createMdSelectEventArgs(target) {
-        return {
-            value: target.value,
-            selectedIndex: target.selectedIndex,
-        };
-    }
-
-    blazor.registerCustomEventType("selectchange", {
-        browserEventName: "change",
-        createEventArgs: ({ target }) => createMdSelectEventArgs(target),
+    blazor.registerCustomEventType("listitemrequestactivation", {
+        browserEventName: "request-activation",
+        createEventArgs: ({ target }) => ({
+            checked: target.active,
+        }),
     });
 
-    blazor.registerCustomEventType("selectinput", {
-        browserEventName: "input",
-        createEventArgs: ({ target }) => createMdSelectEventArgs(target),
-    });
-
-    blazor.registerCustomEventType("requestselection", {
-        browserEventName: "request-selection",
-        createEventArgs: () => null,
-    });
-
-    blazor.registerCustomEventType("requestdeselection", {
-        browserEventName: "request-deselection",
-        createEventArgs: () => null,
-    });
 }

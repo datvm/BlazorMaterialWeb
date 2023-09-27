@@ -1,0 +1,115 @@
+﻿@page "/lists"
+
+<ComponentDemoPage Name="Lists"
+                   DesignUrl="https://m3.material.io/components/lists/overview"
+                   ComponentUrl="https://material-web.dev/components/list/"
+                   ComponentSourcePath="list"
+                   BlazorComponentSourcePath="List/"
+                   BlazorDemoSourceName="List">
+    <Description>
+        Lists are continuous, vertical indexes of text and images
+    </Description>
+    <ComponentDemo>
+        <div class="row">
+            <div class="col">
+                <MdList Type="@(type)">
+                    <MdListItem @onclick="@(() => lastClicked = "Fruits")"
+                                Type="MdListItemType.Text"
+                                Disabled="disabled">
+                        Fruits
+                        <div slot="@(MdListItem.SupportingText)">This item is hard-coded to be always of type <code>Text</code>.</div>
+                    </MdListItem>
+                    <MdDivider />
+                    <MdListItem @onclick="@(() => lastClicked = "Apple")"
+                                Disabled="disabled">
+                        Apple
+                    </MdListItem>
+                    <MdListItem @onclick="@(() => lastClicked = "Cucumber")"
+                                Disabled="disabled">
+                        <div slot="@(MdListItem.HeadlineSlot)">Cucumber</div>
+                        <div slot="@(MdListItem.SupportingText)">Cucumbers are long green fruits that are just as long as this multi-line description</div>
+                    </MdListItem>
+                    <MdListItem Href="https://www.example.com" Target="_blank"
+                                Disabled="disabled">
+                        <div slot="headline">Shop for Kiwis</div>
+                        <div slot="supporting-text">This will link you out in a new tab</div>
+                        <md-icon slot="@(MdListItem.EndSlot)">open_in_new</md-icon>
+                    </MdListItem>
+                </MdList>
+
+                <p>Last clicked: @(lastClicked ?? "Not yet")</p>
+            </div>
+
+            <div class="col">
+                <MdList Type="@(type)">
+                    <MdListItem>
+                        Cat
+                        <img slot="@(MdListItem.StartSlot)" src="https://placekitten.com/112/112">
+                    </MdListItem>
+
+                    <MdDivider />
+
+                    <MdListItem>
+                        Start and End Icons &amp; <a href="/icon-buttons">Icon Button</a>
+
+                        <div slot="@(MdListItem.OverlineSlot)">
+                            Likes: @(likeCount)
+                        </div>
+
+                        <MdIcon slot="@(MdListItem.StartSlot)">egg_alt</MdIcon>
+                        <MdIconButton @onclick="@(() => likeCount++)" slot="@(MdListItem.EndSlot)" >
+                            <MdIcon>thumb_up</MdIcon>
+                        </MdIconButton>
+
+                        <div slot="@(MdListItem.TrailingSupportingText)">
+                            Like it? Click:
+                        </div>
+                    </MdListItem>
+                </MdList>
+            </div>
+        </div>
+
+    </ComponentDemo>
+    <Tweaks>
+        <MdRadioGroup Name="opt-type" TValue="string"
+                      Value="@(type.ToString())" ValueChanged="OnTypeChanged">
+            <div class="hstack gap-3">
+                Item Type:
+
+                @foreach (var item in Enum.GetValues<MdListItemType>())
+                {
+                    <LabeledRadio Value="@(item.ToString())" />
+                }
+            </div>
+
+            <MarkdownBlock>
+                - Blazor provides the `Type` parameter on `MdList` that applies
+                to all its `MdListItem` but you can always override it by setting
+                `MdListItem`'s `Type`. Settings `Type` to `Link` does not appear to have
+                any difference compared to `Button` but any item with an `Href`
+                is always of `Link` type.
+                - An item type does not actually affect its click events (`@@onclick`).
+                You can still receive that event from a `Text` item or `Disabled`.
+                - `Disabled` does not work on `Link` types, including ones with `Href`.
+            </MarkdownBlock>
+        </MdRadioGroup>
+
+        <div class="hstack gap-3">
+            <LabeledSwitch @bind-Selected="disabled" Label="Disabled" />
+        </div>
+    </Tweaks>
+</ComponentDemoPage>
+
+@code {
+
+    MdListItemType type = MdListItemType.Text;
+    string? lastClicked;
+    bool disabled;
+    int likeCount;
+
+    void OnTypeChanged(string? value)
+    {
+        type = Enum.Parse<MdListItemType>(value!);
+    }
+
+}

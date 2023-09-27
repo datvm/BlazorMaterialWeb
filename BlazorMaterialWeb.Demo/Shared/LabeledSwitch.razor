@@ -1,4 +1,5 @@
 ﻿<label class="hstack gap-1">
-    <MdSwitch @bind-Selected="Selected" @bind-Selected:after="OnSelectedChanged" />
+    <MdSwitch @bind-Selected="Selected" @bind-Selected:after="OnSelectedChanged"
+              Disabled="@(Disabled)" />
     @(Label)
 </label>

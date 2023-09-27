@@ -21,11 +21,8 @@
 [EventHandler("ondiagclosed", typeof(MdDialogReturnEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 [EventHandler("ondiagcancel", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 
-// Menu
-[EventHandler("onmenuopening", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
-[EventHandler("onmenuopened", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
-[EventHandler("onmenuclosing", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
-[EventHandler("onmenuclosed", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+// List
+[EventHandler("onlistitemrequestactivation", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 
 // Slider
 [EventHandler("onsliderchange", typeof(MdSliderChangeEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
@@ -35,11 +32,6 @@
 [EventHandler("ontabchanged", typeof(MdTabChangeEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 [EventHandler("ontabactivated", typeof(MdCheckedEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 
-// Select
-[EventHandler("onselectchange", typeof(MdSelectChangeEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
-[EventHandler("onselectinput", typeof(MdSelectChangeEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
-[EventHandler("onrequestselection", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
-[EventHandler("onrequestdeselection", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 public static class EventHandlers { }
 
 public class MdCheckedEventArgs : EventArgs

@@ -1,8 +1,10 @@
 @namespace BlazorMaterialWeb
 @inherits DefaultMdComponent
 
-<md-list @attributes="AdditionalAttributes"
-         type="@(Type.ToString().ToLower())"
-         list-tabindex="@(ListTabIndex)">
-    @(ChildContent)
+@inject IJSRuntime Js;
+
+<md-list @attributes="AdditionalAttributes">
+    <CascadingValue Name="MdListType" Value="@(Type)">
+        @(ChildContent)
+    </CascadingValue>
 </md-list>

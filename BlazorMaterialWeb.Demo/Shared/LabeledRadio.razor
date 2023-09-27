@@ -1,0 +1,6 @@
+﻿@typeparam TValue where TValue: IConvertible, IEquatable<TValue>
+
+<label>
+    <MdRadio Value="@(Value)" />
+    @(Label ?? Value?.ToString())
+</label>

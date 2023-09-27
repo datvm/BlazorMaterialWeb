@@ -7,6 +7,7 @@ public abstract class BaseDefaultMdComponent : ComponentBase
 
     [Parameter(CaptureUnmatchedValues = true)]
     public IEnumerable<KeyValuePair<string, object?>>? AdditionalAttributes { get; set; }
+
 }
 
 public class DefaultMdComponent : BaseDefaultMdComponent

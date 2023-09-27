@@ -39,7 +39,7 @@ This project depends on Google's [Material Web Component](https://github.com/mat
 | Divider | ✅ | ✅ | [Divider](https://blazorwebmaterial.lukevo.com/divider) |
 | Elevation | ✅ | ✅ | [Elevation](https://blazorwebmaterial.lukevo.com/elevation) |
 | Focus ring | ✅ | ✅ | [Focus Ring](https://blazorwebmaterial.lukevo.com/focus-ring) |
-| List | ✅ | ✅ | 🟡 |
+| List | ✅ | ✅ | [List](https://blazorwebmaterial.lukevo.com/lists) |
 | Menu | ✅ | 🟡 | [Menus](https://blazorwebmaterial.lukevo.com/menu) |
 | Progress indicators | ✅ | ✅ | [Progress](https://blazorwebmaterial.lukevo.com/progress) |
 | Radio | ✅ | ✅ | [Radio](https://blazorwebmaterial.lukevo.com/radio) |
@@ -48,7 +48,7 @@ This project depends on Google's [Material Web Component](https://github.com/mat
 | Slider | ✅ | ✅ | [Slider](https://blazorwebmaterial.lukevo.com/slider) |
 | Switch | ✅ | ✅ | [Switch](https://blazorwebmaterial.lukevo.com/switch) |
 | Tabs | ✅ | ✅ | [Tab](https://blazorwebmaterial.lukevo.com/tabs) |
-| Text field | ✅ | ✅ | 🟡 |
+| Text field | ✅ | ✅ | [Text field](https://blazorwebmaterial.lukevo.com/text-field) |
 | Catalog | 💤 | 💤 | 💤 |
 | Density | 💤 | 💤 | 💤 |
 | Card | 💤 | 💤 | 💤 |

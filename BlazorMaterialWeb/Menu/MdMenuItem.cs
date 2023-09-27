@@ -3,19 +3,10 @@
 public class MdMenuItem : MdListItem
 {
 
-    public override MdListItemRole Type
+    public MdMenuItem()
     {
-        get => MdListItemRole.MenuItem;
-        set => throw new InvalidOperationException();
+        // TODO: the implementation changed, it's no longer an MdListItem
+        throw new NotImplementedException();
     }
-
-    [Parameter]
-    public bool KeepOpen { get; set; }
-
-    protected override IEnumerable<KeyValuePair<string, object?>>? ProtectedAdditionalAttributes =>
-        new KeyValuePair<string, object?>[]
-        {
-            new("keep-open", KeepOpen),
-        };
 
 }

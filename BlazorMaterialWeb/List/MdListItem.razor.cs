@@ -1,45 +1,29 @@
 ﻿namespace BlazorMaterialWeb;
 
+/// <summary>
+/// Lists are continuous, vertical indexes of text and images.
+/// <a href="https://m3.material.io/components/lists/overview">Design</a>,
+/// <a href="https://material-web.dev/components/list/">Component</a>
+/// </summary>
 partial class MdListItem
 {
 
     public const string StartSlot = "start";
-    public const string StartIconSlot = "start-icon";
-    public const string StartImageSlot = "start-image";
-    public const string StartAvatarSlot = "start-avatar";
-    public const string StartVideoSlot = "start-video";
-    public const string StartVideoLargeSlot = "start-video-large";
-
     public const string EndSlot = "end";
-    public const string EndIconSlot = "end-icon";
 
-
-    [Parameter]
-    public bool NonInteractive { get; set; }
-
-    [Parameter]
-    public string? Headline { get; set; }
-
-    [Parameter]
-    public string? SupportingText { get; set; }
-
-    [Parameter]
-    public bool MultilineSupportingText { get; set; }
-
-    [Parameter]
-    public bool TrailingSupportingText { get; set; }
+    public const string OverlineSlot = "overline";
+    public const string HeadlineSlot = "headline";
+    public const string SupportingText = "supporting-text";
+    public const string TrailingSupportingText = "trailing-supporting-text";
 
     [Parameter]
     public bool Disabled { get; set; }
 
     [Parameter]
-    public int? ItemTabIndex { get; set; }
+    public MdListItemType? Type { get; set; }
 
-    [Parameter]
-    public bool Active { get; set; }
-
-    [Parameter]
-    public virtual MdListItemRole Type { get; set; } = MdListItemRole.ListItem;
+    [CascadingParameter(Name = "MdListType")]
+    public MdListItemType? CascadedType { get; set; }
 
     [Parameter]
     public string? Href { get; set; }
@@ -47,18 +31,19 @@ partial class MdListItem
     [Parameter]
     public string? Target { get; set; }
 
-    protected virtual string TagName => "md-list-item";
+    [Parameter]
+    public EventCallback OnRequestActivation { get; set; }
+
+    MdListItemType? finalType => Type ?? CascadedType;
 
 }
 
 /// <summary>
 /// From list-item.ts
 /// </summary>
-public enum MdListItemRole
+public enum MdListItemType
 {
-    ListItem,
-    MenuItem,
-    Option,
+    Text,
+    Button,
     Link,
-    None
 }

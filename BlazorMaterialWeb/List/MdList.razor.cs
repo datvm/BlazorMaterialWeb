@@ -9,20 +9,16 @@ partial class MdList
 {
 
     [Parameter]
-    public MdListType Type { get; set; } = MdListType.List;
+    public MdListItemType? Type { get; set; }
 
-    [Parameter]
-    public int? ListTabIndex { get; set; }
+    public async Task<IEnumerable<IJSObjectReference>> GetItemsAsync() =>
+        await Js.GetElementPropertyAsync<IEnumerable<IJSObjectReference>>(
+            el, "items");
 
-}
+    public async Task ActivateNextItemAsync() =>
+        await Js.InvokeElementMethodAsync(el, "activateNextItem");
 
-/// <summary>
-/// From list.ts
-/// </summary>
-public enum MdListType
-{
-    Menu,
-    MenuBar,
-    ListBox,
-    List,
+    public async Task ActivatePreviousItemAsync() =>
+        await Js.InvokeElementMethodAsync(el, "activatePreviousItem");
+
 }
