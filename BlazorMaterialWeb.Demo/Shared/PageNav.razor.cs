@@ -12,10 +12,16 @@ sealed partial class PageNav : IDisposable
             .FirstOrDefault(q => path.StartsWith(
                 q.Url,
                 StringComparison.OrdinalIgnoreCase));
+
+        // This is needed because LocationChanged doesn't trigger it
+        StateHasChanged();
     }
 
-    protected override void OnInitialized() =>
+    protected override void OnInitialized()
+    {
         Nav.LocationChanged += Nav_LocationChanged;
+        FindActiveItem();
+    }
 
     public void Dispose() =>
         Nav.LocationChanged -= Nav_LocationChanged;

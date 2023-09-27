@@ -27,10 +27,12 @@
 
 }
 
-<MdList>
+<MdList Type="MdListItemType.Link">
     @foreach (var url in NavUrls)
     {
-        <MdListItem Href="@(url.Url)" Headline="@(url.Text)"
-                    Active="@(url == activeUrl)" />
+        <MdListItem Href="@(url.Url)"
+                    active="@(url.Url == activeUrl?.Url)">
+            @(url.Text)
+        </MdListItem>
     }
 </MdList>
