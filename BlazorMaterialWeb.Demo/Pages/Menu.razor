@@ -1,19 +1,237 @@
 ﻿@page "/menu"
 
-<PageTitle>Menus</PageTitle>
+@inject IJSRuntime Js;
 
-<h1>Menus</h1>
+<ComponentDemoPage Name="Menus"
+                   DesignUrl="https://m3.material.io/components/menus/overview"
+                   ComponentUrl="https://material-web.dev/components/menu/"
+                   ComponentSourcePath="menu"
+                   BlazorComponentSourcePath="Menu"
+                   BlazorDemoSourceName="Menu">
+    <Description>
+        Menus display a list of choices on a temporary surface.
+    </Description>
+    <ComponentDemo>
+        <div class="text-center">
+            <div>Menu opened: @(open)</div>
 
-<p>
-    <a href="https://m3.material.io/components/menus/overview">Menus</a>
-    display a list of choices on a temporary surface.
-</p>
+            <div>
+                <span class="position-relative">
+                    <MdButton @onclick="OnOpenMenuRequested" @ref="btnOpen"
+                              ButtonStyle="MdButtonStype.Filled" id="btn-usage"
+                              style="min-width: min(100%, 500px)">
+                        Open Menu (using @(useIdRef ? "idref" : "element ref"))
+                    </MdButton>
 
-<div class="alert alert-warning">
-    This component is still under development by Web Component.
-</div>
+                    <MdMenu @ref="mnu" @bind-Open="open"
+                            Anchor="@(useIdRef ? "btn-usage" : null)"
+                            Positioning="isFixed ? MdMenuPositioning.Fixed : MdMenuPositioning.Absolute"
+                            HasOverflow="hasOverflow"
+                            Quick="@(quick)"
+                            AnchorCorner="@(anchorCorner)"
+                            MenuCorner="@(menuCorner)"
+                            StayOpenOnFocusout="@(stayOpenOnFocusout)"
+                            StayOpenOnOutsideClick="@(stayOpenOnOutsideClick)"
+                            SkipRestoreFocus="@(skipRestoreFocus)">
+                        <MdSubMenu>
+                            <!-- Submenu Fruits with A -->
+                            <!-- The (parent) item that would open the submenu -->
+                            <MdMenuItem slot="@(MdSubMenu.ItemSlot)">
+                                Fruits with A
+                                <MdIcon slot="@(MdMenuItem.EndSlot)">arrow_right</MdIcon>
+                            </MdMenuItem>
+
+                            <!-- The items of the submenu -->
+                            <MdMenu slot="@(MdSubMenu.MenuSlot)">
+                                <MdMenuItem>
+                                    Apricot
+                                </MdMenuItem>
+                                <MdMenuItem>
+                                    Avocado
+                                </MdMenuItem>
+
+                                <!-- More nested item -->
+                                <MdSubMenu MenuCorner="MdMenuCorner.StartEnd"
+                                           AnchorCorner="MdMenuCorner.StartStart">
+                                    <!-- The (parent) item that would open the submenu -->
+                                    <MdMenuItem slot="@(MdSubMenu.ItemSlot)">
+                                        Apples
+
+                                        <MdIcon slot="@(MdMenuItem.StartSlot)">arrow_left</MdIcon>
+                                    </MdMenuItem>
+
+                                    <!-- The items of the submenu -->
+                                    <MdMenu slot="@(MdSubMenu.MenuSlot)">
+                                        <MdMenuItem>
+                                            Fuji
+                                        </MdMenuItem>
+                                        <MdMenuItem>
+                                            Granny Smith
+                                        </MdMenuItem>
+                                        <MdMenuItem>
+                                            Red Delicious
+                                        </MdMenuItem>
+                                    </MdMenu>
+                                </MdSubMenu>
+                            </MdMenu>
+                        </MdSubMenu>
+
+                        <MdMenuItem>
+                            Banana
+                        </MdMenuItem>
+
+                        <MdMenuItem>
+                            Cucumber
+                        </MdMenuItem>
+
+                        <MdDivider />
+
+                        <MdMenuItem Href="https://github.com/datvm/BlazorMaterialWeb/" Target="_blank">
+                            Open a Link
+
+                            <MdIcon slot="@(MdMenuItem.StartSlot)">link</MdIcon>
+                            <MdIcon slot="@(MdMenuItem.EndSlot)">open_in_new</MdIcon>
+                        </MdMenuItem>
+
+                        <MdMenuItem @onclick="() => selected = !selected"
+                                    Selected="selected"
+                                    KeepOpen="true">
+                            Selectable item. Likes: @(likeCount)
+
+                            <MdIcon slot="@(MdMenuItem.StartSlot)">touch_app</MdIcon>
+                            <div slot="@(MdMenuItem.SupportingTextSlot)">
+                                It should also be kept open when clicking
+                            </div>
+
+                            <div slot="@(MdMenuItem.TrailingSupportingTextSlot)">
+                                Like it?
+                            </div>
+
+                            <MdIconButton @onclick="() => likeCount++"
+                                          slot="@(MdMenuItem.EndSlot)">
+                                <MdIcon>thumb_up</MdIcon>
+                            </MdIconButton>
+                        </MdMenuItem>
+                    </MdMenu>
+                </span>
+            </div>
+        </div>
+    </ComponentDemo>
+    <Tweaks>
+        <div class="hstack gap-3">
+            <LabeledSwitch @bind-Selected="useIdRef" Label="Use idref" />
+            <LabeledSwitch @bind-Selected="isFixed" Label="Fixed position (instead of absolute)" />
+            <LabeledSwitch @bind-Selected="quick" Label="Quick (skip animations)" />
+        </div>
+
+        <div class="hstack gap-3">
+            <LabeledSwitch @bind-Selected="hasOverflow" Label="Has Overflow" />
+            <span>(Submenu would not work properly without this)</span>
+        </div>
+
+        <div class="hstack gap-3">
+            <LabeledSwitch @bind-Selected="stayOpenOnFocusout" Label="Stay open on Focus-out" />
+            <LabeledSwitch @bind-Selected="stayOpenOnOutsideClick" Label="Stay open on Outside Click" />
+            <LabeledSwitch @bind-Selected="skipRestoreFocus" Label="Skip Restore Focus" />
+        </div>
+
+        <MdRadioGroup Name="opt-anchor-corner" TValue="string"
+                      Value="@(anchorCorner.ToString())" ValueChanged="@((e) => SelectCorner(true, e))">
+            <div class="hstack gap-3">
+                <span>Anchor Corner:</span>
+
+                @foreach (var item in Enum.GetValues<MdMenuCorner>())
+                {
+                    <LabeledRadio Value="item.ToString()" />
+                }
+            </div>
+        </MdRadioGroup>
+
+        <MdRadioGroup Name="opt-menu-corner" TValue="string"
+                      Value="@(menuCorner.ToString())" ValueChanged="@((e) => SelectCorner(false, e))">
+            <div class="hstack gap-3">
+                <span>Menu Corner:</span>
+
+                @foreach (var item in Enum.GetValues<MdMenuCorner>())
+                {
+                    <LabeledRadio Value="item.ToString()" />
+                }
+            </div>
+        </MdRadioGroup>
+
+        <div class="hstack gap-3">
+            <MdButton @onclick="() => ToggleMenu(true)">
+                Call show()
+            </MdButton>
+            <MdButton @onclick="() => ToggleMenu(false)">
+                Call close()
+            </MdButton>
+            <MdButton @onclick="PrintItemsAsync">
+                Print items to console
+            </MdButton>
+        </div>
+    </Tweaks>
+</ComponentDemoPage>
 
 @code {
 
+    bool open;
+    bool isFixed;
+    bool useIdRef = true;
+    bool hasOverflow = true;
+    bool quick;
+    bool stayOpenOnOutsideClick;
+    bool stayOpenOnFocusout;
+    bool skipRestoreFocus;
+
+    bool selected = true;
+    int likeCount = 0;
+
+    MdMenuCorner anchorCorner = MdMenuCorner.EndStart;
+    MdMenuCorner menuCorner = MdMenuCorner.StartStart;
+
+    MdButton btnOpen = null!;
+    MdMenu mnu = null!;
+
+    async Task PrintItemsAsync()
+    {
+        var items = await mnu.GetItemsAsync();
+        await Js.InvokeVoidAsync("console.log", items);
+    }
+
+    async Task ToggleMenu(bool open)
+    {
+        if (open)
+        {
+            await mnu.ShowAsync();
+        }
+        else
+        {
+            await mnu.CloseAsync();
+        }
+    }
+
+    void SelectCorner(bool anchor, string value)
+    {
+        var enumValue = Enum.Parse<MdMenuCorner>(value);
+        if (anchor)
+        {
+            anchorCorner = enumValue;
+        }
+        else
+        {
+            menuCorner = enumValue;
+        }
+    }
+
+    async Task OnOpenMenuRequested()
+    {
+        if (!useIdRef)
+        {
+            await mnu.SetAnchorElementAsync(btnOpen.ElementReference);
+        }
+
+        open = true;
+    }
 
 }

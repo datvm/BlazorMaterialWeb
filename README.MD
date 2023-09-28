@@ -40,11 +40,11 @@ This project depends on Google's [Material Web Component](https://github.com/mat
 | Elevation | ✅ | ✅ | [Elevation](https://blazorwebmaterial.lukevo.com/elevation) |
 | Focus ring | ✅ | ✅ | [Focus Ring](https://blazorwebmaterial.lukevo.com/focus-ring) |
 | List | ✅ | ✅ | [List](https://blazorwebmaterial.lukevo.com/lists) |
-| Menu | ✅ | 🟡 | [Menus](https://blazorwebmaterial.lukevo.com/menu) |
+| Menu | ✅ | ✅ | [Menus](https://blazorwebmaterial.lukevo.com/menu) |
 | Progress indicators | ✅ | ✅ | [Progress](https://blazorwebmaterial.lukevo.com/progress) |
 | Radio | ✅ | ✅ | [Radio](https://blazorwebmaterial.lukevo.com/radio) |
 | Ripple | ✅ | ✅ | [Ripple](https://blazorwebmaterial.lukevo.com/ripple) |
-| Select | 🟡 | 🟡 | [Select](https://blazorwebmaterial.lukevo.com/select) |
+| Select | ✅ | 🟡 | [Select](https://blazorwebmaterial.lukevo.com/select) |
 | Slider | ✅ | ✅ | [Slider](https://blazorwebmaterial.lukevo.com/slider) |
 | Switch | ✅ | ✅ | [Switch](https://blazorwebmaterial.lukevo.com/switch) |
 | Tabs | ✅ | ✅ | [Tab](https://blazorwebmaterial.lukevo.com/tabs) |

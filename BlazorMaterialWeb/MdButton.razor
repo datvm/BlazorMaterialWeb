@@ -6,7 +6,7 @@
             target="@(Target)"
             trailing-icon="@(TrailingIcon)"
             has-icon="@(HasIcon)"
-            type="@(Type.ToString().ToLower())"
+            type="@(Type?.ToString().ToLower())"
             value="@(Value)">
     @(ChildContent)
 </DynamicTag>

@@ -1,15 +1,18 @@
-﻿using Microsoft.JSInterop;
+﻿namespace BlazorMaterialWeb;
 
-namespace BlazorMaterialWeb;
-
+/// <summary>
+/// Menus display a list of choices on a temporary surface.
+/// <a href="https://m3.material.io/components/menus/overview">Design</a>,
+/// <a href="https://material-web.dev/components/menu/">Component</a>
+/// </summary>
 partial class MdMenu
 {
-    
+
     [Parameter]
     public string? Anchor { get; set; }
 
     [Parameter]
-    public bool Fixed { get; set; }
+    public MdMenuPositioning? Positioning { get; set; }
 
     [Parameter]
     public bool Quick { get; set; }
@@ -30,12 +33,6 @@ partial class MdMenu
     public int? YOffset { get; set; }
 
     [Parameter]
-    public int? ListTabIndex { get; set; }
-
-    [Parameter]
-    public MdMenuType Type { get; set; } = MdMenuType.Menu;
-
-    [Parameter]
     public int? TypeaheadDelay { get; set; }
 
     [Parameter]
@@ -54,60 +51,84 @@ partial class MdMenu
     public bool SkipRestoreFocus { get; set; }
 
     [Parameter]
-    public MdDefaultFocusState? DefaultFocus { get; set; }
+    public MdMenuFocusState? DefaultFocus { get; set; }
 
     [Parameter]
     public EventCallback OnOpening { get; set; }
-    
+
     [Parameter]
     public EventCallback OnOpened { get; set; }
-    
+
     [Parameter]
     public EventCallback OnClosing { get; set; }
 
     [Parameter]
     public EventCallback OnClosed { get; set; }
 
-    async Task OnMenuOpened()
+    async Task OnOpenStatusChanged(bool open)
     {
-        Open = true;
-        await OpenChanged.InvokeAsync(Open);
-        await OnOpened.InvokeAsync();
+        if (Open != open)
+        {
+            Open = open;
+            await OpenChanged.InvokeAsync(open);
+        }
+
+        if (open)
+        {
+            await OnOpened.InvokeAsync();
+        }
+        else
+        {
+            await OnClosed.InvokeAsync();
+        }
     }
 
-    async Task OnMenuClosed()
-    {
-        Open = false;
-        await OpenChanged.InvokeAsync(Open);
-        await OnClosed.InvokeAsync();
-    }
-
-    public async Task ShowAsync()
-    {
+    public async Task ShowAsync() =>
         await Js.InvokeElementMethodAsync(el, "show");
-    }
 
-    public async Task CloseAsync()
-    {
+    public async Task CloseAsync() =>
         await Js.InvokeElementMethodAsync(el, "close");
-    }
 
-    public async Task SetAnchorElementAsync(ElementReference anchorEl)
-    {
+    public async Task GetAnchorElementAsync() =>
+        await Js.GetElementPropertyAsync<ElementReference>(el, "anchorElement");
+
+    public async Task SetAnchorElementAsync(ElementReference anchorEl) =>
         await Js.SetElementPropertyAsync(el, "anchorElement", anchorEl);
-    }
+
+    public async Task<IJSObjectReference> GetItemsAsync() =>
+        await Js.GetElementPropertyAsync<IJSObjectReference>(el, "items");
+
+    [return: NotNullIfNotNull(nameof(corner))]
+    public static string? GetCornerName(MdMenuCorner? corner) => corner switch
+    {
+        null => null,
+        MdMenuCorner.EndStart => "end-start",
+        MdMenuCorner.EndEnd => "end-end",
+        MdMenuCorner.StartStart => "start-start",
+        MdMenuCorner.StartEnd => "start-end",
+        _ => throw new NotImplementedException("Unknown value: " + corner),
+    };
+
+    [return: NotNullIfNotNull(nameof(focusState))]
+    public static string? GetFocusStateName(MdMenuFocusState? focusState) => focusState switch
+    {
+        null => null,
+        MdMenuFocusState.None => "none",
+        MdMenuFocusState.ListRoot => "list-root",
+        MdMenuFocusState.FirstItem => "first-item",
+        MdMenuFocusState.LastItem => "last-item",
+        _ => throw new NotImplementedException("Unknown value: " + focusState),
+    };
 
 }
 
 /// <summary>
 /// From menu.ts
 /// </summary>
-public enum MdMenuType
+public enum MdMenuPositioning
 {
-    Menu,
-    MenuBar,
-    Listbox,
-    List,
+    Absolute,
+    Fixed,
 }
 
 /// <summary>
@@ -122,9 +143,9 @@ public enum MdMenuCorner
 }
 
 /// <summary>
-/// From menu.ts
+/// From shared.ts
 /// </summary>
-public enum MdDefaultFocusState
+public enum MdMenuFocusState
 {
     None,
     ListRoot,

@@ -176,4 +176,24 @@ export function afterStarted(blazor) {
         }),
     });
 
+    blazor.registerCustomEventType("menuopening", {
+        browserEventName: "opening",
+        createEventArgs: () => null,
+    });
+
+    blazor.registerCustomEventType("menuopened", {
+        browserEventName: "opened",
+        createEventArgs: () => null,
+    });
+
+    blazor.registerCustomEventType("menuclosing", {
+        browserEventName: "closing",
+        createEventArgs: () => null,
+    });
+
+    blazor.registerCustomEventType("menuclosed", {
+        browserEventName: "closed",
+        createEventArgs: () => null,
+    });
+
 }

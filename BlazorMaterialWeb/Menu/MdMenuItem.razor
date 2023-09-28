@@ -1,0 +1,13 @@
+@namespace BlazorMaterialWeb
+@inherits DefaultMdComponent
+
+<md-menu-item @attributes="AdditionalAttributes" @ref="el"
+              disabled="@(Disabled)"
+              type="@(Type?.ToString().ToLowerInvariant())"
+              href="@Href"
+              target="@Target"
+              keep-open="@(KeepOpen)"
+              selected="@(Selected)"
+              typeahead-text="@TypeaheadText">
+    @(ChildContent)
+</md-menu-item>

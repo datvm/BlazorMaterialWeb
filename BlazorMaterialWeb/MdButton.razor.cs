@@ -29,7 +29,7 @@ partial class MdButton
     public bool HasIcon { get; set; }
 
     [Parameter]
-    public FormSubmitterType Type { get; set; } = FormSubmitterType.Submit;
+    public FormSubmitterType? Type { get; set; }
 
     [Parameter]
     public string? Value { get; set; }

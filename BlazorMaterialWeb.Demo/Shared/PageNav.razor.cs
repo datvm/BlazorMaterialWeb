@@ -8,7 +8,7 @@ sealed partial class PageNav : IDisposable
     void FindActiveItem()
     {
         var path = new Uri(Nav.Uri).LocalPath;
-        activeUrl = NavUrls
+        activeUrl = ComponentUrls
             .FirstOrDefault(q => path.StartsWith(
                 q.Url,
                 StringComparison.OrdinalIgnoreCase));

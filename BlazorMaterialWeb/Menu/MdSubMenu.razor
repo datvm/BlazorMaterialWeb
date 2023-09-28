@@ -1,0 +1,10 @@
+@namespace BlazorMaterialWeb
+@inherits DefaultMdComponent
+
+<md-sub-menu @attributes="AdditionalAttributes" @ref="el"
+             anchor-corner="@(MdMenu.GetCornerName(AnchorCorner))"
+             menu-corner="@(MdMenu.GetCornerName(MenuCorner))"
+             hover-open-delay="@(HoverOpenDelay)"
+             hover-close-delay="@(HoverCloseDelay)">
+    @(ChildContent)
+</md-sub-menu>

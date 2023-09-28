@@ -2,7 +2,7 @@
 
 @code {
 
-    static readonly (string Text, string Url)[] NavUrls =
+    static readonly (string Text, string Url)[] ComponentUrls =
     {
         ("Buttons", "/button"),
         ("Checkbox", "/checkbox"),
@@ -28,7 +28,14 @@
 }
 
 <MdList Type="MdListItemType.Link">
-    @foreach (var url in NavUrls)
+    <MdListItem Href="/"
+                active="@((activeUrl?.Url?.Length ?? 0) < 2)">
+        Setup
+    </MdListItem>
+
+    <MdDivider />
+
+    @foreach (var url in ComponentUrls)
     {
         <MdListItem Href="@(url.Url)"
                     active="@(url.Url == activeUrl?.Url)">
