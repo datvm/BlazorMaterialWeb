@@ -7,9 +7,9 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
-      "BlazorMaterialWeb.Bundled.dll": "sha256-fZQ2kCDStTb1pouWcScvECNUwQuRQNPKFnEYa7mgZV8=",
-      "BlazorMaterialWeb.Demo.dll": "sha256-NEpscc6snlQ69fCPdaZFXGCPImAWJXqm\/ZqZG8v0Tuo=",
-      "BlazorMaterialWeb.dll": "sha256-dCRh5jLGbnhStOdCLWMYDme9rRxdY5Hm3ZcVd6lytWs=",
+      "BlazorMaterialWeb.Bundled.dll": "sha256-9vidhljJ3TvX9nrNkR+3oAXftwHBMoKD5\/6+8IZ4j+w=",
+      "BlazorMaterialWeb.Demo.dll": "sha256-hy+MePO9wlaYv\/3JbTaA7WDpHohi25\/SJuIuq+PHWmE=",
+      "BlazorMaterialWeb.dll": "sha256-yz193Vnit7GAvAtXUIu01DK684yE5XFn\/TbLC5lkYoU=",
       "Microsoft.AspNetCore.Components.dll": "sha256-ik9tvXZPwW+9x7N+f78CbXZja2YFIXJLydqRucTblYk=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-41+elv+It06SAo10kSNCmYMF9dn4ElE8qdm8LOvXrfk=",
       "Microsoft.AspNetCore.Components.WebAssembly.dll": "sha256-5DSc6QTVfLfHnnEh406cPRuBfQEVf7u+1\/OFIR9zuSQ=",
@@ -34,7 +34,7 @@
       "System.Net.Primitives.dll": "sha256-ASXBD9A+0syveymmc\/UzOs8n64Gt0\/lESe6rmhV9aK8=",
       "System.Private.CoreLib.dll": "sha256-sFhK5xXbIGSYE9MwLeAcmfJP1Z+C5ertpqPPwpJq8wg=",
       "System.Private.Uri.dll": "sha256-FtUR6HvOaRf91xEMqvUSL65dUFjwwRd4ODkPQR+4aKI=",
-      "System.Runtime.dll": "sha256-k6ujFW\/EGiXiivrdXsOd1uxOhrlNpy+OvoULDra8YUc=",
+      "System.Runtime.dll": "sha256-JQ+Db8ahsUtQdPLjR\/yV51x8loTWXy9+eWarlljZLLw=",
       "System.Runtime.InteropServices.JavaScript.dll": "sha256-dbqGRcWgNMOjykoJjO8s\/ZdZBoyVrcrE\/FLNjf\/YZu8=",
       "System.Text.Encodings.Web.dll": "sha256-0cl9ZIr5FPoIXavnB5DaVQBTriPrXIR6uaSZwESfOX8=",
       "System.Text.Json.dll": "sha256-AvuULknyoL9\/+CKkud5XRXQErmrKBxzWG9wA25j4nag="
@@ -44,7 +44,7 @@
     "libraryInitializers": {
       "BlazorMaterialWeb.Demo.lib.module.js": "sha256-rD96e9n1GtoNs+1gzNUXlC45+BE2F1XU11lE9jdbyBk=",
       "_content\/BlazorMaterialWeb.Bundled\/BlazorMaterialWeb.Bundled.lib.module.js": "sha256-AmdXDFNOQgXEo0JDzxWKu89\/vF9wmLhyH8yrp8hYXuk=",
-      "_content\/BlazorMaterialWeb\/BlazorMaterialWeb.lib.module.js": "sha256-tg12TKdETN7MnvGq0m9SzdJoqyhvbdOod+NBKZUnagw="
+      "_content\/BlazorMaterialWeb\/BlazorMaterialWeb.lib.module.js": "sha256-yI3dX2cPR5lIZPU0m6ldoPxXoUGiufgDBu9xT6wcmXI="
     },
     "pdb": null,
     "runtime": {
