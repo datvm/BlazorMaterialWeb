@@ -1,20 +1,24 @@
 @namespace BlazorMaterialWeb
+
+@typeparam TValue where TValue: IConvertible, IEquatable<TValue>;
 @inherits DefaultMdComponent
 
+@inject IJSRuntime Js;
+
 <DynamicTag Tag="@(TagName)" @bind-DynamicElementReference="el" @attributes="AdditionalAttributes"
-            quick="@(Quick)"
-            required="@(Required)"
             value="@(Value)"
-            selected-index="@(SelectedIndex)"
+            quick="@(Quick)"
+            required="@(Required)"                        
             disabled="@(Disabled)"
             error-text="@(ErrorText)"
             label="@(Label)"
             supporting-text="@(SupportingText)"
             error="@(Error)"
-            menu-fixed="@(MenuFixed)"
+            menu-positioning="@(MenuPositioning?.ToString().ToLowerInvariant())"
             typeahead-delay="@(TypeaheadDelay)"
             has-leading-icon="@(HasLeadingIcon)"
             display-text="@(DisplayText)"
+            selected-index="@(SelectedIndex)"
             @onselectchange="OnChangeAsync"
             @onselectinput="OnInput">
     @(ChildContent)

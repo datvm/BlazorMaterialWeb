@@ -1,5 +1,7 @@
 ﻿@page "/select"
 
+@inject IJSRuntime Js;
+
 <ComponentDemoPage Name="Select"
                    DesignUrl="@(null)"
                    ComponentUrl="https://github.com/material-components/material-web/blob/main/docs/components/select.md"
@@ -10,23 +12,154 @@
         Select menus display a list of choices on temporary surfaces and display the currently selected menu item above the menu.
     </Description>
     <ComponentDemo>
-        <div class="alert alert-warning">
-            This component is still under development by Material Web.
-            It is not working yet.
+        <div class="row">
+            <div class="col">
+                <MdSelect @ref="cboNum" @bind-Value="selectedValue" @bind-SelectedIndex="selectedIndexes[0]"
+                          class="w-100"
+                          Required="required"
+                          Quick="quick"
+                          Disabled="disabled"
+                          Error="hasError"
+                          ErrorText="@(hasError ? "Did you divide by 0?" : null)"
+                          Label="@(hasLabel ? "Select a constant" : null)"
+                          SupportingText="@(hasSupportingText ? "Custom validity only accepts values smaller than 4" : null)"
+                          HasLeadingIcon="leadingIcon">
+                    @if (leadingIcon)
+                    {
+                        <MdIcon slot="@(MdSelect.LeadingIconSlot)">function</MdIcon>
+                    }
+
+                    @foreach (var (value, text, symbol, desc, url) in Values)
+                    {
+                        <MdSelectOption Value="@(value)">
+                            <div slot="@(MdSelectOption.HeadlineSlot)">@(text)</div>
+                            <div slot="@(MdSelectOption.StartSlot)">@(symbol)</div>
+                            <div slot="@(MdSelectOption.OverlineSlot)">@(value)</div>
+                            <div slot="@(MdSelectOption.SupportingTextSlot)">@(desc)</div>
+
+                            <MdIconButton slot="@(MdSelectOption.EndSlot)" Href="@(url)" Target="_blank">
+                                <MdIcon>open_in_new</MdIcon>
+                            </MdIconButton>
+                        </MdSelectOption>
+                    }
+                </MdSelect>
+
+                <p>Selected value: @(selectedValue), selected index: @(selectedIndexes[0])</p>
+            </div>
+            <div class="col">
+                <MdSelect @ref="cbo" @bind-Value="selectedStrValue" @bind-SelectedIndex="selectedIndexes[1]"
+                          class="w-100"
+                          SelectStyle="MdSelectStyle.Filled"
+                          Required="required"
+                          Quick="quick"
+                          Disabled="disabled"
+                          Error="hasError"
+                          ErrorText="@(hasError ? "Oops, someone doesn't like fruit" : null)"
+                          Label="@(hasLabel ? "Select a fruit" : null)"
+                          SupportingText="@(hasSupportingText ? "May be empty" : null)"
+                          HasLeadingIcon="leadingIcon">
+
+                    @if (leadingIcon)
+                    {
+                        <MdIcon slot="@(MdSelect.LeadingIconSlot)">nutrition</MdIcon>
+                    }
+
+                    <MdSelectOption Value="@("")">No thanks</MdSelectOption>
+                    <MdDivider />
+                    @for (int i = 0; i < StrValues.Length; i++)
+                    {
+                        var z = i;
+                        var value = StrValues[z];
+
+                        <MdSelectOption Value="@(value)" @bind-Selected="strSelected[z]">
+                            <div slot="@(MdSelectOption.HeadlineSlot)">@(value)</div>
+                        </MdSelectOption>
+                    }
+                </MdSelect>
+
+                <p>Selected String value: @(selectedStrValue), selected index: @(selectedIndexes[1])</p>
+                <p><code>MdSelectOption</code> selected: @(string.Join(", ", strSelected))</p>
+            </div>
         </div>
 
-        <MdSelect SelectStyle="style">
-            <MdSelectOption Headline="Apple" Selected />
-            <MdSelectOption Headline="Apricot" />
-        </MdSelect>
     </ComponentDemo>
     <Tweaks>
+        <div class="hstack gap-3 flex-wrap">
+            <LabeledSwitch @bind-Selected="required" Label="Required" />
+            <LabeledSwitch @bind-Selected="quick" Label="Quick (skip animation)" />
+            <LabeledSwitch @bind-Selected="disabled" Label="Disabled" />
+            <LabeledSwitch @bind-Selected="hasError" Label="Error" />
+            <LabeledSwitch @bind-Selected="hasLabel" Label="Label" />
+            <LabeledSwitch @bind-Selected="hasSupportingText" Label="Supporting text" />
+            <LabeledSwitch @bind-Selected="leadingIcon" Label="Leading icon" />
+        </div>
 
+        <div class="hstack gap-3">
+            <MdButton @onclick="() => cbo.ReportValidityAsync()">Report validity</MdButton>
+            <MdButton @onclick="SetCustomValidityAsync">Set custom validity</MdButton>
+            <MdButton @onclick="PrintOptionsAsync">Print options</MdButton>
+            <MdButton @onclick="PrintSelectedOptionsAsync">Print selected options</MdButton>
+        </div>
     </Tweaks>
 </ComponentDemoPage>
 
 @code {
+    bool required = true;
+    bool quick;
+    bool disabled;
+    bool hasError;
+    bool hasLabel = true;
+    bool hasSupportingText = true;
+    bool leadingIcon = true;
 
-    MdSelectStyle style = MdSelectStyle.Outlined;
+    int[] selectedIndexes = new int[2];
+
+    double selectedValue = Values[0].Value;
+    static readonly (double Value, string Text, string Symbol, string Desc, string url)[] Values =
+    {
+        (
+            Math.PI, "Pi", "π",
+            "The ratio of a circle's circumference to its diameter",
+            "https://en.wikipedia.org/wiki/Pi"
+        ),
+        (
+            Math.E, "Euler's number", "e",
+            "The base of natural logarithms",
+            "https://en.wikipedia.org/wiki/E_(mathematical_constant)"
+        ),
+        (
+            Math.Tau, "Tau", "τ",
+            "Ratio of a circle's circumference to its radius",
+            "https://en.wikipedia.org/wiki/Turn_(angle)#Tau_proposals"
+        ),
+    };
+
+    string? selectedStrValue = StrValues[0];
+    static readonly string[] StrValues = { "Apple", "Banana", "Cucumber", };
+    bool[] strSelected = { true, false, false };
+
+    MdSelect<double> cboNum = null!;
+    MdSelect<string?> cbo = null!;
+
+    async Task PrintOptionsAsync()
+    {
+        var options = await cbo.GetOptionsAsync();
+        await Js.InvokeVoidAsync("console.log", options);
+    }
+
+    async Task PrintSelectedOptionsAsync()
+    {
+        var options = await cbo.GetSelectedOptionsAsync();
+        await Js.InvokeVoidAsync("console.log", options);
+    }
+
+    async Task SetCustomValidityAsync()
+    {
+        await cboNum.SetCustomValidityAsync(selectedValue < 4 ?
+            "" : "Please pick a constant smaller than 4");
+
+        // Must call this. See https://developer.mozilla.org/en-US/docs/Web/API/HTMLObjectElement/setCustomValidity
+        await cboNum.ReportValidityAsync();
+    }
 
 }

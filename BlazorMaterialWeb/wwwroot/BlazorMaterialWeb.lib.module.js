@@ -196,4 +196,55 @@ export function afterStarted(blazor) {
         createEventArgs: () => null,
     });
 
+    function createSelectChangeEventArgs(target) {
+        return {
+            value: target.value,
+            selectedIndex: target.selectedIndex,
+        };
+    }
+
+    blazor.registerCustomEventType("selectinput", {
+        browserEventName: "input",
+        createEventArgs: ({ target }) => createSelectChangeEventArgs(target),
+    });
+
+    blazor.registerCustomEventType("selectchange", {
+        browserEventName: "change",
+        createEventArgs: ({ target }) => createSelectChangeEventArgs(target),
+    });
+
+    blazor.registerCustomEventType("selectopening", {
+        browserEventName: "opening",
+        createEventArgs: () => null,
+    });
+
+    blazor.registerCustomEventType("selectopened", {
+        browserEventName: "opened",
+        createEventArgs: () => null,
+    });
+
+    blazor.registerCustomEventType("selectclosing", {
+        browserEventName: "closing",
+        createEventArgs: () => null,
+    });
+
+    blazor.registerCustomEventType("selectclosed", {
+        browserEventName: "closed",
+        createEventArgs: () => null,
+    });
+
+    blazor.registerCustomEventType("selectitemclosemenu", {
+        browserEventName: "close-menu",
+        createEventArgs: () => null,
+    });
+
+    blazor.registerCustomEventType("selectitemrequestselection", {
+        browserEventName: "request-selection",
+        createEventArgs: () => null,
+    });
+
+    blazor.registerCustomEventType("selectitemrequestdeselection", {
+        browserEventName: "request-deselection",
+        createEventArgs: () => null,
+    });
 }

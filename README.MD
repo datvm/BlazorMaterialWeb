@@ -2,7 +2,7 @@
 
 Check out the [Demo Page](https://blazorwebmaterial.lukevo.com/) for the implemented components.
 
-![image](https://github.com/datvm/BlazorMaterialWeb/assets/6388546/ca18219e-831b-4feb-936a-b2cc5febce7b)
+![Demo Page Screenshot](https://github.com/datvm/BlazorMaterialWeb/assets/6388546/a33300f2-8af6-4532-ade9-0d53890ae97a)
 
 - [Demo Page](https://blazorwebmaterial.lukevo.com/)
 - [Nuget Package](https://www.nuget.org/packages/BlazorMaterialWeb/)
@@ -44,7 +44,7 @@ This project depends on Google's [Material Web Component](https://github.com/mat
 | Progress indicators | ✅ | ✅ | [Progress](https://blazorwebmaterial.lukevo.com/progress) |
 | Radio | ✅ | ✅ | [Radio](https://blazorwebmaterial.lukevo.com/radio) |
 | Ripple | ✅ | ✅ | [Ripple](https://blazorwebmaterial.lukevo.com/ripple) |
-| Select | ✅ | 🟡 | [Select](https://blazorwebmaterial.lukevo.com/select) |
+| Select | ✅ | ✅ | [Select](https://blazorwebmaterial.lukevo.com/select) |
 | Slider | ✅ | ✅ | [Slider](https://blazorwebmaterial.lukevo.com/slider) |
 | Switch | ✅ | ✅ | [Switch](https://blazorwebmaterial.lukevo.com/switch) |
 | Tabs | ✅ | ✅ | [Tab](https://blazorwebmaterial.lukevo.com/tabs) |

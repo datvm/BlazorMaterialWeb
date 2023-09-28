@@ -37,6 +37,18 @@
 [EventHandler("onmenuopened", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 [EventHandler("onmenuclosing", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 [EventHandler("onmenuclosed", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+
+// Select
+[EventHandler("onselectinput", typeof(MdSelectChangeEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+[EventHandler("onselectchange", typeof(MdSelectChangeEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+[EventHandler("onselectopening", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+[EventHandler("onselectopened", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+[EventHandler("onselectclosing", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+[EventHandler("onselectclosed", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+
+[EventHandler("onselectitemclosemenu", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+[EventHandler("onselectitemrequestselection", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+[EventHandler("onselectitemrequestdeselection", typeof(EventArgs), enableStopPropagation: true, enablePreventDefault: true)]
 public static class EventHandlers { }
 
 public class MdCheckedEventArgs : EventArgs

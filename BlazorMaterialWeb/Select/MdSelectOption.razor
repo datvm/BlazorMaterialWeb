@@ -1,0 +1,20 @@
+@namespace BlazorMaterialWeb
+
+@typeparam TValue where TValue: IConvertible, IEquatable<TValue>;
+@inherits DefaultMdComponent
+
+<md-select-option @attributes="AdditionalAttributes" @ref="el"
+                  disabled="@(Disabled)"
+                  selected="@(Selected)"
+                  value="@(Value)"
+                  typeahead-text="@(TypeaheadText)"
+                  display-text="@(DisplayText)"
+@onselectitemclosemenu="OnCloseMenu"
+@onselectitemrequestselection="() => OnSelectedChanged(true)"
+@onselectitemrequestdeselection="() => OnSelectedChanged(false)">
+    @(ChildContent)
+</md-select-option>
+
+@code {
+
+}
