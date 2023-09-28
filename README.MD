@@ -5,7 +5,7 @@ Check out the [Demo Page](https://blazorwebmaterial.lukevo.com/) for the impleme
 ![Demo Page Screenshot](https://github.com/datvm/BlazorMaterialWeb/assets/6388546/a33300f2-8af6-4532-ade9-0d53890ae97a)
 
 - [Demo Page](https://blazorwebmaterial.lukevo.com/)
-- [Nuget Package](https://www.nuget.org/packages/BlazorMaterialWeb/)
+- Nuget Package: [Core](https://www.nuget.org/packages/BlazorMaterialWeb/) + [Bundled](https://www.nuget.org/packages/BlazorMaterialWeb.Bundled)
 - [Bundled ESM Module](https://github.com/datvm/material-web)
 - [Roadmap](#roadmap)
 - Google References:
@@ -18,11 +18,11 @@ Check out the [Demo Page](https://blazorwebmaterial.lukevo.com/) for the impleme
 
 Help is very appreciated to correctly map the properties and maintain them. Making demo pages for each component is also a big help.
 
-A Nuget package should be available once the basic components are ready.
+**🎉 v1.0.0 Released in accordance with [Material Web Component v1.0.0](https://github.com/material-components/material-web/discussions/5004)**
 
 # Installation & Usage
 
-See [Demo Page](https://blazorwebmaterial.lukevo.com/) for more setup and usage.
+See [Setup Guide](https://blazorwebmaterial.lukevo.com/) for setup and usage.
 
 # Roadmap
 
