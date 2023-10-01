@@ -1,0 +1,8 @@
+@inherits DefaultInheritableComponent
+
+<DynamicTag Tag="@(TagName)" @attributes="FinalAdditionalAttributes" @bind-DynamicElementReference="el"
+            disabled="@(Disabled)"
+            always-focusable="@(AlwaysFocusable)"
+            label="@(Label)">
+    @(ChildContent)
+</DynamicTag>

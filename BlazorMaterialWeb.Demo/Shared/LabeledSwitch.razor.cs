@@ -12,8 +12,11 @@ partial class LabeledSwitch
     [Parameter]
     public bool Disabled { get; set; }
 
-    [Parameter, EditorRequired]
-    public string Label { get; set; } = null!;
+    [Parameter]
+    public string? Label { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
 
     async Task OnSelectedChanged()
     {

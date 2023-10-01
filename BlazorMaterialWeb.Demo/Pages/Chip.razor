@@ -16,16 +16,21 @@
 
         <div class="vstack gap-3">
             <div>
-                <h4>Assist Chips</h4>
-                <MdChipset Type="MdChipType.Assist">
+                <h3>Assist Chips</h3>
+                <MdChipset>
                     <MdAssistChip @onclick="AddAssist"
-                                  Label="Assist chip" Elevated="elevated" Disabled="disabled" />
+                                  Elevated="elevated" Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                                  Label="Assist chip" />
+
                     <MdAssistChip @onclick="AddAssist"
-                                  Label="Assist chip with icon" Elevated="elevated" Disabled="disabled">
+                                  Elevated="elevated" Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                                  Label="Assist chip with icon">
                         <MdIcon slot="@(MdAssistChip.IconSlot)">home</MdIcon>
                     </MdAssistChip>
+
                     <MdAssistChip @onclick="AddAssist"
-                                  Label="Assist Chip with Link" Elevated="elevated" Disabled="disabled"
+                                  Elevated="elevated" Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                                  Label="Assist Chip with Link"
                                   Href="https://github.com/datvm/BlazorMaterialWeb"
                                   Target="@(targetBlank ? "_blank" : null)">
                         <MdIcon slot="@(MdAssistChip.IconSlot)">link</MdIcon>
@@ -36,23 +41,28 @@
             </div>
 
             <div>
-                <h4>Filter Chips</h4>
+                <h3>Filter Chips</h3>
 
-                <MdChipset Type="MdChipType.Filter">
+                <MdChipset>
                     <MdFilterChip @bind-Selected="filterSelected[0]"
-                                  Label="Filter chip" Elevated="elevated" Disabled="disabled" />
+                                  Elevated="elevated" Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                                  Label="Filter chip" />
                     <MdFilterChip @bind-Selected="filterSelected[1]"
-                                  Label="Filter chip with icon" Elevated="elevated" Disabled="disabled">
+                                  Elevated="elevated" Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                                  Label="Filter chip with icon">
                         <MdIcon slot="@(MdFilterChip.IconSlot)">filter_alt</MdIcon>
                     </MdFilterChip>
-                    <MdFilterChip @bind-Selected="filterSelected[2]" OnRemove="@(() => filterRemoved = true)"
-                                  Label="Removable filter chip" Elevated="elevated" Disabled="disabled" Removable>
-                        <MdIcon slot="@(MdFilterChip.IconSlot)">filter_alt</MdIcon>
-                    </MdFilterChip>
-                </MdChipset>
+                    <MdFilterChip @bind-Selected="filterSelected[2]"
+                                  Elevated="elevated" Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                                  OnRemove="@(() => filterRemoved = true)"
+                                                Removable
+                                   Label="Removable filter chip">
+                         <MdIcon slot="@(MdFilterChip.IconSlot)">filter_alt</MdIcon>
+                     </MdFilterChip>
+                 </MdChipset>
 
-                <p>
-                    Selected: @(string.Join(", ", filterSelected)).
+                 <p>
+                     Selected: @(string.Join(", ", filterSelected)).
 
                     @if (filterRemoved)
                     {
@@ -62,47 +72,60 @@
             </div>
 
             <div>
-                <h4>Input Chips</h4>
+                <h3>Input Chips</h3>
 
-                <MdChipset Type="MdChipType.Input">
-                    <MdInputChip @onclick="@(AddInput)" OnRemove="OnInputRemoved"
-                                 Label="Input chip" Elevated="elevated" Disabled="disabled" />
-                    <MdInputChip @onclick="@(AddInput)" OnRemove="OnInputRemoved"
-                                 Label="Input chip with icon" Elevated="elevated" Disabled="disabled">
+                <MdChipset>
+                    <MdInputChip @onclick="@(AddInput)"
+                                 Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                                 OnRemove="OnInputRemoved"
+                                 Label="Input chip" />
+                    <MdInputChip @onclick="@(AddInput)"
+                                 Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                                 OnRemove="OnInputRemoved"
+                                 Label="Input chip with icon">
                         <MdIcon slot="@(MdInputChip.IconSlot)">keyboard</MdIcon>
                     </MdInputChip>
-                    <MdInputChip @onclick="@(AddInput)" OnRemove="OnInputRemoved"
-                                 Label="Input chip with avatar" Elevated="elevated" Disabled="disabled"
-                                              Avatar>
+                    <MdInputChip @onclick="@(AddInput)"
+                                 Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                                 OnRemove="OnInputRemoved"
+                                 Avatar="true"
+                                 Label="Input chip with avatar">
                         <img slot="@(MdInputChip.IconSlot)" src="https://picsum.photos/id/237/64" />
                     </MdInputChip>
                     <MdInputChip OnRemove="OnInputRemoved"
-                                 Label="Remove-only input chip" Elevated="elevated" Disabled="disabled"
-                                              RemoveOnly />
-                     <MdInputChip @onclick="@(AddInput)" OnRemove="OnInputRemoved"
-                                  Href="https://github.com/datvm/BlazorMaterialWeb" Target="@(targetBlank ? "_blank" : null)"
-                                  Label="Input chip with Link" Elevated="elevated" Disabled="disabled">
-                         <MdIcon slot="@(MdInputChip.IconSlot)">link</MdIcon>
-                     </MdInputChip>
-                 </MdChipset>
+                                 Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                                 Label="Remove-only input chip"
+                                 RemoveOnly="true" />
+                    <MdInputChip @onclick="@(AddInput)"
+                                 Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                                 OnRemove="OnInputRemoved"
+                                 Href="https://github.com/datvm/BlazorMaterialWeb"
+                                 Target="@(targetBlank ? "_blank" : null)"
+                                 Label="Input chip with Link">
+                        <MdIcon slot="@(MdInputChip.IconSlot)">link</MdIcon>
+                    </MdInputChip>
+                </MdChipset>
 
-                 <p>
-                     You clicked @(inputClickCount) times.
+                <p>
+                    You clicked @(inputClickCount) times.
                     You have removed @(inputRemovedCount) chips.
                 </p>
             </div>
 
             <div>
-                <h4>Suggestion Chips</h4>
-                <MdChipset Type="MdChipType.Suggestion">
+                <h3>Suggestion Chips</h3>
+                <MdChipset>
                     <MdSuggestionChip @onclick="AddSuggestion"
-                                      Label="Suggestion chip" Elevated="elevated" Disabled="disabled" />
+                                      Elevated="elevated" Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                                      Label="Suggestion chip" />
                     <MdSuggestionChip @onclick="AddSuggestion"
-                                      Label="Suggestion chip with icon" Elevated="elevated" Disabled="disabled">
+                                      Elevated="elevated" Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                                      Label="Suggestion chip with icon">
                         <MdIcon slot="@(MdSuggestionChip.IconSlot)">home</MdIcon>
                     </MdSuggestionChip>
                     <MdSuggestionChip @onclick="AddSuggestion"
-                                      Label="Suggestion Chip with Link" Elevated="elevated" Disabled="disabled"
+                                      Elevated="elevated" Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                                      Label="Suggestion Chip with Link"
                                       Href="https://github.com/datvm/BlazorMaterialWeb"
                                       Target="@(targetBlank ? "_blank" : null)">
                         <MdIcon slot="@(MdSuggestionChip.IconSlot)">link</MdIcon>
@@ -114,28 +137,21 @@
         </div>
     </ComponentDemo>
     <Tweaks>
-        <label class="hstack gap-3">
-            <MdSwitch @bind-Selected="targetBlank" />
+        <LabeledSwitch @bind-Selected="targetBlank">
             Add <code>_blank</code> to target (Linked chips)
-        </label>
-
-        <label class="hstack gap-3">
-            <MdSwitch @bind-Selected="elevated" />
-            Elevated
-        </label>
-
-        <label class="hstack gap-3">
-            <MdSwitch @bind-Selected="disabled" />
-            Disabled (does not work with Linked chips)
-        </label>
+        </LabeledSwitch>
+        <LabeledSwitch @bind-Selected="elevated" Label="Elevated (does not apply to Input chips)" />
+        <LabeledSwitch @bind-Selected="disabled" Label="Disabled (does not work with Linked chips)" />
+        <LabeledSwitch @bind-Selected="alwaysFocusable" Label="Always focusable" />
     </Tweaks>
 </ComponentDemoPage>
 
 @code {
 
-    bool targetBlank;
+    bool targetBlank = true;
     bool elevated = true;
     bool disabled;
+    bool alwaysFocusable;
 
     int assistClickCount;
     int inputClickCount;

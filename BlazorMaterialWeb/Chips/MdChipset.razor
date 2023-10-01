@@ -1,9 +1,7 @@
 @namespace BlazorMaterialWeb
 
-@inherits DefaultMdComponent
+@inherits DefaultJsComponent
 
-<md-chip-set type="@(Type.ToString().ToLower())">
-    <CascadingValue Value="@(Type)">
-        @(ChildContent)
-    </CascadingValue>
+<md-chip-set>
+    @(ChildContent)
 </md-chip-set>

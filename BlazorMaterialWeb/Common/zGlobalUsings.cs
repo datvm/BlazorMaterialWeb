@@ -2,4 +2,6 @@
 global using Microsoft.JSInterop;
 
 global using System.Diagnostics.CodeAnalysis;
+
 global using BlazorMaterialWeb.Common;
+global using BlazorMaterialWeb.Chips;
