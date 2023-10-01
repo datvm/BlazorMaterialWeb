@@ -11,7 +11,10 @@
     </Description>
     <ComponentDemo>
         <MarkdownBlock>
-            **Note**: If you have issue with spacing between chips when using Blazor `@@if` or other syntax, try using `@@preservewhitespace true` (see [this issue](https://github.com/dotnet/aspnetcore/issues/26426#issuecomment-700837788))
+            **Note**:
+            - If you have issue with spacing between chips when using Blazor `@@if` or other syntax, try using `@@preservewhitespace true` (see [this issue](https://github.com/dotnet/aspnetcore/issues/26426#issuecomment-700837788))
+            - [This library adds a custom event `selected` to the Chips](/features#mdchip-has-a-blazor-specific-event)
+            so you can use `@@bind-Selected` and `OnSelected` event.
         </MarkdownBlock>
 
         <div class="vstack gap-3">
