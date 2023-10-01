@@ -1,4 +1,4 @@
-﻿namespace BlazorMaterialWeb;
+﻿namespace BlazorMaterialWeb.Common;
 
 public abstract class BaseDefaultMdComponent : ComponentBase
 {
@@ -15,7 +15,7 @@ public class DefaultMdComponent : BaseDefaultMdComponent
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
-    
+
 }
 
 public class DefaultMdComponent<TValue> : BaseDefaultMdComponent
@@ -31,12 +31,12 @@ public class DefaultInheritableComponent : DefaultMdComponent
 
     protected virtual IEnumerable<KeyValuePair<string, object?>>? ProtectedAdditionalAttributes
         => null;
-    
+
     protected IEnumerable<KeyValuePair<string, object?>>? FinalAdditionalAttributes
     {
         get
         {
-            if (AdditionalAttributes is null) { return ProtectedAdditionalAttributes; } 
+            if (AdditionalAttributes is null) { return ProtectedAdditionalAttributes; }
             if (ProtectedAdditionalAttributes is null) { return AdditionalAttributes; }
 
             return AdditionalAttributes.Concat(ProtectedAdditionalAttributes);

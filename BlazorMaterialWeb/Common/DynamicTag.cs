@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components.Rendering;
 
-namespace BlazorMaterialWeb;
+namespace BlazorMaterialWeb.Common;
 
 // Thanks to https://stackoverflow.com/a/64197278/653457
 public class DynamicTag : DefaultMdComponent
@@ -18,7 +18,7 @@ public class DynamicTag : DefaultMdComponent
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         builder.OpenElement(0, Tag);
-        
+
 
         if (AdditionalAttributes?.Any() == true)
         {
@@ -26,7 +26,7 @@ public class DynamicTag : DefaultMdComponent
                 AdditionalAttributes.Where(q => q.Value is not null)!);
         }
 
-        builder.AddElementReferenceCapture(2, async (ElementReference element) =>
+        builder.AddElementReferenceCapture(2, async (element) =>
         {
             el = element;
             DynamicElementReference = element;

@@ -24,6 +24,10 @@ body {
     flex-grow: 1;
 }
 
+p {
+    margin: 0;
+}
+
 :root, :host {
     --md-ref-typeface-plain: Roboto,system-ui;
     --md-sys-color-background: #fcf8ff;

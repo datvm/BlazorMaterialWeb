@@ -10,43 +10,81 @@
         Checkboxes let users select one or more items from a list, or turn an item on or off
     </Description>
     <ComponentDemo>
-        <div class="row text-center mb-1">
+        <div class="row text-center">
             <div class="col">
                 <MdCheckbox @bind-Checked="isChecked" @bind-Indeterminate="@(isIndeterminate)"
-                            Disabled="disabled" />
+                            Disabled="disabled"
+                            Required="required" />
             </div>
             <div class="col">
                 <label>
-                    <MdCheckbox @bind-Checked="isChecked" @bind-Indeterminate="@(isIndeterminate)"
-                                Disabled="disabled" />
+                    <MdCheckbox @ref="chk" @bind-Checked="isChecked" @bind-Indeterminate="@(isIndeterminate)"
+                                Disabled="disabled"
+                                Required="required" />
                     This one is wrapped inside a label
                 </label>
             </div>
         </div>
 
-
-        <p>Checked: @(isChecked)</p>
-        <p>Indeterminate: @(isIndeterminate)</p>
+        <p>
+            Checked: @(isChecked).<br />
+            Indeterminate: @(isIndeterminate)<br />
+            Validated: @(validity?.ToString() ?? "Not yet")
+        </p>
     </ComponentDemo>
     <Tweaks>
-        <label class="hstack gap-3">
-            <MdSwitch @bind-Selected="disabled" Icons />
-             <span>Disabled</span>
-         </label>
+        <Stack>
+            <LabeledSwitch @bind-Selected="disabled" Label="Disabled" />
+            <LabeledSwitch @bind-Selected="required" Label="Required" />
+        </Stack>
 
-         <div>
-             <MdButton @onclick="@(() => isIndeterminate = true)">
-                 <MdIcon slot="@(MdButton.IconSlot)">indeterminate_check_box</MdIcon>
-                 Set to Indeterminate
-             </MdButton>
-         </div>
+        <Stack>
+            <MdButton @onclick="@(() => isIndeterminate = true)">
+                <MdIcon slot="@(MdButton.IconSlot)">indeterminate_check_box</MdIcon>
+                Set to Indeterminate
+            </MdButton>
+
+            <MdButton @onclick="CheckValidityAsync">
+                <MdIcon slot="@(MdButton.IconSlot)">done</MdIcon>
+                Check Validity
+            </MdButton>
+
+            <MdButton @onclick="ReportValidityAsync">
+                <MdIcon slot="@(MdButton.IconSlot)">checklist</MdIcon>
+                Report Validity
+            </MdButton>
+
+            <MdButton @onclick="SetCustomValidityAsync">
+                <MdIcon slot="@(MdButton.IconSlot)">verified</MdIcon>
+                Set Custom Validity
+            </MdButton>
+        </Stack>
     </Tweaks>
 </ComponentDemoPage>
 
 @code {
+    MdCheckbox chk = null!;
+    bool? validity;
 
     bool isChecked;
     bool isIndeterminate;
     bool disabled;
+    bool required;
+
+    async Task CheckValidityAsync()
+    {
+        validity = await chk.CheckValidityAsync();
+    }
+
+    async Task ReportValidityAsync()
+    {
+        validity = await chk.ReportValidityAsync();
+    }
+
+    async Task SetCustomValidityAsync()
+    {
+        await chk.SetCustomValidityAsync(chk.Checked ? null : "You must agree!");
+        validity = await chk.ReportValidityAsync();
+    }
 
 }

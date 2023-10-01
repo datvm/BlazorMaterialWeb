@@ -1,0 +1,16 @@
+﻿<div class="@(IsVertical ? "vstack" : "hstack") @(AdditionalClass)">
+    @(ChildContent)
+</div>
+
+@code {
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; } = null!;
+
+    [Parameter]
+    public bool IsVertical { get; set; }
+
+    [Parameter]
+    public string? AdditionalClass { get; set; } = "gap-3";
+
+}

@@ -4,6 +4,9 @@
 
     static readonly (string Text, string Url)[] ComponentUrls =
     {
+        ("Setup", "/"),
+        ("Features", "/features"),
+        ("-", "-"),
         ("Buttons", "/button"),
         ("Checkbox", "/checkbox"),
         ("Chips", "/chip"),
@@ -28,15 +31,14 @@
 }
 
 <MdList Type="MdListItemType.Link">
-    <MdListItem Href="/"
-                active="@((activeUrl?.Url?.Length ?? 0) < 2)">
-        Setup
-    </MdListItem>
-
-    <MdDivider />
-
     @foreach (var url in ComponentUrls)
     {
+        @if (url.Url == "-")
+        {
+            <MdDivider />
+            continue;
+        }
+
         <MdListItem Href="@(url.Url)"
                     active="@(url.Url == activeUrl?.Url)">
             @(url.Text)

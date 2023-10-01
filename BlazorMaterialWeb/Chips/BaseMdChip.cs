@@ -1,4 +1,6 @@
-﻿namespace BlazorMaterialWeb.Chips;
+﻿using BlazorMaterialWeb.Common;
+
+namespace BlazorMaterialWeb.Chips;
 
 public abstract class BaseMdChip : DefaultMdComponent
 {

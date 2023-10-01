@@ -1,0 +1,54 @@
+﻿@page "/features"
+
+@* This div is needed or else Blazor wouldn't remove it when navigating, leaving the content intact *@
+<div>    
+    <MarkdownBlock>
+        # Blazor Specific Features
+
+        This library performs a few changes in additions to the original Web Component library.
+        Some are needed for the Blazor Components to work, some are for convenience.
+
+        ## ElementReference
+
+        All Blazor components render back to their Web Component counterparts. All of them has `ElementReference` property if you need a reference to them.
+        See an example at [Buttons](/button):
+
+        ```cshtml
+        async Task PrintHtmlRefAsync()
+        {
+            await Js.InvokeVoidAsync("console.log", refDemo.ElementReference);
+        }
+        ```
+
+        ## `ChildContent` and attributes splatting
+
+        All Blazor components support `ChildContent` and attributes splatting so you can add arbitrary HTML attributes and content, usually to style them:
+
+        ```cshtml
+        &lt;MdButton style="--md-elevated-button-container-shape: 0">
+            A rectangular button
+        &lt;/MdButton>
+        ```
+    </MarkdownBlock>
+
+    <div class="mb-3">
+        <MdButton style="--md-elevated-button-container-shape: 0">
+            A rectangular button
+        </MdButton>
+    </div>
+    
+
+    <MarkdownBlock>
+        ## Components merging
+
+        Some components are merged into a single component, for example [Buttons](/button).
+        Instead of different component for different styles (`md-elevated-button`, `md-filled-button`, `md-filled-tonal-button`, `md-outlined-button`, `md-text-button`),
+        there is a single `MdButton` component with `ButtonStyle` parameter.
+
+        Currently these are the merged components: `MdButton`, `MdProgress`, `MdTextField`, `MdSelect`.
+        The property name should be `(Component)Style`: `ButtonStyle`, `ProgressStyle`, `TextFieldStyle`, `SelectStyle`.
+
+        _Fun fact_: before the first release, I used to name them `Style` because it's shorter but I had to change it because
+        [Blazor parameters/attributes are case-insensitive](https://github.com/dotnet/aspnetcore/issues/32252) and you cannot set `style` attributes anymore.
+    </MarkdownBlock>
+</div>
