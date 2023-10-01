@@ -61,22 +61,18 @@ partial class MdDialog
     public async Task<string> GetReturnValueAsync() =>
         await Js.GetElementPropertyAsync<string>(el, "returnValue");
 
-    public async Task OpenAsync()
-    {
-        await Js.InvokeElementMethodAsync(el, "show");
-    }
+    public async Task OpenAsync() =>
+        await InvokeMethodAsync("show");
 
-    public async Task CloseAsync()
-    {
-        await Js.InvokeElementMethodAsync(el, "close");
-    }
+    public async Task CloseAsync(string? returnValue = null) =>
+        await InvokeMethodAsync("close", returnValue);
 
     public async Task<MdDialogReturnCallbackArgs> OpenForResultAsync()
     {
         var tcs = closeTcs = new TaskCompletionSource<string>();
         _ = OpenAsync(); // Don't need to wait for this
 
-        return new(this, await closeTcs.Task);
+        return new(this, await tcs.Task);
     }
 
 }

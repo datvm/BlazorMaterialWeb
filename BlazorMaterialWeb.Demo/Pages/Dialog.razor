@@ -25,83 +25,91 @@
             </div>
             <div>
                 <MdButton @onclick="(() => isOpen[2] = true)">Show @(DialogNames[2])</MdButton>
-                <MdButton @onclick="OpenDialogForResultAsync">Show @(DialogNames[2]) and Wait for Result</MdButton>
+                    <MdButton @onclick="OpenDialogForResultAsync">Show @(DialogNames[2]) and Wait for Result</MdButton>
 
                 <p>@(DialogNames[2]) Open: @(isOpen[2])</p>
             </div>
         </div>
 
         <div>
-            <div>
-                <label for="txt-ev-log">Event Log</label>
-            </div>
+            <MdTextField Label="Event Logs"
+                         class="w-100"
+                         Value="@(log)" ReadOnly="true"
+                         Type="@(MdTextFieldTypes.TextArea)" Rows="10">
+                <MdIconButton @onclick="@(() => log = "")"
+                              slot="@(MdTextField.TrailingIconSlot)">
+                    <MdIcon>mop</MdIcon>
+                </MdIconButton>
 
-            <MdTextField id="txt-ev-log" class="w-100" Value="@(log)" ReadOnly
-                          Type="@(MdTextFieldTypes.TextArea)" Rows="10" />
-         </div>
+            </MdTextField>
+        </div>
 
-         <MdDialog @ref="diags[0]" @bind-Open="isOpen[0]"
-                   OnOpen="OnDiagOpen" OnOpened="OnDiagOpened"
-                   OnClose="OnDiagClose" OnClosed="OnDiagClosed">
-             <Headline>
-                 Simple Dialog Title
-             </Headline>
-             <ChildContent>
-                 <form id="frm-simple" method="dialog">
-                     A simple dialog with free-form content.
-                 </form>
-             </ChildContent>
-             <Actions>
-                 <MdButton form="frm-simple">
-                     Ok
-                 </MdButton>
-             </Actions>
-         </MdDialog>
+        <MdDialog @ref="diags[0]" @bind-Open="isOpen[0]"
+                  Type="@(alert ? MdDialogType.Alert : null)"
+                  OnOpen="OnDiagOpen" OnOpened="OnDiagOpened"
+                  OnClose="OnDiagClose" OnClosed="OnDiagClosed">
+            <Headline>
+                Simple Dialog Title
+            </Headline>
+            <ChildContent>
+                <form id="frm-simple" method="dialog">
+                    A simple dialog with free-form content.
+                </form>
+            </ChildContent>
+            <Actions>
+                <MdButton form="frm-simple">
+                    Ok
+                </MdButton>
+            </Actions>
+        </MdDialog>
 
-         <MdDialog @ref="diags[1]" @bind-Open="isOpen[1]"
-                   OnOpen="OnDiagOpen" OnOpened="OnDiagOpened"
-                   OnClose="OnDiagClose" OnClosed="OnDiagClosed">
-             <Headline>
-                 Open &amp; Close manually
-             </Headline>
-             <ChildContent>
-                 <form id="frm-manual" method="dialog">
-                     This dialog closes after 3 seconds.
-                     It was opened by <code>ShowAsync()</code> method
-                     and will be closed by <code>CloseAsync()</code> method.
-                 </form>
-             </ChildContent>
-         </MdDialog>
+        <MdDialog @ref="diags[1]" @bind-Open="isOpen[1]"
+                  Type="@(alert ? MdDialogType.Alert : null)"
+                  OnOpen="OnDiagOpen" OnOpened="OnDiagOpened"
+                  OnClose="OnDiagClose" OnClosed="OnDiagClosed">
+            <Headline>
+                Open &amp; Close manually
+            </Headline>
+            <ChildContent>
+                <form id="frm-manual" method="dialog">
+                    This dialog closes after 3 seconds.
+                    It was opened by <code>ShowAsync()</code> method
+                    and will be closed by <code>CloseAsync()</code> method.
+                </form>
+            </ChildContent>
+        </MdDialog>
 
-         <MdDialog @ref="diags[2]" @bind-Open="isOpen[2]"
-                   OnOpen="OnDiagOpen" OnOpened="OnDiagOpened"
-                   OnClose="OnDiagClose" OnClosed="OnDiagClosed">
-             <Headline>
-                 Return Value
-             </Headline>
-             <ChildContent>
-                 <form id="frm-value" method="dialog">
-                     <MdTextField Label="Enter your name" @bind-Value="@(enteredName)" />
-                 </form>
-             </ChildContent>
-             <Actions>
-                 <MdButton form="frm-value" Value="cancel">
-                     Nevermind
-                 </MdButton>
-                 <MdButton form="frm-value" Value="ok">
-                     Say Hello
-                 </MdButton>
-             </Actions>
-         </MdDialog>
+        <MdDialog @ref="diags[2]" @bind-Open="isOpen[2]"
+                  Type="@(alert ? MdDialogType.Alert : null)"
+                  OnOpen="OnDiagOpen" OnOpened="OnDiagOpened"
+                  OnClose="OnDiagClose" OnClosed="OnDiagClosed">
+            <Headline>
+                Return Value
+            </Headline>
+            <ChildContent>
+                <form id="frm-value" method="dialog">
+                    <MdTextField Label="Enter your name" @bind-Value="@(enteredName)" />
+                </form>
+            </ChildContent>
+            <Actions>
+                <MdButton form="frm-value" Value="cancel">
+                    Nevermind
+                </MdButton>
+                <MdButton form="frm-value" Value="ok">
+                    Say Hello
+                </MdButton>
+            </Actions>
+        </MdDialog>
+    </ComponentDemo>
+    <Tweaks>
+        <LabeledSwitch @bind-Selected="alert" Label="Alert type" />
+    </Tweaks>
+</ComponentDemoPage>
 
-     </ComponentDemo>
-     <Tweaks>
-     </Tweaks>
- </ComponentDemoPage>
-
- @code {
+@code {
 
     string log = "";
+    bool alert;
 
     MdDialog[] diags = new MdDialog[3];
     bool[] isOpen = new bool[3];
