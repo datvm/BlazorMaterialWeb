@@ -1,7 +1,7 @@
 ﻿@page "/features"
 
-@* This div is needed or else Blazor wouldn't remove it when navigating, leaving the content intact *@
-<div>    
+@* This element is needed or else Blazor wouldn't remove it when navigating, leaving the content intact *@
+<article>    
     <MarkdownBlock>
         # Blazor Specific Features
 
@@ -37,8 +37,16 @@
         </MdButton>
     </div>
     
-
     <MarkdownBlock>
+        ## Event dispatching is intercepted
+
+        This library modifies `EventTarget.prototype.dispatchEvent`.
+        [Blazor cannot get any non-bubble event](https://github.com/dotnet/aspnetcore/issues/39831#issuecomment-1024304085)
+        and most events from Material Web Components are non-bubble events (see [this issue](https://github.com/material-components/material-web/issues/4905)).
+
+        Therefore, this library intercepts `dispatchEvent` and makes them bubble instead.
+        Please create an issue if this causes any problem. The source code is at [`#overrideDispatch` method of BlazorMaterialWeb.lib.module.js](https://github.com/datvm/BlazorMaterialWeb/blob/master/BlazorMaterialWeb/wwwroot/BlazorMaterialWeb.lib.module.js).
+
         ## Components merging
 
         Some components are merged into a single component, for example [Buttons](/button).
@@ -50,5 +58,11 @@
 
         _Fun fact_: before the first release, I used to name them `Style` because it's shorter but I had to change it because
         [Blazor parameters/attributes are case-insensitive](https://github.com/dotnet/aspnetcore/issues/32252) and you cannot set `style` attributes anymore.
+
+        ## `MdChip` has a Blazor-specific event
+
+        See [this issue](https://github.com/material-components/material-web/issues/4951).
+        `md-...-chip` does not have any event to determine when a chip is selected.
+        This library observes the Chips for event so you can do `@@bind-Selected`.
     </MarkdownBlock>
-</div>
+</article>

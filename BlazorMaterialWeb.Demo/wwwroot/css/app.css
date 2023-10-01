@@ -28,6 +28,10 @@ p {
     margin: 0;
 }
 
+article p {
+    margin-bottom: 1rem;
+}
+
 :root, :host {
     --md-ref-typeface-plain: Roboto,system-ui;
     --md-sys-color-background: #fcf8ff;
