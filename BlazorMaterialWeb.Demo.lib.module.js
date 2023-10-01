@@ -1,3 +1,5 @@
+import "https://cdnjs.cloudflare.com/ajax/libs/marked-gfm-heading-id/3.1.0/index.umd.min.js";
+
 export function beforeStart() {
 
     function trimSameLeadingSpaces(input) {
@@ -38,6 +40,8 @@ export function beforeStart() {
     }
 
     function observeMarkdown() {
+        marked.use(markedGfmHeadingId.gfmHeadingId());
+
         const obs = new MutationObserver((e) => {
             for (const record of e) {
                 for (const node of record.addedNodes) {
