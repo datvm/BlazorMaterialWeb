@@ -4,7 +4,7 @@ foreach($file in $files) {
 	rm $file.FullName
 }
 
-$version="--property:Version=1.0.1"
+$version="--property:Version=1.0.2"
 
 dotnet pack .\BlazorMaterialWeb\BlazorMaterialWeb.csproj -c Release "--property:PackageOutputPath=.\bin\nuget" "$version"
 dotnet pack .\BlazorMaterialWeb.Bundled\BlazorMaterialWeb.Bundled.csproj -c Release "--property:PackageOutputPath=.\bin\nuget" "$version"
