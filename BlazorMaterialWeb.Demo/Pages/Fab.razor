@@ -11,7 +11,7 @@
     </Description>
     <ComponentDemo>
         <MarkdownBlock>
-            [Component merging](/features#components-merging):
+            **[Component merging](/features#components-merging)**:
             `&lt;md-fab>` and `&lt;md-branded-fab>` is merged into a single
             `&lt;MdFab>` component. Setting `@(nameof(MdFab.Branded))` parameter
             to `true` to get a branded FAB.
@@ -51,18 +51,11 @@
         }
     </ComponentDemo>
     <Tweaks>
-        <label class="hstack gap-3">
-            <MdSwitch @bind-Selected="lowered" />
-            Lowered
-        </label>
-        <label class="hstack gap-3">
-            <MdSwitch @bind-Selected="label" />
-            Label (Extended)
-        </label>
-        <label class="hstack gap-3">
-            <MdSwitch @bind-Selected="branded" />
-            Branded
-        </label>
+        <Stack>
+            <LabeledSwitch @bind-Selected="lowered" Label="Lowered" />
+            <LabeledSwitch @bind-Selected="label" Label="Label (Extended)" />
+            <LabeledSwitch @bind-Selected="branded" Label="Branded" />
+        </Stack>
     </Tweaks>
 </ComponentDemoPage>
 

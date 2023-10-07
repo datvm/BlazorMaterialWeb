@@ -1,81 +1,104 @@
 ﻿@page "/icon-buttons"
 
-<PageTitle>Icon buttons</PageTitle>
+<ComponentDemoPage Name="Icon Buttons"
+                   DesignUrl="https://m3.material.io/components/icon-buttons/overview"
+                   ComponentUrl="https://material-web.dev/components/icon-button/"
+                   ComponentSourcePath="iconbutton"
+                   BlazorComponentSourcePath="MdIconButton.razor"
+                   BlazorDemoSourceName="IconButton">
+    <Description>
+        Icon buttons help people take supplementary actions with a single tap.
+    </Description>
+    <ComponentDemo>
+        <MarkdownBlock>
+            **[Components merging](/features#components-merging)**:
+            All button types
+            (`md-icon-button`, `md-filled-icon-button`, `md-filled-tonal-icon-button` and `md-outlined-icon-button`)
+            are merged into a single `MdIconButton` and you can use
+            `ButtonStyle` parameter to set the style.
+            `MdIconButtonStyle.Default` is the default value if unset.
+        </MarkdownBlock>
 
-<h1>Icon buttons</h1>
-
-<p>Icon buttons help people take minor actions with one tap</p>
-
-<div class="my-5">
-    <div class="row text-center">
-        @foreach (var style in Enum.GetValues<MdIconButtonStyle>())
+        @for (int i = 0; i < 2; i++)
         {
-            <div class="col">
-                <p>
-                    <MdIconButton ButtonStyle="@(style)"
-                                  Href="@(hasHref ? "https://www.example.com" : null)"
-                                  Target="@(hasHref && targetBlank ? "_blank" : null)"
-                                  Toggle="@(toggle)"
-                    @bind-Selected="@(selected)"
-                    @onclick="@(() => clicked = style.ToString())">
-                        <MdIcon>@(icon)</MdIcon>
-                        </MdIconButton>
-                    </p>
-                    <p>@(style)</p>
+            bool isRtl = i == 1;
+
+            <div>@(isRtl ? $"RTL with {nameof(MdIconButton.FlipIconInRtl)}" : "LTR")</div>
+
+            <div class="row text-center"
+                 style="direction: @(isRtl ? "rtl" : "ltr")">
+                @foreach (var style in Enum.GetValues<MdIconButtonStyle>())
+                {
+                    <div class="col">
+                        <p>
+                            <MdIconButton @bind-Selected="@(selected)"
+                            @onclick="@(() => clicked = style.ToString())"
+                                          ButtonStyle="@(style)"
+                                          Href="@(hasHref ? "https://github.com/datvm/BlazorMaterialWeb/" : null)"
+                                          Target="@(hasHref && targetBlank ? "_blank" : null)"
+                                          Toggle="@(toggle)"
+                                          Disabled="@(disabled)"
+                                          FlipIconInRtl="isRtl">
+                                <MdIcon>@(icon)</MdIcon>
+                                </MdIconButton>
+                            </p>
+                            <p>@(style)</p>
+                    </div>
+                }
             </div>
         }
-    </div>
 
-    <p class="mt-1">
-        You have clicked: @(clicked ?? "Not yet")<br />
-        Selected (Toggle button): @selected.ToString()
-    </p>
-</div>
+        <div>
+            You have clicked: @(clicked ?? "Not yet")<br />
+            Selected (Toggle button): @selected.ToString()
+        </div>
+    </ComponentDemo>
+    <Tweaks>
+        <Stack>
+            <span>Button Function:</span>
 
+            <MdRadioGroup @bind-Value="function" @bind-Value:after="SetTo"
+                          Name="opt-function">
+                <Stack>
+                    <LabeledRadio Value="@("Button")" />
+                    <LabeledRadio Value="@("Toggle")" />
+                    <LabeledRadio Value="@("Link")" />
+                </Stack>
+            </MdRadioGroup>
 
-<p>
-    Function:
+            <label>
+                <MdCheckbox @bind-Checked="targetBlank" Disabled="@(!hasHref)" />
+                Set target <code>_blank</code>
+            </label>
+        </Stack>
 
-    <MdRadioGroup Name="opt-function" ValueChanged="SetTo" TValue="string">
-        <label class="me-3">
-            <MdRadio name="opt-function" Checked="button" Value="@(nameof(button))" />
-            Button
-        </label>
+        <Stack>
+            <LabeledSwitch @bind-Selected="disabled" Disabled="@(hasHref)" Label="Disabled" />
+        </Stack>
+    </Tweaks>
+</ComponentDemoPage>
 
-        <label class="me-3">
-            <MdRadio name="opt-function" Checked="toggle" Value="@(nameof(toggle))" />
-            Toggle Button
-        </label>
+@code {    
+    const string icon = "send";
 
-        <label class="me-3">
-            <MdRadio name="opt-function" Checked="hasHref" Value="@(nameof(hasHref))" />
-            Link
-        </label>
-
-        <label>
-            <MdCheckbox @bind-Checked="targetBlank" Disabled="@(!hasHref)" />
-            Set target <code>_blank</code>
-        </label>
-    </MdRadioGroup>
-</p>
-
-@code {
+    string function = "Button";
     bool selected;
+    bool disabled;
 
     string? clicked;
-    string icon = "check";
-
+    
     bool button = true;
     bool toggle;
     bool hasHref;
 
     bool targetBlank;
 
-    void SetTo(string? value)
+    void SetTo()
     {
-        button = value == nameof(button);
-        toggle = value == nameof(toggle);
-        hasHref = value == nameof(hasHref);
+        button = function == "Button";
+        toggle = function == "Toggle";
+        hasHref = function == "Link";
+        Console.WriteLine(function);
     }
 
 }

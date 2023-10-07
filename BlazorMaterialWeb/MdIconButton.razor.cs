@@ -1,5 +1,10 @@
 ﻿namespace BlazorMaterialWeb;
 
+/// <summary>
+/// Icon buttons help people take minor actions with one tap.
+/// <a href="https://m3.material.io/components/icon-buttons/overview">Design</a>,
+/// <a href="https://material-web.dev/components/icon-button/">Component</a>
+/// </summary>
 partial class MdIconButton
 {
 
