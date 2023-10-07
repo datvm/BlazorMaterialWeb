@@ -71,16 +71,16 @@
         </div>
 
 
-        <div class="hstack gap-3">
+        <Stack>
             <LabeledSwitch @bind-Selected="hasHref" Label="Has Href" />
 
             <label>
                 <MdCheckbox @bind-Checked="targetBlank" Disabled="@(!hasHref)" />
                 Set Target to _blank
             </label>
-        </div>
+        </Stack>
 
-        <div class="hstack gap-3">
+        <Stack>
             <label class="flex-shrink-0">
                 <MdCheckbox @bind-Checked="hasIcon" />
                 Has Icon
@@ -97,7 +97,7 @@
                          SupportingText="Apparently HasIcon only affects the button layout. It still renders the icon if you give it the icon slot.">
                 <MdIcon slot="leading-icon">Emoticon</MdIcon>
             </MdTextField>
-        </div>
+        </Stack>
     </Tweaks>
 </ComponentDemoPage>
 

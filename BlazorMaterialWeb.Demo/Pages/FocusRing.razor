@@ -26,19 +26,12 @@
                 </div>
             }
         </div>
-        
+
         <p class="mb-0">Press Tab to focus the button or toggle Visible to see the effect again</p>
     </ComponentDemo>
     <Tweaks>
-        <label class="hstack gap-1">
-            <MdSwitch @bind-Selected="visible" />
-            Visible
-        </label>
-
-        <label class="hstack gap-1">
-            <MdSwitch @bind-Selected="inward" />
-            Inward
-        </label>
+        <LabeledSwitch @bind-Selected="visible" Label="Visible" />
+        <LabeledSwitch @bind-Selected="inward" Label="Inward" />
     </Tweaks>
 </ComponentDemoPage>
 

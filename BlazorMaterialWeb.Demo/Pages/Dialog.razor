@@ -14,34 +14,30 @@
             `BlazorMaterialWeb` provides the `OpenForResultAsync` method on `MdDialog` so you can open a dialog and wait for the result.
         </MarkdownBlock>
 
-        <div class="hstack gap-3">
-            <div>
-                <MdButton @onclick="(() => isOpen[0] = true)">Show @(DialogNames[0])</MdButton>
-                    <p>@(DialogNames[0]) Open: @(isOpen[0])</p>
+        <div class="row">
+            <div class="col-auto">
+                <Stack IsVertical="true" AdditionalClass="gap-1">
+                    <MdButton @onclick="(() => isOpen[0] = true)">Show @(DialogNames[0])</MdButton>
+                        <p>@(DialogNames[0]) Open: @(isOpen[0])</p>
+                    <MdButton @onclick="OpenDialog1Async">Manually Open and Close</MdButton>
+                    <p>@(DialogNames[1]) Open: @(isOpen[1])</p>
+                    <MdButton @onclick="(() => isOpen[2] = true)">Show @(DialogNames[2])</MdButton>
+                        <MdButton @onclick="OpenDialogForResultAsync">Show @(DialogNames[2]) and Wait for Result</MdButton>
+                    <p>@(DialogNames[2]) Open: @(isOpen[2])</p>
+                </Stack>
             </div>
-            <div>
-                <MdButton @onclick="OpenDialog1Async">Manually Open and Close</MdButton>
-                <p>@(DialogNames[1]) Open: @(isOpen[1])</p>
+            <div class="col">
+                <MdTextField Label="Event Logs"
+                             class="w-100"
+                             Value="@(log)" ReadOnly="true"
+                             Type="@(MdTextFieldTypes.TextArea)" Rows="10">
+                    <MdIconButton @onclick="@(() => log = "")"
+                                  slot="@(MdTextField.TrailingIconSlot)">
+                        <MdIcon>mop</MdIcon>
+                    </MdIconButton>
+
+                </MdTextField>
             </div>
-            <div>
-                <MdButton @onclick="(() => isOpen[2] = true)">Show @(DialogNames[2])</MdButton>
-                    <MdButton @onclick="OpenDialogForResultAsync">Show @(DialogNames[2]) and Wait for Result</MdButton>
-
-                <p>@(DialogNames[2]) Open: @(isOpen[2])</p>
-            </div>
-        </div>
-
-        <div>
-            <MdTextField Label="Event Logs"
-                         class="w-100"
-                         Value="@(log)" ReadOnly="true"
-                         Type="@(MdTextFieldTypes.TextArea)" Rows="10">
-                <MdIconButton @onclick="@(() => log = "")"
-                              slot="@(MdTextField.TrailingIconSlot)">
-                    <MdIcon>mop</MdIcon>
-                </MdIconButton>
-
-            </MdTextField>
         </div>
 
         <MdDialog @ref="diags[0]" @bind-Open="isOpen[0]"

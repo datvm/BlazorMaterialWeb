@@ -11,26 +11,17 @@
     </Description>
     <ComponentDemo>
         <div>Some content</div>
-        
+
         <MdDivider Inset="inset" InsetStart="insetStart" InsetEnd="insetEnd" />
 
         <div>Some content</div>
     </ComponentDemo>
     <Tweaks>
-        <div class="hstack gap-3">
-            <label class="hstack gap-1">
-                <MdSwitch @bind-Selected="inset" />
-                Inset
-            </label>
-            <label class="hstack gap-1">
-                <MdSwitch @bind-Selected="insetStart" />
-                Inset Start
-            </label>
-            <label class="hstack gap-1">
-                <MdSwitch @bind-Selected="insetEnd" />
-                Inset End
-            </label>
-        </div>
+        <Stack>
+            <LabeledSwitch @bind-Selected="inset" Label="Inset" />
+            <LabeledSwitch @bind-Selected="insetStart" Label="Inset Start" />
+            <LabeledSwitch @bind-Selected="insetEnd" Label="Inset End" />
+        </Stack>
     </Tweaks>
 </ComponentDemoPage>
 

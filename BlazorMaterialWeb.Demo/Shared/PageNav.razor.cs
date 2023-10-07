@@ -3,15 +3,20 @@
 sealed partial class PageNav : IDisposable
 {
 
-    (string Text, string Url)? activeUrl;
+    (string Text, string Url) activeUrl;
 
     void FindActiveItem()
     {
         var path = new Uri(Nav.Uri).LocalPath;
         activeUrl = ComponentUrls
-            .FirstOrDefault(q => path.StartsWith(
+            .FirstOrDefault(q => q.Url.Length > 1 && path.StartsWith(
                 q.Url,
                 StringComparison.OrdinalIgnoreCase));
+
+        if (activeUrl == default)
+        {
+            activeUrl = ComponentUrls.FirstOrDefault();
+        }
 
         // This is needed because LocationChanged doesn't trigger it
         StateHasChanged();

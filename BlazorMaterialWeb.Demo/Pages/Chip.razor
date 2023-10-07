@@ -17,126 +17,124 @@
             so you can use `@@bind-Selected` and `OnSelected` event.
         </MarkdownBlock>
 
-        <div class="vstack gap-3">
-            <div>
-                <h3>Assist Chips</h3>
-                <MdChipset>
-                    <MdAssistChip @onclick="AddAssist"
-                                  Elevated="elevated" Disabled="disabled" AlwaysFocusable="alwaysFocusable"
-                                  Label="Assist chip" />
+        <div>
+            <h3>Assist Chips</h3>
+            <MdChipset>
+                <MdAssistChip @onclick="AddAssist"
+                              Elevated="elevated" Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                              Label="Assist chip" />
 
-                    <MdAssistChip @onclick="AddAssist"
-                                  Elevated="elevated" Disabled="disabled" AlwaysFocusable="alwaysFocusable"
-                                  Label="Assist chip with icon">
-                        <MdIcon slot="@(MdAssistChip.IconSlot)">home</MdIcon>
-                    </MdAssistChip>
+                <MdAssistChip @onclick="AddAssist"
+                              Elevated="elevated" Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                              Label="Assist chip with icon">
+                    <MdIcon slot="@(MdAssistChip.IconSlot)">home</MdIcon>
+                </MdAssistChip>
 
-                    <MdAssistChip @onclick="AddAssist"
+                <MdAssistChip @onclick="AddAssist"
+                              Elevated="elevated" Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                              Label="Assist Chip with Link"
+                              Href="https://github.com/datvm/BlazorMaterialWeb"
+                              Target="@(targetBlank ? "_blank" : null)">
+                    <MdIcon slot="@(MdAssistChip.IconSlot)">link</MdIcon>
+                </MdAssistChip>
+            </MdChipset>
+
+            <p>You clicked @(assistClickCount) times.</p>
+        </div>
+
+        <div>
+            <h3>Filter Chips</h3>
+
+            <MdChipset>
+                <MdFilterChip @bind-Selected="filterSelected[0]"
+                              Elevated="elevated" Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                              Label="Filter chip" />
+                <MdFilterChip @bind-Selected="filterSelected[1]"
+                              Elevated="elevated" Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                              Label="Filter chip with icon">
+                    <MdIcon slot="@(MdFilterChip.IconSlot)">filter_alt</MdIcon>
+                </MdFilterChip>
+                <MdFilterChip @bind-Selected="filterSelected[2]"
+                              Elevated="elevated" Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                              OnRemove="@(() => filterRemoved = true)"
+                                        Removable
+                               Label="Removable filter chip">
+                     <MdIcon slot="@(MdFilterChip.IconSlot)">filter_alt</MdIcon>
+                 </MdFilterChip>
+             </MdChipset>
+
+             <p>
+                 Selected: @(string.Join(", ", filterSelected)).
+
+                @if (filterRemoved)
+                {
+                    <span>You have removed the removable filter chip.</span>
+                }
+            </p>
+        </div>
+
+        <div>
+            <h3>Input Chips</h3>
+
+            <MdChipset>
+                <MdInputChip @onclick="@(AddInput)"
+                             Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                             OnRemove="OnInputRemoved"
+                             Label="Input chip" />
+                <MdInputChip @onclick="@(AddInput)"
+                             Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                             OnRemove="OnInputRemoved"
+                             Label="Input chip with icon">
+                    <MdIcon slot="@(MdInputChip.IconSlot)">keyboard</MdIcon>
+                </MdInputChip>
+                <MdInputChip @onclick="@(AddInput)"
+                             Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                             OnRemove="OnInputRemoved"
+                             Avatar="true"
+                             Label="Input chip with avatar">
+                    <img slot="@(MdInputChip.IconSlot)" src="https://picsum.photos/id/237/64" />
+                </MdInputChip>
+                <MdInputChip OnRemove="OnInputRemoved"
+                             Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                             Label="Remove-only input chip"
+                             RemoveOnly="true" />
+                <MdInputChip @onclick="@(AddInput)"
+                             Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                             OnRemove="OnInputRemoved"
+                             Href="https://github.com/datvm/BlazorMaterialWeb"
+                             Target="@(targetBlank ? "_blank" : null)"
+                             Label="Input chip with Link">
+                    <MdIcon slot="@(MdInputChip.IconSlot)">link</MdIcon>
+                </MdInputChip>
+            </MdChipset>
+
+            <p>
+                You clicked @(inputClickCount) times.
+                You have removed @(inputRemovedCount) chips.
+            </p>
+        </div>
+
+        <div>
+            <h3>Suggestion Chips</h3>
+            <MdChipset>
+                <MdSuggestionChip @onclick="AddSuggestion"
                                   Elevated="elevated" Disabled="disabled" AlwaysFocusable="alwaysFocusable"
-                                  Label="Assist Chip with Link"
+                                  Label="Suggestion chip" />
+                <MdSuggestionChip @onclick="AddSuggestion"
+                                  Elevated="elevated" Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                                  Label="Suggestion chip with icon">
+                    <MdIcon slot="@(MdSuggestionChip.IconSlot)">home</MdIcon>
+                </MdSuggestionChip>
+                <MdSuggestionChip @onclick="AddSuggestion"
+                                  Elevated="elevated" Disabled="disabled" AlwaysFocusable="alwaysFocusable"
+                                  Label="Suggestion Chip with Link"
                                   Href="https://github.com/datvm/BlazorMaterialWeb"
                                   Target="@(targetBlank ? "_blank" : null)">
-                        <MdIcon slot="@(MdAssistChip.IconSlot)">link</MdIcon>
-                    </MdAssistChip>
-                </MdChipset>
+                    <MdIcon slot="@(MdSuggestionChip.IconSlot)">link</MdIcon>
+                </MdSuggestionChip>
+            </MdChipset>
 
-                <p>You clicked @(assistClickCount) times.</p>
-            </div>
-
-            <div>
-                <h3>Filter Chips</h3>
-
-                <MdChipset>
-                    <MdFilterChip @bind-Selected="filterSelected[0]"
-                                  Elevated="elevated" Disabled="disabled" AlwaysFocusable="alwaysFocusable"
-                                  Label="Filter chip" />
-                    <MdFilterChip @bind-Selected="filterSelected[1]"
-                                  Elevated="elevated" Disabled="disabled" AlwaysFocusable="alwaysFocusable"
-                                  Label="Filter chip with icon">
-                        <MdIcon slot="@(MdFilterChip.IconSlot)">filter_alt</MdIcon>
-                    </MdFilterChip>
-                    <MdFilterChip @bind-Selected="filterSelected[2]"
-                                  Elevated="elevated" Disabled="disabled" AlwaysFocusable="alwaysFocusable"
-                                  OnRemove="@(() => filterRemoved = true)"
-                                                Removable
-                                   Label="Removable filter chip">
-                         <MdIcon slot="@(MdFilterChip.IconSlot)">filter_alt</MdIcon>
-                     </MdFilterChip>
-                 </MdChipset>
-
-                 <p>
-                     Selected: @(string.Join(", ", filterSelected)).
-
-                    @if (filterRemoved)
-                    {
-                        <span>You have removed the removable filter chip.</span>
-                    }
-                </p>
-            </div>
-
-            <div>
-                <h3>Input Chips</h3>
-
-                <MdChipset>
-                    <MdInputChip @onclick="@(AddInput)"
-                                 Disabled="disabled" AlwaysFocusable="alwaysFocusable"
-                                 OnRemove="OnInputRemoved"
-                                 Label="Input chip" />
-                    <MdInputChip @onclick="@(AddInput)"
-                                 Disabled="disabled" AlwaysFocusable="alwaysFocusable"
-                                 OnRemove="OnInputRemoved"
-                                 Label="Input chip with icon">
-                        <MdIcon slot="@(MdInputChip.IconSlot)">keyboard</MdIcon>
-                    </MdInputChip>
-                    <MdInputChip @onclick="@(AddInput)"
-                                 Disabled="disabled" AlwaysFocusable="alwaysFocusable"
-                                 OnRemove="OnInputRemoved"
-                                 Avatar="true"
-                                 Label="Input chip with avatar">
-                        <img slot="@(MdInputChip.IconSlot)" src="https://picsum.photos/id/237/64" />
-                    </MdInputChip>
-                    <MdInputChip OnRemove="OnInputRemoved"
-                                 Disabled="disabled" AlwaysFocusable="alwaysFocusable"
-                                 Label="Remove-only input chip"
-                                 RemoveOnly="true" />
-                    <MdInputChip @onclick="@(AddInput)"
-                                 Disabled="disabled" AlwaysFocusable="alwaysFocusable"
-                                 OnRemove="OnInputRemoved"
-                                 Href="https://github.com/datvm/BlazorMaterialWeb"
-                                 Target="@(targetBlank ? "_blank" : null)"
-                                 Label="Input chip with Link">
-                        <MdIcon slot="@(MdInputChip.IconSlot)">link</MdIcon>
-                    </MdInputChip>
-                </MdChipset>
-
-                <p>
-                    You clicked @(inputClickCount) times.
-                    You have removed @(inputRemovedCount) chips.
-                </p>
-            </div>
-
-            <div>
-                <h3>Suggestion Chips</h3>
-                <MdChipset>
-                    <MdSuggestionChip @onclick="AddSuggestion"
-                                      Elevated="elevated" Disabled="disabled" AlwaysFocusable="alwaysFocusable"
-                                      Label="Suggestion chip" />
-                    <MdSuggestionChip @onclick="AddSuggestion"
-                                      Elevated="elevated" Disabled="disabled" AlwaysFocusable="alwaysFocusable"
-                                      Label="Suggestion chip with icon">
-                        <MdIcon slot="@(MdSuggestionChip.IconSlot)">home</MdIcon>
-                    </MdSuggestionChip>
-                    <MdSuggestionChip @onclick="AddSuggestion"
-                                      Elevated="elevated" Disabled="disabled" AlwaysFocusable="alwaysFocusable"
-                                      Label="Suggestion Chip with Link"
-                                      Href="https://github.com/datvm/BlazorMaterialWeb"
-                                      Target="@(targetBlank ? "_blank" : null)">
-                        <MdIcon slot="@(MdSuggestionChip.IconSlot)">link</MdIcon>
-                    </MdSuggestionChip>
-                </MdChipset>
-
-                <p>You clicked @(suggestionClickCount) times.</p>
-            </div>
+            <p>You clicked @(suggestionClickCount) times.</p>
         </div>
     </ComponentDemo>
     <Tweaks>

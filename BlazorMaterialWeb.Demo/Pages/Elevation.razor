@@ -21,22 +21,17 @@
         </div>
     </ComponentDemo>
     <Tweaks>
-        <div class="hstack gap-1">
-            <label for="txt-elevation">
+        <div>
+            <label>
                 Elevation
-            </label>
 
-            <MdSlider id="txt-elevation" @bind-Value="elevation" @bind-Value:event="ValueInput" Min="1" Max="5" Step="1" Ticks />
+                <MdSlider @bind-Value="elevation" @bind-Value:event="ValueInput" Min="1" Max="5" Step="1" Ticks />
+            </label>
 
              <span>@(elevation)</span>
         </div>
 
-        <div class="hstack gap-1">
-            <label class="hstack gap-1">
-                <MdSwitch @bind-Selected="animation" />
-                Animation
-            </label>
-        </div>
+        <LabeledSwitch @bind-Selected="animation" Label="Animation" />
     </Tweaks>
 </ComponentDemoPage>
 
