@@ -10,6 +10,13 @@
         Floating action buttons (FABs) help people take primary actions.
     </Description>
     <ComponentDemo>
+        <MarkdownBlock>
+            [Component merging](/features#components-merging):
+            `&lt;md-fab>` and `&lt;md-branded-fab>` is merged into a single
+            `&lt;MdFab>` component. Setting `@(nameof(MdFab.Branded))` parameter
+            to `true` to get a branded FAB.
+        </MarkdownBlock>
+
         @foreach (var size in Enum.GetValues<MdFabSize>())
         {
             <div>
