@@ -1,7 +1,5 @@
 @namespace BlazorMaterialWeb
-@inherits DefaultMdComponent
-
-@inject IJSRuntime Js;
+@inherits DefaultJsComponent
 
 <md-list @attributes="AdditionalAttributes">
     <CascadingValue Name="MdListType" Value="@(Type)">

@@ -11,14 +11,13 @@ partial class MdList
     [Parameter]
     public MdListItemType? Type { get; set; }
 
-    public async Task<IEnumerable<IJSObjectReference>> GetItemsAsync() =>
-        await Js.GetElementPropertyAsync<IEnumerable<IJSObjectReference>>(
-            el, "items");
+    public async Task<IJSObjectReference> GetItemsAsync() =>
+        await GetPropertyAsync<IJSObjectReference>("items");
 
-    public async Task ActivateNextItemAsync() =>
-        await Js.InvokeElementMethodAsync(el, "activateNextItem");
+    public async Task<IJSObjectReference> ActivateNextItemAsync() =>
+        await InvokeMethodAsync<IJSObjectReference>("activateNextItem");
 
-    public async Task ActivatePreviousItemAsync() =>
-        await Js.InvokeElementMethodAsync(el, "activatePreviousItem");
+    public async Task<IJSObjectReference> ActivatePreviousItemAsync() =>
+        await InvokeMethodAsync<IJSObjectReference>("activatePreviousItem");
 
 }
