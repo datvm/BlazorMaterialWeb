@@ -13,6 +13,7 @@
         <div class="row text-center mb-1">
             <div class="col">
                 <MdSwitch @bind-Selected="isChecked[0]"
+                          Required="required"
                           Disabled="disabled"
                           Icons="icons"
                           ShowOnlySelectedIcon="iconOnlyOnSelected" />
@@ -21,42 +22,75 @@
             </div>
             <div class="col">
                 <label class="d-inline-flex hstack gap-3">
-                    <MdSwitch @bind-Selected="isChecked[1]"
+                    <MdSwitch @ref="chk" @bind-Selected="isChecked[1]"
+                              Required="required"
                               Disabled="disabled"
                               Icons="icons"
                               ShowOnlySelectedIcon="iconOnlyOnSelected" />
                     This one is wrapped inside a label
                 </label>
 
-                <p>Checked: @(isChecked[1])</p>
+                <p>Checked: @(isChecked[1]), Validated: @(validity?.ToString() ?? "Not yet")</p>
             </div>
         </div>
     </ComponentDemo>
     <Tweaks>
-        <label class="hstack gap-3">
-            <MdSwitch @bind-Selected="disabled" Icons />
-             <span>Disabled</span>
-         </label>
+        <Stack>
+            <LabeledSwitch @bind-Selected="disabled" Label="Disabled" />
+            <LabeledSwitch @bind-Selected="required" Label="Required" />
+        </Stack>
 
-         <div class="hstack gap-5">
-             <label class="hstack gap-3">
-                 <MdCheckbox @bind-Checked="icons" />
-                 <span>Show icons</span>
-             </label>
+        <Stack>
+            <LabeledSwitch @bind-Selected="icons" Label="Show icons" />
 
-             <label class="hstack gap-3">
-                 <MdCheckbox @bind-Checked="iconOnlyOnSelected" Disabled="@(!icons)" />
-                 <span>Show icons only when selected</span>
-             </label>
-         </div>
-     </Tweaks>
- </ComponentDemoPage>
+            <label>
+                <MdCheckbox @bind-Checked="iconOnlyOnSelected" Disabled="@(!icons)" />
+                Show icons only when selected
+            </label>
+        </Stack>
 
- @code {
+        <Stack>
+            <MdButton @onclick="CheckValidityAsync">
+                <MdIcon slot="@(MdButton.IconSlot)">done</MdIcon>
+                Check Validity
+            </MdButton>
+
+            <MdButton @onclick="ReportValidityAsync">
+                <MdIcon slot="@(MdButton.IconSlot)">checklist</MdIcon>
+                Report Validity
+            </MdButton>
+
+            <MdButton @onclick="SetCustomValidityAsync">
+                <MdIcon slot="@(MdButton.IconSlot)">verified</MdIcon>
+                Set Custom Validity
+            </MdButton>
+        </Stack>
+    </Tweaks>
+</ComponentDemoPage>
+
+@code {
+    MdSwitch chk = null!;
+    bool? validity;
 
     bool[] isChecked = new bool[2];
     bool disabled;
+    bool required;
     bool icons;
     bool iconOnlyOnSelected;
 
+    async Task CheckValidityAsync()
+    {
+        validity = await chk.CheckValidityAsync();
+    }
+
+    async Task ReportValidityAsync()
+    {
+        validity = await chk.ReportValidityAsync();
+    }
+
+    async Task SetCustomValidityAsync()
+    {
+        await chk.SetCustomValidityAsync(chk.Selected ? null : "You must agree!");
+        validity = await chk.ReportValidityAsync();
+    }
 }
