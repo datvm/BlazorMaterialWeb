@@ -10,6 +10,17 @@
         Text fields let users enter text into a UI
     </Description>
     <ComponentDemo>
+        <div>
+            <MarkdownBlock>
+                **[Components merging](/features#components-merging)**:
+                All Text fields
+                (`md-filled-text-field` and `md-outlined-text-field`)
+                are merged into a single `MdTextField` and you can use
+                `TextFieldStyle` parameter to set the style.
+                `MdTextFieldStyle.Outlined` is the default value if unset.
+            </MarkdownBlock>
+        </div>
+
         <div class="row align-items-center">
             <div class="col">
                 <ErrorBoundary @ref="numberErrHandler">

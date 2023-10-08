@@ -12,6 +12,17 @@
         Select menus display a list of choices on temporary surfaces and display the currently selected menu item above the menu.
     </Description>
     <ComponentDemo>
+        <div>
+            <MarkdownBlock>
+                **[Components merging](/features#components-merging)**:
+                All Select components
+                (`md-outlined-select` and `md-filled-select`)
+                are merged into a single `MdSelect` and you can use
+                `SelectStyle` parameter to set the style.
+                `MdSelectStyle.Outlined` is the default value if unset.
+            </MarkdownBlock>
+        </div>
+
         <div class="row">
             <div class="col">
                 <MdSelect @ref="cboNum" @bind-Value="selectedValue" @bind-SelectedIndex="selectedIndexes[0]"
