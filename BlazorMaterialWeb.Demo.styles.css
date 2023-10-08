@@ -1,3 +1,5 @@
+@import '_content/BlazorMaterialWeb/BlazorMaterialWeb.bundle.scp.css';
+
 /* /Shared/CodeBlock.razor.rz.scp.css */
 .code-container[b-0c21yggip2] {
     max-height: min(90vh, 500px);
