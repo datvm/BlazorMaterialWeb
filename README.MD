@@ -38,6 +38,7 @@ This project depends on Google's [Material Web Component](https://github.com/mat
 | Dialog | ✅ | ✅ | [Dialog](https://blazorwebmaterial.lukevo.com/dialog) |
 | Divider | ✅ | ✅ | [Divider](https://blazorwebmaterial.lukevo.com/divider) |
 | Elevation | ✅ | ✅ | [Elevation](https://blazorwebmaterial.lukevo.com/elevation) |
+| Icon | ✅ | ✅ | [Icon](https://blazorwebmaterial.lukevo.com/icon) |
 | Focus ring | ✅ | ✅ | [Focus Ring](https://blazorwebmaterial.lukevo.com/focus-ring) |
 | List | ✅ | ✅ | [List](https://blazorwebmaterial.lukevo.com/lists) |
 | Menu | ✅ | ✅ | [Menus](https://blazorwebmaterial.lukevo.com/menu) |

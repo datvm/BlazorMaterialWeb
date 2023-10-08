@@ -1,0 +1,77 @@
+﻿@page "/icon"
+
+<ComponentDemoPage Name="Icon"
+                   DesignUrl="https://m3.material.io/styles/icons/overview"
+                   ComponentUrl="https://github.com/material-components/material-web/blob/main/docs/components/icon.md"
+                   ComponentSourcePath="icon"
+                   BlazorComponentSourcePath="MdIcon.razor"
+                   BlazorDemoSourceName="Icon">
+    <Description>
+        Icons are small symbols for actions or other items
+    </Description>
+    <ComponentDemo>
+        <MarkdownBlock>
+            `MdIcon` (which renders `&lt;md-icon`) has a fixed size determined
+            by `.material-symbols-outlined` (or other classes) CSS (24px)
+            and right now there is no easy way to change it (see [this issue](https://github.com/material-components/material-web/issues/5055)).
+
+            Blazor Material Web provides a utility component `MdIconInline`
+            which set `font-size`, `font-weight`, `font-style` and `line-height`
+            to `inherit` as well `vertical-align` to `middle`.
+            Note that `MdIconInline` does not render `&lt;md-icon>` element but a
+            `span` with `material-symbols-outlined` class. You can customize it
+            with `IconClass`. If you need to add additional CSS classes, use
+            `Class` (uppercase) Blazor parameter.
+        </MarkdownBlock>
+
+        <div style="
+font-size: @(fontSize)px;
+font-weight: @(fontWeight);
+font-style: @(fontStyleItalic ? "italic" : "normal")">
+            <p>
+                <span>MdIcon:</span>
+                <MdIcon>@(icon)</MdIcon>
+                </p>
+
+                <p>
+                    <span>MdIconInline:</span>
+                    <MdIconInline IconClass="@(MdIconInline.IconOutlined)"
+                                  Class="extra-class">
+                        @(icon)
+                </MdIconInline>
+            </p>
+        </div>
+    </ComponentDemo>
+    <Tweaks>
+        <MdTextField @bind-Value="icon" Label="Icon content" />
+
+        <div>
+            <label>
+                Font size:
+                <MdSlider @bind-Value="fontSize"
+                          Min="1" Max="100" Labeled="true" />
+            </label>
+            <span>@(fontSize)</span>
+        </div>
+
+        <div>
+            <label>
+                Font weight:
+                <MdSlider @bind-Value="fontWeight"
+                          Min="100" Max="800" Step="100" Labeled="true" />
+            </label>
+            <span>@(fontWeight)</span>
+        </div>
+
+        <LabeledSwitch @bind-Selected="fontStyleItalic" Label="Italic" />
+    </Tweaks>
+</ComponentDemoPage>
+
+@code {
+
+    string icon = "send";
+    int fontSize = 30;
+    int fontWeight = 400;
+    bool fontStyleItalic;
+
+}
