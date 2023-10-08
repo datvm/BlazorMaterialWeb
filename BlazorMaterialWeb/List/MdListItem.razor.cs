@@ -34,7 +34,7 @@ partial class MdListItem
     [Parameter]
     public EventCallback OnRequestActivation { get; set; }
 
-    MdListItemType? finalType => Type ?? CascadedType;
+    MdListItemType? FinalType => Type ?? CascadedType;
 
 }
 
