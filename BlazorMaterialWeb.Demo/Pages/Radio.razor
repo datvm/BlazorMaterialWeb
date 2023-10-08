@@ -18,7 +18,7 @@
             <code>@@bind-Checked</code> is therefore can only set the value to <code>true</code> and not back to <code>false</code>:
         </div>
 
-        <div class="hstack gap-3">
+        <Stack>
             @for (int i = 0; i < Options1.Length; i++)
             {
                 var z = i;
@@ -30,7 +30,7 @@
                     @(item)
                 </label>
             }
-        </div>
+        </Stack>
 
         <div>
             Checked: @(string.Join(", ", isChecked))
@@ -40,7 +40,7 @@
             The more appropriate way is to store the selected value using <code>OnChecked</code> event instead:
         </div>
 
-        <div class="hstack gap-3">
+        <Stack>
             @for (int i = 0; i < Options2.Length; i++)
             {
                 var z = i;
@@ -54,9 +54,9 @@
                     @(item)
                 </label>
             }
-        </div>
+        </Stack>
 
-        <div class="hstack gap-3">
+        <Stack>
             @for (int i = 0; i < Options3.Length; i++)
             {
                 var z = i;
@@ -70,7 +70,7 @@
                     @(item)
                 </label>
             }
-        </div>
+        </Stack>
 
         <div>
             Checked: @(lastChecked), @(lastCheckedNumber).
@@ -84,7 +84,7 @@
         </div>
 
         <MdRadioGroup Name="opt-blazor-group" @bind-Value="lastCheckedBlazor" @bind-Value:after="AfterBlazorBindValue">
-            <div class="hstack gap-3">
+            <Stack>
                 @foreach (var item in Options1)
                 {
                     <label>
@@ -92,11 +92,11 @@
                         @(item)
                     </label>
                 }
-            </div>
+            </Stack>
         </MdRadioGroup>
 
         <MdRadioGroup Name="opt-blazor-number-group" @bind-Value="lastCheckedNumberBlazor">
-            <div class="hstack gap-3">
+            <Stack>
                 @foreach (var item in Options3)
                 {
                     <label>
@@ -104,7 +104,7 @@
                         @(item)
                     </label>
                 }
-            </div>
+            </Stack>
         </MdRadioGroup>
 
         <div>
@@ -112,7 +112,7 @@
         </div>
     </ComponentDemo>
     <Tweaks>
-        <div class="hstack gap-3">
+        <Stack>
             <MdButton @onclick="() => SelectIndex(1)">
                 Programmatically select the 2nd option
             </MdButton>
@@ -120,7 +120,7 @@
             <MdButton @onclick="() => SelectIndex(Options1.Length - 1)">
                 Select the disabled option
             </MdButton>
-        </div>
+        </Stack>
 
     </Tweaks>
 </ComponentDemoPage>

@@ -118,48 +118,48 @@
         </div>
     </ComponentDemo>
     <Tweaks>
-        <div class="hstack gap-3">
+        <Stack>
             <LabeledSwitch @bind-Selected="useIdRef" Label="Use idref" />
             <LabeledSwitch @bind-Selected="isFixed" Label="Fixed position (instead of absolute)" />
             <LabeledSwitch @bind-Selected="quick" Label="Quick (skip animations)" />
-        </div>
+        </Stack>
 
-        <div class="hstack gap-3">
+        <Stack>
             <LabeledSwitch @bind-Selected="hasOverflow" Label="Has Overflow" />
             <span>(Submenu would not work properly without this)</span>
-        </div>
+        </Stack>
 
-        <div class="hstack gap-3">
+        <Stack>
             <LabeledSwitch @bind-Selected="stayOpenOnFocusout" Label="Stay open on Focus-out" />
             <LabeledSwitch @bind-Selected="stayOpenOnOutsideClick" Label="Stay open on Outside Click" />
             <LabeledSwitch @bind-Selected="skipRestoreFocus" Label="Skip Restore Focus" />
-        </div>
+        </Stack>
 
         <MdRadioGroup Name="opt-anchor-corner" TValue="string"
                       Value="@(anchorCorner.ToString())" ValueChanged="@((e) => SelectCorner(true, e))">
-            <div class="hstack gap-3">
+            <Stack>
                 <span>Anchor Corner:</span>
 
                 @foreach (var item in Enum.GetValues<MdMenuCorner>())
                 {
                     <LabeledRadio Value="item.ToString()" />
                 }
-            </div>
+            </Stack>
         </MdRadioGroup>
 
         <MdRadioGroup Name="opt-menu-corner" TValue="string"
                       Value="@(menuCorner.ToString())" ValueChanged="@((e) => SelectCorner(false, e))">
-            <div class="hstack gap-3">
+            <Stack>
                 <span>Menu Corner:</span>
 
                 @foreach (var item in Enum.GetValues<MdMenuCorner>())
                 {
                     <LabeledRadio Value="item.ToString()" />
                 }
-            </div>
+            </Stack>
         </MdRadioGroup>
 
-        <div class="hstack gap-3">
+        <Stack>
             <MdButton @onclick="() => ToggleMenu(true)">
                 Call show()
             </MdButton>
@@ -169,7 +169,7 @@
             <MdButton @onclick="PrintItemsAsync">
                 Print items to console
             </MdButton>
-        </div>
+        </Stack>
     </Tweaks>
 </ComponentDemoPage>
 

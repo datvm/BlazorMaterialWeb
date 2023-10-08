@@ -73,14 +73,14 @@
     <Tweaks>
         <MdRadioGroup Name="opt-type" TValue="string"
                       Value="@(type.ToString())" ValueChanged="OnTypeChanged">
-            <div class="hstack gap-3">
+            <Stack>
                 Item Type:
 
                 @foreach (var item in Enum.GetValues<MdListItemType>())
                 {
                     <LabeledRadio Value="@(item.ToString())" />
                 }
-            </div>
+            </Stack>
 
             <MarkdownBlock>
                 - Blazor provides the `Type` parameter on `MdList` that applies
@@ -94,9 +94,7 @@
             </MarkdownBlock>
         </MdRadioGroup>
 
-        <div class="hstack gap-3">
-            <LabeledSwitch @bind-Selected="disabled" Label="Disabled" />
-        </div>
+        <LabeledSwitch @bind-Selected="disabled" Label="Disabled" />
     </Tweaks>
 </ComponentDemoPage>
 

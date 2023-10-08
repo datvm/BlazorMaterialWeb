@@ -78,19 +78,21 @@
         }
     </ComponentDemo>
     <Tweaks>
-        <MdRadioGroup Name="opt-style" @bind-Value="style" class="hstack gap-3">
-            <span>Style:</span>
+        <MdRadioGroup Name="opt-style" @bind-Value="style">
+            <Stack>
+                <span>Style:</span>
 
-            @foreach (var s in Enum.GetValues<MdTextFieldStyle>())
-            {
-                <label>
-                    <MdRadio Value="@(s.ToString())" />
-                    @(s)
-                </label>
-            }
+                @foreach (var s in Enum.GetValues<MdTextFieldStyle>())
+                {
+                    <label>
+                        <MdRadio Value="@(s.ToString())" />
+                        @(s)
+                    </label>
+                }
+            </Stack>            
         </MdRadioGroup>
 
-        <div class="hstack gap-3 flex-wrap">
+        <Stack AdditionalClass="gap-3 flex-wrap">
             <LabeledSwitch @bind-Selected="hasLabel" Label="Label" />
             <LabeledSwitch @bind-Selected="disabled" Label="Disabled" />
             <LabeledSwitch @bind-Selected="isReadonly" Label="Readonly" />
@@ -99,23 +101,23 @@
             <LabeledSwitch @bind-Selected="required" Label="Required" />
             <LabeledSwitch @bind-Selected="hasSupportingText" Label="Supporting text" />
             <LabeledSwitch @bind-Selected="rtl" Label="RTL text direction" />
-        </div>
+        </Stack>
 
-        <div class="hstack gap-3">
+        <Stack>
             <LabeledSwitch @bind-Selected="prefixText" Label="Prefix text" />
             <LabeledSwitch @bind-Selected="suffixText" Label="Suffix text" />
             <LabeledSwitch @bind-Selected="leadingIcon" Label="Leading icon" />
             <LabeledSwitch @bind-Selected="trailingIcon" Label="Trailing icon" />
-        </div>
+        </Stack>
 
-        <div class="hstack gap-3">
+        <Stack>
             <span>For number:</span>
             <LabeledSwitch @bind-Selected="min" Label="Min (-5)" />
             <LabeledSwitch @bind-Selected="max" Label="Max (5)" />
             <LabeledSwitch @bind-Selected="step" Label="Step (0.01)" />
-        </div>
+        </Stack>
 
-        <div class="hstack gap-3">
+        <Stack>
             <span>For non-number:</span>
             <LabeledSwitch @bind-Selected="minLength" Label="Min length (3)" />
             <LabeledSwitch @bind-Selected="maxLength" Label="Max length (15)" />
@@ -124,7 +126,7 @@
                     <strong>Note:</strong> does not work for initial value (by-design)
                 </a>
             </span>
-        </div>
+        </Stack>
 
         <MdRadioGroup Name="opt-invalid-behavior" @bind-Value="invalidBehavior">
             <p>
@@ -134,7 +136,7 @@
                 (you can test it using the number input box):
             </p>
 
-            <div class="hstack gap-3">
+            <Stack>
                 @foreach (var b in Enum.GetValues<MdTextFieldInvalidBehavior>())
                 {
                     <label>
@@ -142,7 +144,7 @@
                         @(b.ToString())
                     </label>
                 }
-            </div>
+            </Stack>
         </MdRadioGroup>
     </Tweaks>
 </ComponentDemoPage>
