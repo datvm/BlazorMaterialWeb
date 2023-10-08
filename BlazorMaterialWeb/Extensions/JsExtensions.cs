@@ -20,6 +20,11 @@ internal static class JsExtensions
             Prefix("invokeElementMethodAsync"),
             GetInvokeParameters(el, methodName, parameters));
 
+    public static async Task<T> GetArrayElementAsync<T>(this IJSRuntime js, IJSObjectReference array, long index) =>
+        await js.InvokeAsync<T>(
+            Prefix("getArrayElement"),
+            array, index);
+
     static object?[] GetInvokeParameters(ElementReference el, string methodName, params object?[] parameters) =>
         new object?[] { el, methodName }
         .Concat(parameters)

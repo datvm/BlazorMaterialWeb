@@ -1,26 +1,43 @@
 ﻿@page "/tabs"
 
-<PageTitle>Tabs</PageTitle>
+@inject IJSRuntime Js;
 
-<h1>Tabs</h1>
+<ComponentDemoPage Name="Tabs"
+                   DesignUrl="https://m3.material.io/components/tabs/overview"
+                   ComponentUrl="https://material-web.dev/components/tabs/"
+                   ComponentSourcePath="tabs"
+                   BlazorComponentSourcePath="Tabs"
+                   BlazorDemoSourceName="Tabs">
+    <Description>
+        Tabs organize content across different screens and views
+    </Description>
+    <ComponentDemo>
+        <div>
+            <MarkdownBlock>
+                **[Components merging](/features#components-merging)**:
+                All Tab components
+                (`md-primary-tab` and `md-secondary-tab`)
+                are merged into a single `MdTab`:
+                - You can use `Type` parameter to set the type. `MdTabType.Primary` is the default value if unset.
+                - You can also set the `Type` on `MdTabs` and it's cascaded into all children `MdTab`s.
+                You can override it at the child component but there's no need to do so in most cases.
+                - `inline-icon` is ignored by Secondary tabs.
+            </MarkdownBlock>
 
-<p>
-    <a href="https://m3.material.io/components/tabs/overview">
-        Tabs
-    </a>
-    organize content across different screens and views
-</p>
+            <span>
+                <strong>
+                    <MdIconInline>warning</MdIconInline>
+                    Note:
+                </strong>
+            </span>
 
-<div class="alert alert-warning">
-    <p class="mb-0">
-        <code>MdTab</code>'s <code>ActiveChanged</code> event is only fired when a tab is selected.
-        It's not possible to know when a tab is deactivated without additional Javascript.
-        <code>@@bind-Active</code> is therefore unreliable (<code>Active</code> remains <code>true</code> after user selects another tab)
-    </p>
-</div>
+            <MarkdownBlock>
+                `MdTab`'s `ActiveChanged` event is only fired when a tab is selected.
+                It's not possible to know when a tab is deactivated without additional Javascript.
+                `@@bind-Active` is therefore unreliable (`Active` remains `true` after user selects another tab).
+            </MarkdownBlock>
+        </div>
 
-<div class="my-5">
-    <div class="vstack gap-3">
         @foreach (var tabType in Enum.GetValues<MdTabType>())
         {
             <div>
@@ -34,45 +51,58 @@
                             {
                                 <MdIcon slot="@(MdTab.IconSlot)">@(icon)</MdIcon>
                             }
-                            
+
                             @if (showLabel)
                             {
                                 @(text)
                             }
                         </MdTab>
                     }
+
+                    @for (int i = 0; i < customTabs; i++)
+                    {
+                        var z = i + 1;
+                        <MdTab>
+                            @if (showIcon)
+                            {
+                                <MdIcon slot="@(MdTab.IconSlot)">add_circle</MdIcon>
+
+                                @if (showLabel)
+                                {
+                                    @: Custom Tab @(z)
+                                }
+                            }
+                        </MdTab>
+                    }
                 </MdTabs>
             </div>
         }
-    </div>
-</div>
 
-<div>
-    <label class="me-3">
-        <MdCheckbox @bind-Checked="showLabel" />
-        Show Labels
-    </label>
+        <p>
+            Recently selected tab index (<code>OnTabChanged</code> event of <code>MdTabs</code>):
+            @(activeTabIndex?.ToString() ?? "None yet")
+        </p>
+    </ComponentDemo>
+    <Tweaks>
+        <Stack>
+            <LabeledSwitch @bind-Selected="showLabel" Label="Show labels" />
+            <LabeledSwitch @bind-Selected="showIcon" Label="Show icons" />
+            <LabeledSwitch @bind-Selected="inlineIcon" Label="Inline icons" Disabled="@(!showIcon)" />
+        </Stack>
 
-    <label class="me-3">
-        <MdCheckbox @bind-Checked="showIcon" />
-        Show Icons
-    </label>
+        <Stack>
+            <MdButton @onclick="Add3Tabs">
+                Add 3 tabs
+            </MdButton>
 
-    <label class="me-3">
-        <MdCheckbox @bind-Checked="inlineIcon" Disabled="@(!showIcon)" />
-        Inline Icons
-    </label>
-</div>
+            <MdButton @onclick="Select3rdTabs">
+                Programmatically select the 3rd tabs
+            </MdButton>
+        </Stack>
+    </Tweaks>
+</ComponentDemoPage>
 
-<p>
-    Recently selected tab index (<code>OnTabChanged</code> event of <code>MdTabs</code>): @(activeTabIndex?.ToString() ?? "Non yet")
-</p>
 
-<p>
-    <MdButton @onclick="Select3rdTabs">
-        Programmatically select 3rd tabs
-    </MdButton>
-</p>
 
 @code {
 
@@ -91,6 +121,9 @@
     bool inlineIcon;
 
     int? activeTabIndex;
+    int customTabs = 0;
+
+    void Add3Tabs() => customTabs += 3;
 
     void OnTabChanged(MdTabChangeEventArgs e)
     {

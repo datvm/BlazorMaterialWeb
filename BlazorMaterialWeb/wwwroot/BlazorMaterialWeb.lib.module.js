@@ -18,6 +18,10 @@ export function beforeStart() {
             return await element[methodName](...args);
         }
 
+        getArrayElement(array, index) {
+            return array[index];
+        }
+
         #overrideDispatch() {
             const original = EventTarget.prototype.dispatchEvent;
 

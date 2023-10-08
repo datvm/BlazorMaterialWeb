@@ -17,24 +17,22 @@ partial class MdTabs
     [Parameter]
     public EventCallback<MdTabChangeEventArgs> OnTabChanged { get; set; }
 
-    public async Task<int> GetActiveTabIndexAsync()
-    {
-        return await Js.GetElementPropertyAsync<int>(el, "activeTabIndex");
-    }
+    public async Task<IJSObjectReference> GetTabsAsync() =>
+        await GetPropertyAsync<IJSObjectReference>("tabs");
 
-    public async Task SetActiveTabIndexAsync(int index)
-    {
-        await Js.SetElementPropertyAsync(el, "activeTabIndex", index);
-    }
+    public async Task<int> GetActiveTabIndexAsync() =>
+        await GetPropertyAsync<int>("activeTabIndex");
 
-    public async Task<ElementReference> GetActiveTabAsync()
-    {
-        return await Js.GetElementPropertyAsync<ElementReference>(el, "activeTab");
-    }
+    public async Task SetActiveTabIndexAsync(int index) =>
+        await SetPropertyAsync("activeTabIndex", index);
 
-    public async Task SetActiveTabAsync(ElementReference tab)
-    {
-        await Js.SetElementPropertyAsync(el, "activeTab", tab);
-    }
+    public async Task<ElementReference> GetActiveTabAsync() =>
+        await GetPropertyAsync<ElementReference>("activeTab");
+
+    public async Task SetActiveTabAsync(ElementReference tab) => 
+        await SetPropertyAsync("activeTab", tab);
+
+    public async Task ScrollToTabAsync(ElementReference tab) =>
+        await InvokeMethodAsync("scrollToTab", tab);
 
 }

@@ -33,6 +33,9 @@ partial class MdTab
     [Parameter]
     public bool IconOnly { get; set; }
 
+    // Selected property is deprecated when this library is made
+    // So it's ignored.
+
     async Task OnTabActivated(MdCheckedEventArgs e)
     {
         Active = e.Checked;
