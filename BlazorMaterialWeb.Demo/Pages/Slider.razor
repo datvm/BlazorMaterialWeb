@@ -58,20 +58,11 @@
         </div>
     </ComponentDemo>
     <Tweaks>
-        <label class="hstack gap-3">
-            <MdSwitch @bind-Selected="labeled" />
-            Labeled
-        </label>
-
-        <label class="hstack gap-3">
-            <MdSwitch @bind-Selected="ticks" />
-            Ticks
-        </label>
-
-        <label class="hstack gap-3">
-            <MdSwitch @bind-Selected="step10" @bind-Selected:after="UpdateStep" />
-            Step = 10 (Unchecked = 0.25)
-        </label>
+        <Stack>
+            <LabeledSwitch @bind-Selected="labeled" Label="Labeled" />
+            <LabeledSwitch @bind-Selected="ticks" Label="Ticks" />
+            <LabeledSwitch @bind-Selected="step10" @bind-Selected:after="UpdateStep" Label="Step = 10 (Unchecked = 0.25)" />
+        </Stack>
     </Tweaks>
 </ComponentDemoPage>
 

@@ -84,7 +84,7 @@
 
     </ComponentDemo>
     <Tweaks>
-        <div class="hstack gap-3 flex-wrap">
+        <Stack AdditionalClass="gap-3 flex-wrap">
             <LabeledSwitch @bind-Selected="required" Label="Required" />
             <LabeledSwitch @bind-Selected="quick" Label="Quick (skip animation)" />
             <LabeledSwitch @bind-Selected="disabled" Label="Disabled" />
@@ -92,14 +92,14 @@
             <LabeledSwitch @bind-Selected="hasLabel" Label="Label" />
             <LabeledSwitch @bind-Selected="hasSupportingText" Label="Supporting text" />
             <LabeledSwitch @bind-Selected="leadingIcon" Label="Leading icon" />
-        </div>
+        </Stack>
 
-        <div class="hstack gap-3">
+        <Stack>
             <MdButton @onclick="() => cbo.ReportValidityAsync()">Report validity</MdButton>
             <MdButton @onclick="SetCustomValidityAsync">Set custom validity</MdButton>
             <MdButton @onclick="PrintOptionsAsync">Print options</MdButton>
             <MdButton @onclick="PrintSelectedOptionsAsync">Print selected options</MdButton>
-        </div>
+        </Stack>
     </Tweaks>
 </ComponentDemoPage>
 
