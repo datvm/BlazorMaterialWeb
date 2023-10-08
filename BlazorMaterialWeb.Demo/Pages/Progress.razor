@@ -1,52 +1,61 @@
 ﻿@page "/progress"
 
-<PageTitle>Progress indicators</PageTitle>
+<ComponentDemoPage Name="Progress indicators"
+                   DesignUrl="https://m3.material.io/components/progress-indicators/overview"
+                   ComponentUrl="https://material-web.dev/components/progress/"
+                   ComponentSourcePath="elevation"
+                   BlazorComponentSourcePath="Elevation"
+                   BlazorDemoSourceName="Elevation">
+    <Description>
+        Progress indicators show the status of a process in real time
+    </Description>
+    <ComponentDemo>
+        <div>
+            <MarkdownBlock>
+                **[Components merging](/features#components-merging)**:
+                All progress indicator types
+                (`md-circular-progress` and `md-linear-progress`)
+                are merged into a single `MdProgress` and you can use
+                `ProgressStyle` parameter to set the style.
+                `MdProgressStyle.Linear` is the default value if unset.
 
-<h1>Progress indicators</h1>
+                `Buffer` property is ignored by `MdProgressStyle.Circular`.
+            </MarkdownBlock>
+        </div>
 
-<p>
-    <a href="https://m3.material.io/components/progress-indicators">
-        Progress indicators
-    </a>
-    show the status of a process in real time.
-</p>
+        <div class="row align-items-center text-center">
+            @foreach (var style in Enum.GetValues<MdProgressStyle>())
+            {
+                <div class="col">
+                    <MdProgress ProgressStyle="@(style)"
+                                Indeterminate="indeterminate"
+                                FourColor="fourColor"
+                                Value="value" Max="max"
+                                Buffer="buffer"
+                                class="@(style == MdProgressStyle.Linear ? "w-100": null)" />
+                </div>
+            }
+        </div>
 
-<div class="my-5 text-center">
-    <div class="row align-items-center">
-        @foreach (var style in Enum.GetValues<MdProgressStyle>())
-        {
-            <div class="col">
-                <MdProgress ProgressStyle="@(style)"
-                            Indeterminate="indeterminate"
-                            FourColor="fourColor"
-                            Value="value" Max="max"
-                            Buffer="buffer" />
-            </div>
-        }
-    </div>
+        <div class="text-center">
+            Value = @(value), Max = @(max), Buffer = @(buffer) (Linear only)
+        </div>
+    </ComponentDemo>
+    <Tweaks>
+        <Stack>
+            <LabeledSwitch @bind-Selected="indeterminate" Label="Indeterminate" />
 
-    <p>
-        Value = @(value), Max = @(max), Buffer = @(buffer) (Linear only)
-    </p>
-</div>
+            <label>
+                <MdCheckbox @bind-Checked="@(fourColor)" Disabled="!indeterminate" />
+                Four colors
+            </label>
+        </Stack>
 
-<div class="mb-3">
-    <label class="me-3">
-        <MdCheckbox @bind-Checked="indeterminate" />
-        Indeterminate
-    </label>
-
-    <label>
-        <MdCheckbox @bind-Checked="fourColor" Disabled="@(!indeterminate)" />
-        Four Color
-    </label>
-</div>
-
-<div class="mb-3">
-    <MdButton ButtonStyle="MdButtonStype.Filled" @onclick="SimulateProgress">
-        Simulate Progress
-    </MdButton>
-</div>
+        <MdButton ButtonStyle="MdButtonStype.Filled" @onclick="SimulateProgress">
+            Simulate Progress
+        </MdButton>
+    </Tweaks>
+</ComponentDemoPage>
 
 @code {
 
