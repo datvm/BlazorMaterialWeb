@@ -114,11 +114,17 @@ partial class MdSelect<TValue>
         await OnChange.InvokeAsync(e);
     }
 
-    public async Task<IJSObjectReference> GetOptionsAsync() =>
-        await Js.GetElementPropertyAsync<IJSObjectReference>(el, "options");
+    public async Task<IJSArrayReference<IJSObjectReference>> GetOptionsAsync()
+    {
+        var options = await Js.GetElementPropertyAsync<IJSObjectReference>(el, "options");
+        return new JSArrayReference<IJSObjectReference>(options, Js);
+    }
 
-    public async Task<IJSObjectReference> GetSelectedOptionsAsync() =>
-        await Js.GetElementPropertyAsync<IJSObjectReference>(el, "selectedOptions");
+    public async Task<IJSArrayReference<IJSObjectReference>> GetSelectedOptionsAsync()
+    {
+        var options = await Js.GetElementPropertyAsync<IJSObjectReference>(el, "selectedOptions");
+        return new JSArrayReference<IJSObjectReference>(options, Js);
+    }
 
     public async Task ResetAsync() =>
         await InvokeElAsync("reset");

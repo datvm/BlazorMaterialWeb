@@ -98,6 +98,10 @@
             <MdButton @onclick="Select3rdTabs">
                 Programmatically select the 3rd tabs
             </MdButton>
+
+            <MdButton @onclick="GetAndSelectTab">
+                Programmatically get the 2nd tab then select it
+            </MdButton>
         </Stack>
     </Tweaks>
 </ComponentDemoPage>
@@ -135,6 +139,17 @@
         foreach (var t in tabRefs.Values)
         {
             await t.SetActiveTabIndexAsync(2);
+        }
+    }
+
+    async Task GetAndSelectTab()
+    {
+        foreach (var t in tabRefs.Values)
+        {
+            var tabs = await t.GetTabsAsync();
+
+            var secondTab = await tabs.GetItemAsync(1);
+            await t.SetActiveTabAsync(secondTab);
         }
     }
 

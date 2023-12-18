@@ -1,4 +1,6 @@
-﻿namespace BlazorMaterialWeb;
+﻿using BlazorMaterialWeb.Common;
+
+namespace BlazorMaterialWeb;
 
 /// <summary>
 /// Tabs organize content across different screens and views.
@@ -17,8 +19,12 @@ partial class MdTabs
     [Parameter]
     public EventCallback<MdTabChangeEventArgs> OnTabChanged { get; set; }
 
-    public async Task<IJSObjectReference> GetTabsAsync() =>
-        await GetPropertyAsync<IJSObjectReference>("tabs");
+    public async Task<IJSArrayReference<IJSObjectReference>> GetTabsAsync()
+    {
+        var tabs = await GetPropertyAsync<IJSObjectReference>("tabs");
+
+        return new JSArrayReference<IJSObjectReference>(tabs, Js);
+    }
 
     public async Task<int> GetActiveTabIndexAsync() =>
         await GetPropertyAsync<int>("activeTabIndex");
@@ -26,13 +32,13 @@ partial class MdTabs
     public async Task SetActiveTabIndexAsync(int index) =>
         await SetPropertyAsync("activeTabIndex", index);
 
-    public async Task<ElementReference> GetActiveTabAsync() =>
-        await GetPropertyAsync<ElementReference>("activeTab");
+    public async Task<IJSObjectReference> GetActiveTabAsync() =>
+        await GetPropertyAsync<IJSObjectReference>("activeTab");
 
-    public async Task SetActiveTabAsync(ElementReference tab) => 
+    public async Task SetActiveTabAsync(IJSObjectReference tab) => 
         await SetPropertyAsync("activeTab", tab);
 
-    public async Task ScrollToTabAsync(ElementReference tab) =>
+    public async Task ScrollToTabAsync(IJSObjectReference tab) =>
         await InvokeMethodAsync("scrollToTab", tab);
 
 }
