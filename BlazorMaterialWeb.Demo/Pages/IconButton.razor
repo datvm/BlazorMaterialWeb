@@ -31,8 +31,8 @@
                 {
                     <div class="col">
                         <p>
-                            <MdIconButton @bind-Selected="@(selected)"
-                            @onclick="@(() => clicked = style.ToString())"
+                            <MdIconButton @bind-Selected="@(selected)" @bind-Selected:after="() => ++toggleCount"
+                                          @onclick="@(() => clicked = style.ToString())"
                                           ButtonStyle="@(style)"
                                           Href="@(hasHref ? "https://github.com/datvm/BlazorMaterialWeb/" : null)"
                                           Target="@(hasHref && targetBlank ? "_blank" : null)"
@@ -40,9 +40,9 @@
                                           Disabled="@(disabled)"
                                           FlipIconInRtl="isRtl">
                                 <MdIcon>@(icon)</MdIcon>
-                                </MdIconButton>
-                            </p>
-                            <p>@(style)</p>
+                            </MdIconButton>
+                        </p>
+                        <p>@(style)</p>
                     </div>
                 }
             </div>
@@ -50,7 +50,8 @@
 
         <div>
             You have clicked: @(clicked ?? "Not yet")<br />
-            Selected (Toggle button): @selected.ToString()
+            Selected (Toggle button): @selected.ToString()<br />
+            Toggle changed count: @(toggleCount)
         </div>
     </ComponentDemo>
     <Tweaks>
@@ -78,7 +79,7 @@
     </Tweaks>
 </ComponentDemoPage>
 
-@code {    
+@code {
     const string icon = "send";
 
     string function = "Button";
@@ -86,12 +87,14 @@
     bool disabled;
 
     string? clicked;
-    
+
     bool button = true;
     bool toggle;
     bool hasHref;
 
     bool targetBlank;
+
+    int toggleCount;
 
     void SetTo()
     {
