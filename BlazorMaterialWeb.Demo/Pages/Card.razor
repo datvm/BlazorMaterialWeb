@@ -64,7 +64,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        demoCode = await Http.GetStringAsync("https://github.com/datvm/BlazorMaterialWeb/blob/master/BlazorMaterialWeb.Demo/Pages/Card.razor");
+        demoCode = await Http.GetStringAsync("https://raw.githubusercontent.com/datvm/BlazorMaterialWeb/refs/heads/master/BlazorMaterialWeb.Demo/Pages/Card.razor");
     }
 
 }
