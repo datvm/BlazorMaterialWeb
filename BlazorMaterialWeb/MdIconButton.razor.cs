@@ -50,7 +50,7 @@ partial class MdIconButton
         _ => throw new NotImplementedException("Unknown style: " + ButtonStyle.ToString()),
     };
 
-    async Task OnSelectedChanged(MdCheckedEventArgs e)
+    async Task OnSelectedChanged(MdCheckboxChangeEventArgs e)
     {
         Selected = e.Checked;
         await SelectedChanged.InvokeAsync(Selected);
