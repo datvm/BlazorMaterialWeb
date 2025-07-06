@@ -59,7 +59,7 @@
         </li>
         <li>
             <p>
-                <em>Optional:</em> Add Roboto to your stylesheet, for example in your <code>app.css</code>:
+                <em>Optional:</em> Add the default theme and Roboto to your stylesheet, for example in your <code>app.css</code>:
             </p>
 
             <ul>
@@ -68,18 +68,10 @@
 
                     <div class="my-3">
                         <pre><code>@@import "/_content/BlazorMaterialWeb.Bundled/roboto/css/roboto.css";
+/* Now with BlazorMaterialWeb.css, you no longer need to set Roboto font in your CSS /*
+@@import "/_content/BlazorMaterialWeb/BlazorMaterialWeb.css";
 
-body {
-    font-family: var(--md-ref-typeface-plain);
-    /* ... */
-}
 
-:root, :host {
-    --md-ref-typeface-plain: Roboto,system-ui;
-    /* ... */
-}
-
-/* ... /*
 </code></pre>
                     </div>
                 </li>

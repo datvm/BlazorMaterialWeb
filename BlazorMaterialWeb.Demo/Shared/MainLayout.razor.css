@@ -46,13 +46,10 @@
     align-items: stretch;
 }
 
-    .page-content-container .page-content-elevation {
+    .page-content-container .page-content-card {
         flex-grow: 1;
-        position: relative;
-        border-radius: var(--catalog-shape-m, .75rem);
         min-height: 0;
         height: 100%;
-        background-color: var(--md-sys-color-surface);
     }
 
 .page-content {

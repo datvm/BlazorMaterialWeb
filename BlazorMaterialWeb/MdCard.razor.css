@@ -1,0 +1,8 @@
+.blazor-md-card-container {
+}
+
+.blazor-md-card {
+    position: relative;
+    border-radius: var(--catalog-shape-m, .75rem);
+    background-color: var(--md-sys-color-surface);
+}

@@ -12,8 +12,6 @@
 
     <div class="ms-auto"></div>
 
-    
-
     <MdIconButton Target="_blank" Href="https://github.com/datvm/BlazorMaterialWeb/">
         <img src="/img/github.svg" />
     </MdIconButton>
@@ -25,13 +23,11 @@
         <PageNav />
     </nav>
     <main class="page-content-container p-3">
-        <div class="page-content-elevation">
-            <MdElevation ElevationLevel="3" />
-
+        <MdCard Class="page-content-card p-3">
             <div class="container-fluid page-content">
                 @Body
             </div>
-        </div>
+        </MdCard>
     </main>
 </div>
 

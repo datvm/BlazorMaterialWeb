@@ -1,0 +1,70 @@
+﻿@page "/card"
+@inject HttpClient Http;
+
+<PageTitle>Card - Blazor Material Web</PageTitle>
+
+<article>
+    <h1>Cards</h1>
+
+    <MarkdownBlock>
+        This is **NOT** an official component but since the project is now in maintenance mode,
+        I decided to implement a crude version of it using a modified `MdElevation` container.
+
+        Note that the `MdCard` needs to render a container `.blazor-md-card-container` wrapping the actual `blazor-md-card`.
+        You can use `ContainerClass` and `Class` parameters to add more classes to the elements.
+    </MarkdownBlock>
+
+    <div class="row mb-3">
+        @for (int i = 0; i < 4; i++)
+        {
+            <MdCard ContainerClass="col-3" Class="py-5" ElevationLevel="elevation">
+                <div class="text-center vstack gap-3">
+                    <p>
+                        Elevation: @(elevation)
+                    </p>
+                    <p>
+                        <MdButton ButtonStyle="MdButtonStype.Outlined" @onclick="() => ChangeElevation(-1)">-</MdButton>
+                        <MdButton ButtonStyle="MdButtonStype.Outlined" @onclick="() => ChangeElevation(1)">+</MdButton>
+                    </p>
+                </div>
+            </MdCard>
+        }
+    </div>
+
+    <div class="row mb-3">
+        @for (int i = 0; i < 2; i++)
+        {
+            <MdCard ContainerClass="col-6" Class="py-5" ElevationLevel="elevation">
+                <div class="text-center vstack gap-3">
+                    <p>
+                        Elevation: @(elevation)
+                    </p>
+                    <p>
+                        <MdButton ButtonStyle="MdButtonStype.Outlined" @onclick="() => ChangeElevation(-1)">-</MdButton>
+                        <MdButton ButtonStyle="MdButtonStype.Outlined" @onclick="() => ChangeElevation(1)">+</MdButton>
+                    </p>
+                </div>
+            </MdCard>
+        }
+    </div>
+
+    <CodeBlock Code="@(demoCode)" />
+
+</article>
+
+@code {
+
+    int elevation = 3;
+    string? demoCode;
+
+    void ChangeElevation(int delta)
+    {
+        elevation = Math.Clamp(elevation + delta, 0, 5);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        demoCode = await Http.GetStringAsync("https://github.com/datvm/BlazorMaterialWeb/blob/master/BlazorMaterialWeb.Demo/Pages/Card.razor");
+    }
+
+}

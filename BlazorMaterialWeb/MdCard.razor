@@ -1,0 +1,9 @@
+@inherits DefaultMdComponent
+
+<div class="blazor-md-card-container @(ContainerClass)">
+    <div class="blazor-md-card @(Class)" @attributes="AdditionalAttributes">
+        <MdElevation ElevationLevel="ElevationLevel" />
+
+        @ChildContent
+    </div>
+</div>
