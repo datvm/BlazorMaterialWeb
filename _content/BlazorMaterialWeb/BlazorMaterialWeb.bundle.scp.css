@@ -1,3 +1,12 @@
+/* _content/BlazorMaterialWeb/MdCard.razor.rz.scp.css */
+.blazor-md-card-container[b-m55l6ki6s5] {
+}
+
+.blazor-md-card[b-m55l6ki6s5] {
+    position: relative;
+    border-radius: var(--catalog-shape-m, .75rem);
+    background-color: var(--md-sys-color-surface);
+}
 /* _content/BlazorMaterialWeb/MdIconInline.razor.rz.scp.css */
 .material-symbols-sharp[b-8d5skke0e8],
 .material-symbols-rounded[b-8d5skke0e8],
